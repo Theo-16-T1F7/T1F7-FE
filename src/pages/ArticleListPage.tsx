@@ -34,7 +34,11 @@ const ArticleListPage = () => {
           return (
             <>
               <div key={article.id}>
-                <S.ArticleElement>
+                <S.ArticleElement
+                  onClick={() => {
+                    navigate(`${article.id}`);
+                  }}
+                >
                   <div>{article.title}</div>
                   <div> {article.date}</div>
                 </S.ArticleElement>
