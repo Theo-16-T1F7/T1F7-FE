@@ -26,6 +26,9 @@ export const ArticleElement = styled.div`
   padding: 0px 36px 12px;
   align-items: center;
   gap: 12px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const DivideTitle = styled.div`
