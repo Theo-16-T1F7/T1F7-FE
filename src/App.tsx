@@ -1,18 +1,23 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RecoilRoot } from 'recoil';
-import './App.css';
-
-const queryClient = new QueryClient();
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import ArticleListPage from './pages/ArticleListPage';
+import ContentsPage from './pages/ContentsPage';
+import NoticeListPage from './pages/NoticeListPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <div className="App">HOME</div>
-      </RecoilRoot>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <Router>
+      <>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/article" element={<ArticleListPage />} />
+          <Route path="/contents" element={<ContentsPage />} />
+          <Route path="/notice" element={<NoticeListPage />} />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+      </>
+    </Router>
   );
 }
 
