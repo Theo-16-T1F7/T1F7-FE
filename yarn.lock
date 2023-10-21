@@ -8167,6 +8167,11 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
+reset@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/reset/-/reset-0.1.0.tgz#9fc7314171995ae6cb0b7e58b06ce7522af4bafb"
+  integrity sha512-RF7bp2P2ODreUPA71FZ4DSK52gNLJJ8dSwA1nhOCoC0mI4KZ4D/W6zhd2nfBqX/JlR+QZ/iUqAYPjq1UQU8l0Q==
+
 resolve-cwd@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-3.0.0.tgz#0f0075f1bb2544766cf73ba6a6e2adfebcb13f2d"
@@ -8809,6 +8814,11 @@ styled-components@^6.1.0:
     shallowequal "^1.1.0"
     stylis "^4.3.0"
     tslib "^2.5.0"
+
+styled-reset@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/styled-reset/-/styled-reset-4.5.1.tgz#631aee45dcef871cab8b25da29271eafc494f694"
+  integrity sha512-6EvFWZRwaFRFxiPYMwmnzOe33rDkw5r9jIU0eEi49bkt6VSrvjeMp2ZOw/YFbw5SVs81llIY+5fzHtR2/VBZfQ==
 
 stylehacks@^5.1.1:
   version "5.1.1"
