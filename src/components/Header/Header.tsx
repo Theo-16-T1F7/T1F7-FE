@@ -1,24 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Header.styled';
-import { SearchIcon } from '../../styles/icons/SearchIcon';
+import { SearchWhiteIcon } from '../../styles/icons/SearchIcon';
+import { SearchRedIcon } from '../../styles/icons/SvgIcons';
 
 export interface HeaderProps {
   headercolor?: string;
 }
 
-const Header: React.FC<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props: any) => {
   const navigate = useNavigate();
   const handleSearchClick = () => {
     navigate('/search');
   };
-
   return (
     <>
-      <S.Header headercolor={'red'}>
-        <S.Logo>쁘띠.</S.Logo>
+      <S.Header headercolor={props.headercolor}>
+        <S.Logo headercolor={props.headercolor}>쁘띠.</S.Logo>
         <S.SearchIcon onClick={handleSearchClick}>
-          <SearchIcon />
+          {props.headercolor === 'red' ? <SearchWhiteIcon /> : <SearchRedIcon />}
         </S.SearchIcon>
       </S.Header>
     </>

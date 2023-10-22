@@ -26,7 +26,7 @@ const Home: React.FC<any> = () => {
   return (
     <>
       <S.StyledWrapper>
-        <Header />
+        <Header headercolor={'red'} />
         <S.Body>
           <S.Subheading>
             Hot한 게시글

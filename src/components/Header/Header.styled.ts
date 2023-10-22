@@ -1,4 +1,3 @@
-// import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Header = styled.div<{ headercolor: string }>`
@@ -11,8 +10,8 @@ export const Header = styled.div<{ headercolor: string }>`
     props.headercolor === 'red' ? props.theme.redNormalColor : props.theme.whiteColor};
 `;
 
-export const Logo = styled.div`
-  color: ${(props) => props.theme.whiteColor}
+export const Logo = styled.div<{ headercolor: string }>`
+  color: ${(props: any) => (props.headercolor === 'red' ? props.theme.whiteColor : props.theme.redNormalColor)};
   font-size: 30px;
   margin-top: 30px;
   margin-left: 10px;

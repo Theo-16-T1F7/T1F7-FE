@@ -1,5 +1,3 @@
-import * as S from './ArticleListPage.styled';
-import { SearchButtonIcon } from '../../styles/icons/SvgIcons';
 import ArticleList from '../../components/ArticleList/ArticleList';
 import ArticleHeader from '../../components/ArticleList/ArticleHeader';
 import { useQuery } from '@tanstack/react-query';
@@ -24,11 +22,7 @@ const ArticleListPage = () => {
 
   return (
     <>
-      {/* <S.ArticleNav>
-        <div>쁘띠</div>
-        <SearchButtonIcon />
-      </S.ArticleNav> */}
-      <Header />
+      <Header headercolor={'white'} />
       <ArticleHeader>게시판 목록</ArticleHeader>
       <ArticleList data={data} />
     </>
