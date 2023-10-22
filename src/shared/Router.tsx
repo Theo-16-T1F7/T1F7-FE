@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from '../pages/MainPage/MainPage';
 import ArticleListPage from '../pages/ArticleListPage/ArticleListPage';
 import ArticleDetailPage from '../pages/ArticleDetailPage/ArticleDetailPage';
-import PostPage from '../pages/PostPage';
+import PostPage from '../pages/PostPage/PostPage';
 import ContentsPage from '../pages/ContentsPage';
 import NoticePage from '../pages/NoticePage/NoticePage';
 import SearchPage from '../pages/SearchPage';
