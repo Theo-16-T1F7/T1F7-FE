@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useInput from '../hooks/useInput';
-import { BackArrowButton } from '../styles/icons/SvgIcons';
-import { createPost } from '../api/post';
+import useInput from '../../hooks/useInput';
+import { createPost } from '../../api/post';
 import { useNavigate } from 'react-router';
+import { DivideTitle } from '../../components/ArticleList/ArticleHeader.styled';
+import * as S from './PostPage.styled';
+import { DropDownIcon } from '../../styles/icons/SvgIcons';
 
 const PostPage = () => {
   const [title, handleOnChangeTitle, setTitle] = useInput();
@@ -51,20 +53,22 @@ const PostPage = () => {
   };
 
   return (
-    <>
+    <S.Container>
+      <S.PostNavBox>
+        <S.CancelButton onClick={() => navigate(-1)}>취소</S.CancelButton>
+        <div>
+          <S.Button onClick={handleSubmitButtonClick}>게시</S.Button>
+        </div>
+      </S.PostNavBox>
+      <S.CategorySelect>카테고리선택</S.CategorySelect>
+      {/* <DropDownIcon /> */}
+      <DivideTitle />
       <div>
-        <BackArrowButton />
-        <h2>글쓰기</h2>
+        <S.Input value={title} onChange={handleOnChangeTitle} placeholder="제목" />
+        <DivideTitle />
+        <S.Textarea value={contents} onChange={handleOnChangeContents} placeholder="내용" />
       </div>
-      <div>
-        <div>카테고리선택</div>
-        <button onClick={handleSubmitButtonClick}>게시하기</button>
-      </div>
-      <div>
-        <input value={title} onChange={handleOnChangeTitle} placeholder="제목" />
-        <textarea value={contents} onChange={handleOnChangeContents} placeholder="내용" />
-      </div>
-    </>
+    </S.Container>
   );
 };
 
