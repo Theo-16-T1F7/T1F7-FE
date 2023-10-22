@@ -6,11 +6,13 @@ import PostPage from '../pages/PostPage';
 import ContentsPage from '../pages/ContentsPage';
 import NoticeListPage from '../pages/NoticeListPage';
 import SearchPage from '../pages/SearchPage';
+import Developing from './Developing';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/developing" element={<Developing />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/article" element={<ArticleListPage />} />
         <Route path="/article/:id" element={<ArticleDetailPage />} />

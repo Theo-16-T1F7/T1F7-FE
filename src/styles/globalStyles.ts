@@ -17,8 +17,8 @@ const GlobalStyle = createGlobalStyle`
     h2 {
   color: #ffffff;
   font-size: 18px;
-  margin-top: 30px;
-  margin-right: 10px;
+  font-weight: 900;
+  font-size: 20px;
   color: black;
   }
 `;

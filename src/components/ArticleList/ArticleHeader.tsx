@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BackArrowButton } from '../../styles/icons/SvgIcons';
 
 interface Props {
-  children: string;
+  children?: string;
 }
 
 const ArticleHeader = (props: Props) => {
@@ -13,12 +13,12 @@ const ArticleHeader = (props: Props) => {
       <S.ArticleHeader>
         <div
           onClick={() => {
-            navigate('/');
+            navigate(-1);
           }}
         >
           <BackArrowButton />
         </div>
-        <h2>{props.children}</h2>
+        {props.children && <h2>{props.children}</h2>}
       </S.ArticleHeader>
       <S.DivideTitle />
     </>
