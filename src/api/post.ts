@@ -10,9 +10,9 @@ export const getPosts = async () => {
   }
 };
 
-export const getPostDetail = async (id: string) => {
+export const getPostDetail = async (id: string | number) => {
   try {
-    const response = await api.get(`/post${id}`);
+    const response = await api.get(`/post/${id}`);
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
