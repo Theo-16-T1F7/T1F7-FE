@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
-import ArticleListPage from './pages/ArticleListPage';
+import ArticleListPage from './pages/ArticleListPage/ArticleListPage';
 import ContentsPage from './pages/ContentsPage';
 import NoticeListPage from './pages/NoticeListPage';
 import SearchPage from './pages/SearchPage';
 import PostPage from './pages/PostPage';
-import ArticleDetailPage from './pages/ArticleDetailPage';
+import ArticleDetailPage from './pages/ArticleDetailPage/ArticleDetailPage';
 
 function App() {
   return (
