@@ -1,46 +1,61 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as S from './Home.styled';
-import { SearchIcon } from '../../styles/icons/SearchIcon';
+import { useNavigate } from 'react-router-dom';
 import { SeeMore } from '../../styles/icons/SeeMore';
+import Header from '../Header/Header';
+import Notice from '../Notice/Notice';
+import NeedEmpathy from '../NeedEmpathy/NeedEmpathy';
+import NeedSolution from '../NeedSolution/NeedSolution';
+import HotBoard from '../HotBoard/HotBoard';
 
-function Home() {
+const Home: React.FC<any> = () => {
   const navigate = useNavigate();
-
-  const handleSearchClick = () => {
-    navigate('/search');
+  const handleHotboardClick = () => {
+    navigate('/hotboard');
   };
+  const handleNoticeClick = () => {
+    navigate('/notice');
+  };
+  // const NeedEmpathy = () => {
+  //   navigate('/hotboard');
+  // };
+  // const handleNeedSolutionClick = () => {
+  //   navigate('/hotboard');
+  // };
 
   return (
     <>
       <S.StyledWrapper>
-        <S.Header>
-          <S.Logo>쁘띠.</S.Logo>
-          <S.SearchIcon onClick={handleSearchClick}>
-            <SearchIcon />
-          </S.SearchIcon>
-        </S.Header>
-
+        <Header />
         <S.Body>
           <S.Subheading>
             Hot한 게시글
-            <SeeMore />
+            <div onClick={handleHotboardClick}>
+              <SeeMore />
+            </div>
           </S.Subheading>
+          <HotBoard />
           <S.Subheading>
-            공지사항🥹
-            <SeeMore />
+            공지사항
+            <div onClick={handleNoticeClick}>
+              <SeeMore />
+            </div>
           </S.Subheading>
-          <S.TextCard>
-            <S.NoticeCard />
-          </S.TextCard>
+          <Notice />
           <S.Subheading>
-            공감이 필요해👩‍⚖️
+            공감이 필요해🥹
             <SeeMore />
           </S.Subheading>
+          <NeedEmpathy />
+          <S.Subheading>
+            해결이 필요해👩‍⚖️
+            <SeeMore />
+          </S.Subheading>
+          <NeedSolution />
         </S.Body>
       </S.StyledWrapper>
     </>
   );
-}
+};
 
 export default Home;
