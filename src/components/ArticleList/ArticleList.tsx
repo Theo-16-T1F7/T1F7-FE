@@ -3,9 +3,18 @@ import * as S from './Article.styled';
 
 // 임시 데이터 type
 interface DataItem {
-  id: string;
+  seq: number;
   title: string;
   date: string;
+  category: string;
+  content: string;
+  mbti: string;
+  memberSeq: number;
+  nickname: string;
+  postImageSeq: number;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Props {
@@ -22,10 +31,10 @@ const ArticleList = (props: Props) => {
         {props.data.map((article, idx) => {
           return (
             <>
-              <div key={article.id}>
+              <div key={article.seq}>
                 <S.ArticleElement
                   onClick={() => {
-                    navigate(`${article.id}`);
+                    navigate(`${article.seq}`);
                   }}
                 >
                   <div>{article.title}</div>
