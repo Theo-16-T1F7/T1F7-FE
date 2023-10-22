@@ -3,7 +3,7 @@ import * as S from './Article.styled';
 
 // 임시 데이터 type
 interface DataItem {
-  seq: number;
+  id: number;
   title: string;
   date: string;
   category: string;
@@ -31,10 +31,10 @@ const ArticleList = (props: Props) => {
         {props.data.map((article, idx) => {
           return (
             <>
-              <div key={article.seq}>
+              <div key={article.id}>
                 <S.ArticleElement
                   onClick={() => {
-                    navigate(`${article.seq}`);
+                    navigate(`${article.id}`);
                   }}
                 >
                   <div>{article.title}</div>
