@@ -1,42 +1,33 @@
 import React from 'react';
-import * as S from './HotBoard.styled';
+// import * as S from './HotBoard.styled';
+import { getHotboard } from '../../api/get';
+import { useQuery } from '@tanstack/react-query';
 
 const HotBoard: React.FC<any> = () => {
-  const dummydata = [
-    {
-      id: '1',
-      title: '핫한 게시글인가요?1',
-      content: '안녕하세요1 쁘디입니다.',
-      date: '2023/10/22'
-    },
-    {
-      id: '2',
-      title: '핫한 게시글인가요?2',
-
-      content: '안녕하세요2 쁘디입니다.',
-      date: '2023/10/23'
-    },
-    {
-      id: '3',
-      title: '핫한 게시글인가요?3',
-      content: '안녕하세요3 쁘디입니다.',
-      date: '2023/10/24'
-    }
-  ];
-
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['get'],
+    queryFn: () => getHotboard()
+  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  console.log(data);
   return (
-    <>
-      {dummydata
-        .filter((notice) => notice.id <= '3')
-        .map((notice, idx) => {
-          return (
-            <div key={notice.id}>
-              <div>{notice.title}</div>
-              <div>{notice.date}</div>
-            </div>
-          );
-        })}
-    </>
+    <div>
+      {Array.isArray(data) &&
+        data.map((hotboard: any) => (
+          <div key={hotboard.seq}>
+            <div>{hotboard.title}</div>
+            <div>{hotboard.category}</div>
+            <div>{hotboard.content}</div>
+            <div>{hotboard.createdAt}</div>
+          </div>
+        ))}
+    </div>
   );
 };
+
 export default HotBoard;
