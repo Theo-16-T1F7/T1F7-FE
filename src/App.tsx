@@ -1,27 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage/MainPage';
-import ArticleListPage from './pages/ArticleListPage/ArticleListPage';
-import ContentsPage from './pages/ContentsPage';
-import NoticeListPage from './pages/NoticeListPage';
-import SearchPage from './pages/SearchPage';
-import PostPage from './pages/PostPage';
-import ArticleDetailPage from './pages/ArticleDetailPage/ArticleDetailPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Router from './shared/Router';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Router>
-      <>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/article" element={<ArticleListPage />} />
-          <Route path="/article/:id" element={<ArticleDetailPage />} />
-          <Route path="/post" element={<PostPage />} />
-          <Route path="/contents" element={<ContentsPage />} />
-          <Route path="/notice" element={<NoticeListPage />} />
-          <Route path="/search" element={<SearchPage />} />
-        </Routes>
-      </>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Router />
+    </QueryClientProvider>
   );
 }
 
