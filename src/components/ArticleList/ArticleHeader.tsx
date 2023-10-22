@@ -13,7 +13,7 @@ const ArticleHeader = (props: Props) => {
       <S.ArticleHeader>
         <div
           onClick={() => {
-            navigate('/');
+            navigate(-1);
           }}
         >
           <BackArrowButton />
