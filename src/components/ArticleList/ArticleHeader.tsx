@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BackArrowButton } from '../../styles/icons/SvgIcons';
 
 interface Props {
-  children: string;
+  children?: string;
 }
 
 const ArticleHeader = (props: Props) => {
