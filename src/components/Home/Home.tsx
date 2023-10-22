@@ -2,11 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Home.styled';
 import { SearchIcon } from '../../styles/icons/SearchIcon';
-import { HotPost } from '../../styles/icons/HotPost';
-import { Notice } from '../../styles/icons/Notice';
-import { NeedSympathy } from '../../styles/icons/NeedSympathy';
 import { SeeMore } from '../../styles/icons/SeeMore';
-import { MainLogo } from '../../styles/icons/MainLogo';
 
 function Home() {
   const navigate = useNavigate();
@@ -24,7 +20,7 @@ function Home() {
             <SearchIcon />
           </S.SearchIcon>
         </S.Header>
-        
+
         <S.Body>
           <S.Subheading>
             Hot한 게시글
