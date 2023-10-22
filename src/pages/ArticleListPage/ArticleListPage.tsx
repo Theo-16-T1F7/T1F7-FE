@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import * as S from './ArticleListPage.styled';
-import { BackArrowButton, SearchButtonIcon } from '../../styles/icons/SvgIcons';
+import { SearchButtonIcon } from '../../styles/icons/SvgIcons';
+import ArticleList from '../../components/ArticleList/ArticleList';
+import ArticleHeader from '../../components/ArticleList/ArticleHeader';
 
 const ArticleListPage = () => {
-  const navigate = useNavigate();
   const sampleData = [
     { id: '1', title: '첫 번째 글', date: '2023-09-15' },
     { id: '2', title: '두 번째 글', date: '2023-09-16' },
@@ -18,36 +18,8 @@ const ArticleListPage = () => {
         <div>쁘띠</div>
         <SearchButtonIcon />
       </S.ArticleNav>
-      <S.ArticleHeader>
-        <div
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          <BackArrowButton />
-        </div>
-        <h2>게시판 목록</h2>
-      </S.ArticleHeader>
-      <S.DivideTitle />
-      <S.ArticleMain>
-        {sampleData.map((article, idx) => {
-          return (
-            <>
-              <div key={article.id}>
-                <S.ArticleElement
-                  onClick={() => {
-                    navigate(`${article.id}`);
-                  }}
-                >
-                  <div>{article.title}</div>
-                  <div> {article.date}</div>
-                </S.ArticleElement>
-                {idx < sampleData.length - 1 && <S.ArticleDivider />}
-              </div>
-            </>
-          );
-        })}
-      </S.ArticleMain>
+      <ArticleHeader>게시판 목록</ArticleHeader>
+      <ArticleList data={sampleData} />
     </>
   );
 };
