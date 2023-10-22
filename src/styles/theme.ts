@@ -11,8 +11,8 @@ export const theme: DefaultTheme = {
   redDarkHoverColor: '#8c2a2c',
   redDarkActiveColor: '#691f21',
   redDarkerColor: '#52191a',
-  whiteColor: 'FFFFFF',
-  blackColor: '070707',
-  greyColor: 'DFDFDF',
+  whiteColor: '#FFFFFF',
+  blackColor: '#070707',
+  greyColor: '#DFDFDF',
   dividerColor: '#EFEFEF'
 };

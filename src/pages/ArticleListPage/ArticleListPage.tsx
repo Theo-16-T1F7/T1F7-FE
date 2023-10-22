@@ -1,25 +1,30 @@
-import * as S from './ArticleListPage.styled';
-import { SearchButtonIcon } from '../../styles/icons/SvgIcons';
 import ArticleList from '../../components/ArticleList/ArticleList';
 import ArticleHeader from '../../components/ArticleList/ArticleHeader';
+import { useQuery } from '@tanstack/react-query';
+import { getPosts } from '../../api/post';
+import Header from '../../components/Header/Header';
 
 const ArticleListPage = () => {
-  const sampleData = [
-    { id: '1', title: '첫 번째 글', date: '2023-09-15' },
-    { id: '2', title: '두 번째 글', date: '2023-09-16' },
-    { id: '3', title: '세 번째 글', date: '2023-09-17' },
-    { id: '4', title: '네 번째 글', date: '2023-09-18' },
-    { id: '5', title: '다섯 번째 글', date: '2023-09-19' }
-  ];
+  const { isLoading, isError, data } = useQuery<any>({
+    queryKey: ['posts'],
+    queryFn: () => getPosts()
+  });
+
+  console.log(data);
+
+  if (isLoading) {
+    return <h1>로딩중입니다~~~~</h1>;
+  }
+
+  if (isError) {
+    return <h1>오류가 발생하였습니다....!!!</h1>;
+  }
 
   return (
     <>
-      <S.ArticleNav>
-        <div>쁘띠</div>
-        <SearchButtonIcon />
-      </S.ArticleNav>
+      <Header headercolor={'white'} />
       <ArticleHeader>게시판 목록</ArticleHeader>
-      <ArticleList data={sampleData} />
+      <ArticleList data={data} />
     </>
   );
 };
