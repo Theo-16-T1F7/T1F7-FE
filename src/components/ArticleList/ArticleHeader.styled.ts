@@ -6,7 +6,7 @@ export const ArticleHeader = styled.header`
 `;
 
 export const DivideTitle = styled.div`
-  background-color: #efefef;
+  background-color: ${(props) => props.theme.dividerColor};
   display: flex;
   height: 3px;
   margin-bottom: 15px;

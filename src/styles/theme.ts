@@ -13,5 +13,6 @@ export const theme: DefaultTheme = {
   redDarkerColor: '#52191a',
   whiteColor: 'FFFFFF',
   blackColor: '070707',
-  greyColor: 'DFDFDF'
+  greyColor: 'DFDFDF',
+  dividerColor: '#EFEFEF'
 };

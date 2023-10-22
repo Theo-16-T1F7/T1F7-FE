@@ -12,6 +12,8 @@ interface Props {
   data: DataItem[];
 }
 
+interface Props {}
+
 const ArticleList = (props: Props) => {
   const navigate = useNavigate();
   return (
