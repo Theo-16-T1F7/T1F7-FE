@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import * as S from './StArticleList';
+import * as S from './ArticleListPage.styled';
 import { BackArrowButton, SearchButtonIcon } from '../../styles/icons/SvgIcons';
 
 const ArticleListPage = () => {
