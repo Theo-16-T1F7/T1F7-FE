@@ -3,16 +3,24 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-
-  @import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css');
-
-  :root {
-    --foreground-rgb: #222222;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-    --base-font: 'SUIT', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+@font-face {
+    font-family: 'SF Pro';
+    src: url('path-to-sf-pro.woff2') format('woff2'),
+         url('path-to-sf-pro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
 
-
+  body {
+    font-family: 'SF Pro', sans-serif;
+  }
+    h2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-right: 10px;
+  color: black;
+  }
 `;
+
 export default GlobalStyle;
