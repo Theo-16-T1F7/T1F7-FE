@@ -27,4 +27,7 @@ const Wrap = styled.div`
   padding-top: 10px;
 `;
 
-const Message = styled.div``;
+const Message = styled.div`
+  align-items: center;
+  justify-content: center;
+`;

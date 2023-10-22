@@ -18,7 +18,7 @@ const ArticleHeader = (props: Props) => {
         >
           <BackArrowButton />
         </div>
-        <h2>{props.children}</h2>
+        {props.children && <h2>{props.children}</h2>}
       </S.ArticleHeader>
       <S.DivideTitle />
     </>

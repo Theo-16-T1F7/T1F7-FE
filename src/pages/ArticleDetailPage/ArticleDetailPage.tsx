@@ -1,5 +1,12 @@
+import { ArticleHeader } from '../../components/ArticleList/ArticleHeader.styled';
+
 const ArticleDetailPage = () => {
-  return <div>ArticleDetailPage</div>;
+  return (
+    <>
+      <ArticleHeader />
+      ArticleDetail
+    </>
+  );
 };
 
 export default ArticleDetailPage;
