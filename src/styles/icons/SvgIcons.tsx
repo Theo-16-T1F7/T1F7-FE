@@ -17,3 +17,9 @@ export const SearchButtonIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const CautionIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="59" height="59" viewBox="0 0 59 59" fill="none">
+    <circle cx="29.5" cy="29.5" r="28" stroke="#DFDFDF" stroke-width="3" />
+  </svg>
+);
