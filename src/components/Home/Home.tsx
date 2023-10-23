@@ -7,6 +7,7 @@ import Notice from '../Notice/Notice';
 import NeedEmpathy from '../NeedEmpathy/NeedEmpathy';
 import NeedSolution from '../NeedSolution/NeedSolution';
 import HotBoard from '../HotBoard/HotBoard';
+import Footer from '../Footer/Footer';
 
 const Home: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const Home: React.FC<any> = () => {
           </S.Subheading>
           <NeedSolution />
         </S.Body>
+        <Footer />
       </S.StyledWrapper>
     </>
   );
