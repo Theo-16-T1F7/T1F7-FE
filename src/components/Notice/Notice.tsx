@@ -1,7 +1,8 @@
 import React from 'react';
-// import * as S from './Notice.styled';
+import * as S from './Notice.styled';
 import { getNotice } from '../../api/notice';
 import { useQuery } from '@tanstack/react-query';
+import { theme } from '../../styles/theme';
 
 const Notice = () => {
   const { data, error, isLoading } = useQuery<any>({
@@ -14,18 +15,16 @@ const Notice = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(data);
+  const firstNotice = data[0];
+
   return (
-    <div>
-      {Array.isArray(data) &&
-        data.map((notice: any, index: number) => (
-          <div key={index}>
-            <div>{notice.title}</div>
-            <div>{notice.content}</div>
-            <div>{notice.createdAt}</div>
-          </div>
-        ))}
-    </div>
+    <>
+      <S.NoticeCard>
+        <div>{firstNotice.title}</div>
+        <div>{firstNotice.content}</div>
+        <div>{firstNotice.createdAt}</div>
+      </S.NoticeCard>
+    </>
   );
 };
 
