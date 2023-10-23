@@ -20,9 +20,9 @@ const Notice = () => {
   return (
     <>
       <S.NoticeCard>
-        <div>{firstNotice.title}</div>
-        <div>{firstNotice.content}</div>
-        <div>{firstNotice.createdAt}</div>
+        <S.Title>쁘띠 업데이트⚒️</S.Title>
+        <S.CreatedAt>{firstNotice.createdAt}</S.CreatedAt>
+        <S.Content>{firstNotice.content}</S.Content>
       </S.NoticeCard>
     </>
   );
