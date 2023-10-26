@@ -2,7 +2,6 @@ import React from 'react';
 import * as S from './Notice.styled';
 import { getNotice } from '../../api/notice';
 import { useQuery } from '@tanstack/react-query';
-import { theme } from '../../styles/theme';
 
 const Notice = () => {
   const { data, error, isLoading } = useQuery<any>({
