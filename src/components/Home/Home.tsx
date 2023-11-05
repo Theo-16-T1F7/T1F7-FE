@@ -8,6 +8,7 @@ import NeedEmpathy from '../NeedEmpathy/NeedEmpathy';
 import NeedSolution from '../NeedSolution/NeedSolution';
 import HotBoard from '../HotBoard/HotBoard';
 import Footer from '../Footer/Footer';
+import EmotionStory from './EmotionStory/EmotionStory';
 
 const Home: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -43,16 +44,21 @@ const Home: React.FC<any> = () => {
             </div>
           </S.Subheading>
           <Notice />
-          <S.Subheading>
-            공감이 필요해🥹
-            <SeeMore />
-          </S.Subheading>
-          <NeedEmpathy />
-          <S.Subheading>
-            해결이 필요해👩‍⚖️
-            <SeeMore />
-          </S.Subheading>
-          <NeedSolution />
+          <S.NeedMoreWrapper>
+            <S.Subheading>
+              공감이 필요해🥹
+              <SeeMore />
+            </S.Subheading>
+            <NeedEmpathy />
+          </S.NeedMoreWrapper>
+          <S.NeedMoreWrapper>
+            <S.Subheading>
+              해결이 필요해👩‍⚖️
+              <SeeMore />
+            </S.Subheading>
+            <NeedSolution />
+          </S.NeedMoreWrapper>
+          <EmotionStory />
         </S.Body>
         <Footer />
       </S.StyledWrapper>

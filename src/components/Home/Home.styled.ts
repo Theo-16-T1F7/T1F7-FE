@@ -5,7 +5,7 @@ export const StyledWrapper = styled.main`
   height: 100vh;
   overflow: auto;
   position: fixed;
-  background-color: rgba(241, 241, 241, 0.5);
+  /* background-color: rgba(241, 241, 241, 0.5); */
 `;
 
 export const Body = styled.div``;
@@ -18,6 +18,13 @@ export const Subheading = styled.h2`
   justify-content: space-between;
   font-weight: 900;
   font-size: 20px;
+`;
+
+export const NeedMoreWrapper = styled.div`
+  background-color: #f5f5f5;
+  margin: 10px auto 0px; // 위 가로 아래
+  padding: 5px 0px; // 세로 가로
+  justify-content: center;
 `;
 
 export const SeeMore = styled.div`

@@ -29,10 +29,10 @@ const NeedSolution: React.FC<any> = () => {
         .filter((notice) => notice.id <= '3')
         .map((notice, idx) => {
           return (
-            <div key={notice.id}>
-              <div>{notice.title}</div>
-              <div>{notice.date}</div>
-            </div>
+            <S.SolutionWrapper key={notice.id}>
+              <S.TitleStyle>{notice.title}</S.TitleStyle>
+              <S.DateStyle>{notice.date}</S.DateStyle>
+            </S.SolutionWrapper>
           );
         })}
     </>
