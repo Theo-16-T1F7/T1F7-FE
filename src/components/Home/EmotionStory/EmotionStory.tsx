@@ -14,11 +14,14 @@ const EmotionStory = () => {
         </S.EmotionButtonWrapper>
         <div>
           <S.EmotionCardLayout>
-            <div>오늘 사랑니 발치했는데 진짜 너무 아파서 스스로 선물로 옷 쇼핑했음요~ ㅠㅠ 발치한곳 완전 아파</div>
+            <S.EmotionContentStyle>
+              오늘 사랑니 발치했는데 진짜 너무 아파서 스스로 선물로 옷 쇼핑했음요~ ㅠㅠ 발치한곳 완전 아파
+            </S.EmotionContentStyle>
             <S.EmotionCardBottomLayout>
-              <div>익명</div>
+              <div style={{ width: '18px', height: '18px', borderRadius: '67.5px', backgroundColor: '#1A1A1A' }}></div>
+              <S.UserLayout>익명</S.UserLayout>
               <S.TendencyLayout>나는 F성향</S.TendencyLayout>
-              <div>23/10/21</div>
+              <S.DateLayout>23/10/21</S.DateLayout>
             </S.EmotionCardBottomLayout>
           </S.EmotionCardLayout>
           <div>카드2</div>

@@ -63,6 +63,19 @@ export const EmotionCardBottomLayout = styled.div`
   gap: 1px;
 `;
 
+export const EmotionContentStyle = styled.div`
+  color: #414b5a;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 134.688%;
+`;
+
+export const UserLayout = styled.div`
+  color: #414b5a;
+  font-size: 12px;
+  font-weight: 700;
+`;
+
 export const TendencyLayout = styled.div`
   display: flex;
   padding: 2px 4px;
@@ -70,4 +83,12 @@ export const TendencyLayout = styled.div`
   align-items: center;
   border-radius: 4px;
   background-color: #fffb95;
+  font-size: 10px;
+  font-weight: 700;
+`;
+
+export const DateLayout = styled.div`
+  color: #414b5a;
+  font-size: 12px;
+  font-weight: 500;
 `;
