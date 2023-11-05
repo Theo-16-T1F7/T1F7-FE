@@ -17,12 +17,7 @@ export const EmotionWrapper = styled.div`
 `;
 
 export const EmotionButtonWrapper = styled.div`
-  /* flex-direction: column; */
-  /* flex-wrap: nowrap;  */
-
-  align-items: stretch;
   padding: 0px 20px;
-  /* align-items: flex-start; */
   gap: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -35,6 +30,12 @@ export const EmotionButton = styled.span`
   border-radius: 14px;
   border: 1px solid #292828;
   margin: 5px 5px;
+
+  color: #292828;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.12px;
 
   &:hover {
     border: 1px solid #bd2024;
