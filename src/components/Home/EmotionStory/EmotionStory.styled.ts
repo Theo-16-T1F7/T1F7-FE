@@ -1,0 +1,73 @@
+import styled from 'styled-components';
+
+export const Subheading = styled.h2`
+  display: flex;
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  justify-content: space-between;
+  font-weight: 900;
+  font-size: 20px;
+`;
+
+export const EmotionWrapper = styled.div`
+  margin: 10px auto 0px; // 위 가로 아래
+  padding: 5px 0px; // 세로 가로
+  justify-content: center;
+`;
+
+export const EmotionButtonWrapper = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  /* flex-wrap: nowrap;  */
+  align-items: stretch;
+  padding: 0px 20px;
+  /* align-items: flex-start; */
+  gap: 8px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+`;
+
+export const EmotionButton = styled.span`
+  /* height: 28px; */
+  padding: 5px 10px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 14px;
+  border: 1px solid #292828;
+  margin: 5px 0px;
+
+  &:hover {
+    border: 1px solid #bd2024;
+    background-color: ${(props) => props.theme.redNormalColor};
+    color: white;
+  }
+`;
+
+export const EmotionCardLayout = styled.div`
+  display: flex;
+  padding: 17px 18px;
+  margin: 17px 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 11px;
+  background-color: #f3f3f3;
+  box-shadow: 4px 5px 10px 0px rgba(0, 0, 0, 0.12);
+`;
+
+export const EmotionCardBottomLayout = styled.div`
+  display: flex;
+  padding-top: 18px;
+  align-items: center;
+  gap: 1px;
+`;
+
+export const TendencyLayout = styled.div`
+  display: flex;
+  padding: 2px 4px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #fffb95;
+`;

@@ -8,6 +8,7 @@ import NeedEmpathy from '../NeedEmpathy/NeedEmpathy';
 import NeedSolution from '../NeedSolution/NeedSolution';
 import HotBoard from '../HotBoard/HotBoard';
 import Footer from '../Footer/Footer';
+import EmotionStory from './EmotionStory/EmotionStory';
 
 const Home: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Home: React.FC<any> = () => {
   // const handleNeedSolutionClick = () => {
   //   navigate('/hotboard');
   // };
-  const hashtags = ['기뻐요', '슬퍼요', '화가나', '억울해', '궁금해', '고민돼', '답답해'];
+
   return (
     <>
       <S.StyledWrapper>
@@ -57,18 +58,7 @@ const Home: React.FC<any> = () => {
             </S.Subheading>
             <NeedSolution />
           </S.NeedMoreWrapper>
-          <S.EmotionWrapper>
-            <S.Subheading>감정별 이야기</S.Subheading>
-            <S.EmotionButtonWrapper>
-              {hashtags.map((item, idx) => {
-                return <S.EmotionButton>{item}</S.EmotionButton>;
-              })}
-            </S.EmotionButtonWrapper>
-            <div>
-              <div>카드1</div>
-              <div>카드2</div>
-            </div>
-          </S.EmotionWrapper>
+          <EmotionStory />
         </S.Body>
         <Footer />
       </S.StyledWrapper>

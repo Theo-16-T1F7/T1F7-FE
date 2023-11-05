@@ -44,38 +44,3 @@ export const HotPostCard = styled.div`
     cursor: pointer;
   }
 `;
-
-export const EmotionWrapper = styled.div`
-  margin: 10px auto 0px; // 위 가로 아래
-  padding: 5px 0px; // 세로 가로
-  justify-content: center;
-`;
-
-export const EmotionButtonWrapper = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  /* flex-wrap: nowrap;  */
-  align-items: stretch;
-  padding: 0px 20px;
-  /* align-items: flex-start; */
-  gap: 8px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-`;
-
-export const EmotionButton = styled.span`
-  /* height: 28px; */
-  padding: 5px 10px;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  border-radius: 14px;
-  border: 1px solid #292828;
-  margin: 5px 0px;
-
-  &:hover {
-    border: 1px solid #bd2024;
-    background-color: ${(props) => props.theme.redNormalColor};
-    color: white;
-  }
-`;
