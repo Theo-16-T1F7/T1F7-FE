@@ -43,16 +43,20 @@ const Home: React.FC<any> = () => {
             </div>
           </S.Subheading>
           <Notice />
-          <S.Subheading>
-            공감이 필요해🥹
-            <SeeMore />
-          </S.Subheading>
-          <NeedEmpathy />
-          <S.Subheading>
-            해결이 필요해👩‍⚖️
-            <SeeMore />
-          </S.Subheading>
-          <NeedSolution />
+          <S.NeedMoreWrapper>
+            <S.Subheading>
+              공감이 필요해🥹
+              <SeeMore />
+            </S.Subheading>
+            <NeedEmpathy />
+          </S.NeedMoreWrapper>
+          <S.NeedMoreWrapper>
+            <S.Subheading>
+              해결이 필요해👩‍⚖️
+              <SeeMore />
+            </S.Subheading>
+            <NeedSolution />
+          </S.NeedMoreWrapper>
         </S.Body>
         <Footer />
       </S.StyledWrapper>
