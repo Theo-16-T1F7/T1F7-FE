@@ -64,7 +64,7 @@ export const EmotionButtonWrapper = styled.div`
 `;
 
 export const EmotionButton = styled.span`
-  height: 28px;
+  /* height: 28px; */
   padding: 5px 10px;
   justify-content: center;
   text-align: center;
