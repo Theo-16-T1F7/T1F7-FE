@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './NeedEmpathy.styled';
+import * as S from '../NeedSolution/NeedSolution.styled';
 
 const NeedEmpathy: React.FC<any> = () => {
   const dummydata = [
@@ -23,19 +23,19 @@ const NeedEmpathy: React.FC<any> = () => {
       date: '2023/10/24 08:24'
     }
   ];
-    return (
-      <>
-        {dummydata
-          .filter((notice) => notice.id <= '3')
-          .map((notice, idx) => {
-            return (
-              <div key={notice.id}>
-                <div>{notice.title}</div>
-                <div>{notice.date}</div>
-              </div>
-            );
-          })}
-      </>
-    );
+  return (
+    <>
+      {dummydata
+        .filter((notice) => notice.id <= '3')
+        .map((notice, idx) => {
+          return (
+            <S.SolutionWrapper key={notice.id}>
+              <S.TitleStyle>{notice.title}</S.TitleStyle>
+              <S.DateStyle>{notice.date}</S.DateStyle>
+            </S.SolutionWrapper>
+          );
+        })}
+    </>
+  );
 };
 export default NeedEmpathy;
