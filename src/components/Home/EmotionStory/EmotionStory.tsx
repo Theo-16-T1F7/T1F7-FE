@@ -7,11 +7,13 @@ const EmotionStory = () => {
     <>
       <S.EmotionWrapper>
         <S.Subheading>감정별 이야기</S.Subheading>
-        <S.EmotionButtonWrapper>
-          {hashtags.map((item, idx) => {
-            return <S.EmotionButton>{item}</S.EmotionButton>;
-          })}
-        </S.EmotionButtonWrapper>
+        <div style={{ display: 'block' }}>
+          <S.EmotionButtonWrapper>
+            {hashtags.map((item, idx) => {
+              return <S.EmotionButton>{item}</S.EmotionButton>;
+            })}
+          </S.EmotionButtonWrapper>
+        </div>
         <div>
           <S.EmotionCardLayout>
             <S.EmotionContentStyle>
