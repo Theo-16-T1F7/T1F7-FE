@@ -17,9 +17,9 @@ export const EmotionWrapper = styled.div`
 `;
 
 export const EmotionButtonWrapper = styled.div`
-  display: flex;
   /* flex-direction: column; */
   /* flex-wrap: nowrap;  */
+
   align-items: stretch;
   padding: 0px 20px;
   /* align-items: flex-start; */
@@ -29,14 +29,12 @@ export const EmotionButtonWrapper = styled.div`
 `;
 
 export const EmotionButton = styled.span`
-  /* height: 28px; */
+  display: inline-block;
   padding: 5px 10px;
-  justify-content: center;
   text-align: center;
-  align-items: center;
   border-radius: 14px;
   border: 1px solid #292828;
-  margin: 5px 0px;
+  margin: 5px 5px;
 
   &:hover {
     border: 1px solid #bd2024;
