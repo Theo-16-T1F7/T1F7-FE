@@ -3,11 +3,11 @@ import MainPage from '../pages/MainPage/MainPage';
 import ArticleListPage from '../pages/ArticleListPage/ArticleListPage';
 import ArticleDetailPage from '../pages/ArticleDetailPage/ArticleDetailPage';
 import PostPage from '../pages/PostPage/PostPage';
-import ContentsPage from '../pages/ContentsPage';
 import NoticePage from '../pages/NoticePage/NoticePage';
 import SearchPage from '../pages/SearchPage';
 import Developing from './Developing';
 import HotBoardPage from '../pages/HotBoardPage/HotBoardPage';
+import ContentPage from '../pages/ContentPage/ContentPage';
 
 const Router = () => {
   return (
@@ -18,7 +18,7 @@ const Router = () => {
         <Route path="/article" element={<ArticleListPage />} />
         <Route path="/article/:id" element={<ArticleDetailPage />} />
         <Route path="/post" element={<PostPage />} />
-        <Route path="/contents" element={<ContentsPage />} />
+        <Route path="/content" element={<ContentPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/hotboard" element={<HotBoardPage />} />
