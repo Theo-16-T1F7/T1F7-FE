@@ -7,14 +7,14 @@ const EmotionStory = () => {
     <>
       <S.EmotionWrapper>
         <S.Subheading>감정별 이야기</S.Subheading>
-        <div style={{ display: 'block' }}>
+        <S.EmotionButtonBox>
           <S.EmotionButtonWrapper>
             {hashtags.map((item, idx) => {
               return <S.EmotionButton>{item}</S.EmotionButton>;
             })}
           </S.EmotionButtonWrapper>
-        </div>
-        <div>
+        </S.EmotionButtonBox>
+        <S.EmtoionCardBox>
           <S.EmotionCardLayout>
             <S.EmotionContentStyle>
               오늘 사랑니 발치했는데 진짜 너무 아파서 스스로 선물로 옷 쇼핑했음요~ ㅠㅠ 발치한곳 완전 아파
@@ -26,8 +26,7 @@ const EmotionStory = () => {
               <S.DateLayout>23/10/21</S.DateLayout>
             </S.EmotionCardBottomLayout>
           </S.EmotionCardLayout>
-          <div>카드2</div>
-        </div>
+        </S.EmtoionCardBox>
       </S.EmotionWrapper>
     </>
   );

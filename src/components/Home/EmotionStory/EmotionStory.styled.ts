@@ -16,11 +16,18 @@ export const EmotionWrapper = styled.div`
   justify-content: center;
 `;
 
+export const EmotionButtonBox = styled.div`
+  display: 'block';
+  /* height: 32px; */
+`;
+
 export const EmotionButtonWrapper = styled.div`
+  height: 33px;
   padding: 0px 20px;
   gap: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
+  overflow: hidden;
 `;
 
 export const EmotionButton = styled.span`
@@ -42,6 +49,10 @@ export const EmotionButton = styled.span`
     background-color: ${(props) => props.theme.redNormalColor};
     color: white;
   }
+`;
+
+export const EmtoionCardBox = styled.div`
+  padding-bottom: 60px;
 `;
 
 export const EmotionCardLayout = styled.div`

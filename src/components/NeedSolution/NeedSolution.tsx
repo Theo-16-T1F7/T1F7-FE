@@ -1,7 +1,20 @@
 import React from 'react';
 import * as S from './NeedSolution.styled';
+import { useQuery } from '@tanstack/react-query';
+import { getNeedSolution } from '../../api/mainpagelist';
 
 const NeedSolution: React.FC<any> = () => {
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['mainNeedSolution'],
+    queryFn: () => getNeedSolution()
+  });
+  console.log('res', data);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   const dummydata = [
     {
       id: '1',
