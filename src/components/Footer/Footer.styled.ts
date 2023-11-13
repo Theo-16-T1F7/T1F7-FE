@@ -19,12 +19,12 @@ export const PostIconPosition = styled.div`
 `;
 export const FeedPosition = styled.div`
   position: absolute;
-  right: 270px;
+  left: 70px;
   z-index: 1;
 `;
 export const ContentPosition = styled.div`
   position: absolute;
-  left: 270px;
+  right: 70px;
   z-index: 1;
   line-height: 1.3;
 `;
