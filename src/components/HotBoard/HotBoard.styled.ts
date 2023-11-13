@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.p`
-
-`;
+export const Container = styled.p``;
 export const TextCard = styled.div`
   display: flex;
   height: 0vh;
@@ -10,16 +8,15 @@ export const TextCard = styled.div`
   align-items: center; /* 수직 중앙 정렬 */
 `;
 export const HotBoardCard = styled.div`
-  width: 70%;
+  width: 60vw;
   height: 20vw;
   background-color: #ffffff;
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 10px;
-  padding-left: 30px;
+  padding-left: 20px;
   padding-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-
 `;
 export const Name = styled.div`
   display: flex;
@@ -48,6 +45,7 @@ export const CreatedAt = styled.div`
 
 export const EmblaContainer = styled.div`
   overflow: hidden;
+
 `;
 
 export const EmblaInnerContainer = styled.div`
@@ -55,10 +53,8 @@ export const EmblaInnerContainer = styled.div`
 `;
 
 export const EmblaSlide = styled.div`
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   min-width: 0;
-  height: auto; /* Add this line to make the height auto */
-  display: flex; /* Add this line to make it a flex container */
-  justify-content: center; /* Add this line to center the content vertically */
-  align-items: center; /* Add this line to center the content horizontally */
+  width: 70%;
 `;
+
