@@ -29,11 +29,27 @@ export const getNeedSolution = async () => {
     const response = await severapi.get('/api/post', {
       params: {
         search: '',
-        mbti: '',
+        mbti: 'T',
         hashList: ''
       }
     });
-    // console.log('res', response);
+
+    return response.data;
+  } catch (err) {
+    throw new Error(`Error: ${err}`);
+  }
+};
+
+export const getNeedEmpathy = async () => {
+  try {
+    const response = await severapi.get('/api/post', {
+      params: {
+        search: '',
+        mbti: 'F',
+        hashList: ''
+      }
+    });
+
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
