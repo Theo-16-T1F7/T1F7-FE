@@ -18,30 +18,42 @@ const HotBoard = () => {
           containScroll: 'trimSnaps', // 스크롤이 가장 가까운 스냅 지점에서 끝나도록 설정
           slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수를 설정
           dragFree: true,
-          loop: true
+          loop: false,
         },
         [Autoplay(autoplayOptions)]
       );
     }
-  },);
+  });
 
   const dummydata = [
     {
       id: '1',
       name: '익명1',
-      content: 'mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      content: '첫번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
       date: '2023/10/22'
     },
     {
       id: '2',
       name: '익명2',
-      content: 'mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      content: '두번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
       date: '2023/10/23'
     },
     {
       id: '3',
       name: '익명3',
-      content: 'mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      content: '세번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      date: '2023/10/24'
+    },
+    {
+      id: '4',
+      name: '익명4',
+      content: '네번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      date: '2023/10/24'
+    },
+    {
+      id: '5',
+      name: '익명5',
+      content: '다섯번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
       date: '2023/10/24'
     }
   ];
@@ -50,19 +62,17 @@ const HotBoard = () => {
     <S.Container>
       <S.EmblaContainer ref={carouselRef}>
         <S.EmblaInnerContainer>
-          {dummydata.map((item) => (
-            <S.EmblaSlide key={item.id}>
-              <>
-                <S.HotBoardCard>
-                  <S.Name>
-                    {item.name}
-                    <S.CreatedAt>{item.date}</S.CreatedAt>
-                  </S.Name>
-                  <S.Content>
-                    <p>{item.content}</p>
-                  </S.Content>
-                </S.HotBoardCard>
-              </>
+          {dummydata.map((item, index) => (
+            <S.EmblaSlide key={index}>
+              <S.HotBoardCard>
+                <S.Name>
+                  {item.name}
+                  <S.CreatedAt>{item.date}</S.CreatedAt>
+                </S.Name>
+                <S.Content>
+                  <p>{item.content}</p>
+                </S.Content>
+              </S.HotBoardCard>
             </S.EmblaSlide>
           ))}
         </S.EmblaInnerContainer>

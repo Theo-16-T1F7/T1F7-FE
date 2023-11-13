@@ -12,9 +12,10 @@ export const Header = styled.div<{ headercolor: string }>`
 
 export const Logo = styled.div<{ headercolor: string }>`
   color: ${(props: any) => (props.headercolor === 'red' ? props.theme.whiteColor : props.theme.redNormalColor)};
-  font-size: 30px;
+  font-size: 23px;
   margin-top: 30px;
   margin-left: 10px;
+  font-weight: 800;
 `;
 
 export const SearchIcon = styled.div`
