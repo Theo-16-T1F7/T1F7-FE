@@ -4,7 +4,7 @@ export const Subheading = styled.h2`
   display: flex;
   align-items: center;
   margin-left: 15px;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 20px;
   margin-right: 100px; /* 여백 값 조정 가능 */
   font-weight: 900;

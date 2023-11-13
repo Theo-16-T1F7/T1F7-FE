@@ -1,7 +1,22 @@
 import React from 'react';
-import * as S from './NeedEmpathy.styled';
+import * as S from '../NeedSolution/NeedSolution.styled';
+import { useQuery } from '@tanstack/react-query';
+import { getNeedEmpathy } from '../../api/mainpagelist';
+import { PostDetail } from '../../types/type';
 
 const NeedEmpathy: React.FC<any> = () => {
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['mainNeedEmpathy'],
+    queryFn: () => getNeedEmpathy()
+  });
+  const getData: PostDetail[] = data?.data?.content?.slice(0, 3) || [];
+  // console.log('res', getData);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   const dummydata = [
     {
       id: '1',
@@ -23,19 +38,17 @@ const NeedEmpathy: React.FC<any> = () => {
       date: '2023/10/24 08:24'
     }
   ];
-    return (
-      <>
-        {dummydata
-          .filter((notice) => notice.id <= '3')
-          .map((notice, idx) => {
-            return (
-              <div key={notice.id}>
-                <div>{notice.title}</div>
-                <div>{notice.date}</div>
-              </div>
-            );
-          })}
-      </>
-    );
+  return (
+    <>
+      {getData?.map((data, idx) => {
+        return (
+          <S.SolutionWrapper key={idx}>
+            <S.TitleStyle>{data.title}</S.TitleStyle>
+            <S.DateStyle>{data.createdAt}</S.DateStyle>
+          </S.SolutionWrapper>
+        );
+      })}
+    </>
+  );
 };
 export default NeedEmpathy;

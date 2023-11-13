@@ -2,27 +2,40 @@ import React from 'react';
 import * as S from './Notice.styled';
 import { getNotice } from '../../api/notice';
 import { useQuery } from '@tanstack/react-query';
-import { theme } from '../../styles/theme';
 
 const Notice = () => {
+  const formatNoticeDate = (createdAt: string) => {
+    const date = new Date(createdAt);
+    const year = date.getFullYear();
+    const month = (1 + date.getMonth()).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}/${month}/${day} `;
+    return formattedDate;
+  };
+
   const { data, error, isLoading } = useQuery<any>({
     queryKey: ['getNotice'],
     queryFn: () => getNotice()
   });
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>로딩중...</div>;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>에러!: {error.message}</div>;
+  }
+  if (!data || data.length === 0 || !data[0].createdAt) {
+    return <div>데이터 오류</div>;
   }
   const firstNotice = data[0];
 
   return (
     <>
       <S.NoticeCard>
-        <div>{firstNotice.title}</div>
-        <div>{firstNotice.content}</div>
-        <div>{firstNotice.createdAt}</div>
+        <S.Title>
+          쁘띠 업데이트⚒️
+          <S.CreatedAt>{formatNoticeDate(firstNotice.createdAt)}</S.CreatedAt>
+        </S.Title>
+        <S.Content>{firstNotice.content}</S.Content>
       </S.NoticeCard>
     </>
   );
