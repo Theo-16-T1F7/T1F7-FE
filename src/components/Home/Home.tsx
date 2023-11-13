@@ -12,18 +12,19 @@ import EmotionStory from './EmotionStory/EmotionStory';
 
 const Home: React.FC<any> = () => {
   const navigate = useNavigate();
+
   const handleHotboardClick = () => {
     navigate('/hotboard');
   };
   const handleNoticeClick = () => {
     navigate('/notice');
   };
-  // const NeedEmpathy = () => {
-  //   navigate('/hotboard');
-  // };
-  // const handleNeedSolutionClick = () => {
-  //   navigate('/hotboard');
-  // };
+  const handleNeedEmpathyClick = () => {
+    navigate('/empathy');
+  };
+  const handleNeedSolutionClick = () => {
+    navigate('/solution');
+  };
 
   return (
     <>
@@ -47,14 +48,18 @@ const Home: React.FC<any> = () => {
           <S.NeedMoreWrapper>
             <S.Subheading>
               공감이 필요해🥹
-              <SeeMore />
+              <div onClick={handleNeedEmpathyClick}>
+                <SeeMore />
+              </div>
             </S.Subheading>
             <NeedEmpathy />
           </S.NeedMoreWrapper>
           <S.NeedMoreWrapper>
             <S.Subheading>
               해결이 필요해👩‍⚖️
-              <SeeMore />
+              <div onClick={handleNeedSolutionClick}>
+                <SeeMore />
+              </div>
             </S.Subheading>
             <NeedSolution />
           </S.NeedMoreWrapper>

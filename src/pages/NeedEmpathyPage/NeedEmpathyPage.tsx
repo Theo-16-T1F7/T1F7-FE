@@ -1,6 +1,7 @@
 import React from 'react';
-import * as S from './NoticePage.styled';
+import * as S from './NeedEmpathyPage.styled';
 import Header from '../../components/Header/Header';
+import { BackArrowButton } from '../../styles/icons/BackArrowButton';
 import { useQuery, QueryFunction } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { getNotice } from '../../api/notice';
@@ -14,23 +15,25 @@ interface Notice {
 }
 
 const NoticePage: React.FC<any> = () => {
+
   const { data, error, isLoading } = useQuery<Notice[], AxiosError>({
     queryKey: ['getNotice'],
     queryFn: getNotice as QueryFunction<Notice[]>
   });
   if (isLoading) {
-    return <div>로딩중...</div>;
+    return <div>Loading...</div>;
   }
   if (error) {
-    return <div>에러: {error.message}</div>;
+    return <div>Error: {error.message}</div>;
   }
+
 
   return (
     <>
       <Header />
       <S.Subheading>
         <BackButton />
-        <S.SubheadingText>공지사항</S.SubheadingText>
+        <S.SubheadingText> 공감이 필요해🥹</S.SubheadingText>
       </S.Subheading>
       {data && data.length > 0 ? (
         <ul>
