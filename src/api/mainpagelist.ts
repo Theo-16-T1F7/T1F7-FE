@@ -49,7 +49,7 @@ export const getNeedEmpathy = async () => {
         hashList: ''
       }
     });
-
+    console.log(response);
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
