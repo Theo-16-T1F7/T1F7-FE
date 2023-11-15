@@ -1,24 +1,19 @@
 import React from 'react';
 import * as S from './NeedSolutionPage.styled';
 import Header from '../../components/Header/Header';
-import { BackArrowButton } from '../../styles/icons/BackArrowButton';
-import { useQuery, QueryFunction } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { getNotice } from '../../api/notice';
-import { formatNoticeDate } from '../../shared/dateUtils';
 import { BackButton } from '../../shared/BackButton';
+import { useQuery } from '@tanstack/react-query';
+import { getNeedSolution } from '../../api/mainpagelist';
+import { PostDetail } from '../../types/type';
+import { formatNoticeDate } from '../../shared/dateUtils';
 
-interface Notice {
-  id: number;
-  title: string;
-  createdAt: string;
-}
-
-const NoticePage: React.FC<any> = () => {
-  const { data, error, isLoading } = useQuery<Notice[], AxiosError>({
-    queryKey: ['getNotice'],
-    queryFn: getNotice as QueryFunction<Notice[]>
+const NeedSolutionPage: React.FC<any> = () => {
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['mainNeedSolution'],
+    queryFn: () => getNeedSolution()
   });
+  const getData: PostDetail[] = data?.data?.content;
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -33,21 +28,21 @@ const NoticePage: React.FC<any> = () => {
         <BackButton />
         <S.SubheadingText> 해결이 필요해👩‍⚖️</S.SubheadingText>
       </S.Subheading>
-      {data && data.length > 0 ? (
+      {getData && getData.length > 0 ? (
         <ul>
-          {data.map((notice: any) => (
-            <div key={notice.id}>
-              <S.NoticeList>
-                <S.NoticeListTitle>{notice.title}</S.NoticeListTitle>
-                <S.NoticeListCreateAt>{formatNoticeDate(notice.createdAt)}</S.NoticeListCreateAt>
-              </S.NoticeList>
+          {getData.map((post: any) => (
+            <div key={post.createdAt}>
+              <S.SolutionList>
+                <S.SolutionListTitle>{post.title}</S.SolutionListTitle>
+                <S.SolutionListCreateAt>{formatNoticeDate(post.createdAt)}</S.SolutionListCreateAt>
+              </S.SolutionList>
             </div>
           ))}
         </ul>
       ) : (
-        <p>No notices found</p>
+        <p>No List found</p>
       )}
     </>
   );
 };
-export default NoticePage;
+export default NeedSolutionPage;
