@@ -13,19 +13,19 @@ export const Subheading = styled.h2`
 export const SubheadingText = styled.div`
   margin-left: 10px;
 `;
-export const NoticeList = styled.div`
+export const SolutionList = styled.div`
   border-top: 2px solid ${(props) => props.theme.dividerColor};
   border-bottom: 1px solid ${(props) => props.theme.dividerColor};
 `;
 
-export const NoticeListTitle = styled.div`
+export const SolutionListTitle = styled.div`
   font-size: 14px;
   font-weight: 700;
   color: #424242;
   margin-top: 10px;
   margin-left: 30px;
 `;
-export const NoticeListCreateAt = styled.div`
+export const SolutionListCreateAt = styled.div`
   font-size: 10px;
   color: #959595;
   margin-top: 5px;

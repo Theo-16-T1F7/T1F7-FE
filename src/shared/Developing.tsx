@@ -20,6 +20,10 @@ const Developing = () => {
 export default Developing;
 
 const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -30,4 +34,5 @@ const Wrap = styled.div`
 const Message = styled.div`
   align-items: center;
   justify-content: center;
+  padding-top: 20px;
 `;
