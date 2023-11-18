@@ -49,7 +49,6 @@ export const getNeedEmpathy = async () => {
         hashList: ''
       }
     });
-
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
