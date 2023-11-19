@@ -19,18 +19,19 @@ export const EmotionButtonBox = styled.div`
   display: 'block';
   /* height: 32px; */
   margin: 5px 0px;
+  overflow-x: scroll;
+  /* overflow-y: hidden; */
+  /* overflow: hidden; */
 `;
 
 export const EmotionButtonWrapper = styled.div`
   display: inline-block;
+  line-height: 29px;
   /* height: 28px; */
   width: 480px;
   padding: 0px 20px;
 
   gap: 8px;
-  /* overflow-x: scroll; */
-  /* overflow-y: hidden; */
-  /* overflow: hidden; */
 `;
 
 export const EmotionButton = styled.span`
