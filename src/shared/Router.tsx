@@ -8,9 +8,8 @@ import SearchPage from '../pages/SearchPage';
 import Developing from './Developing';
 import HotBoardPage from '../pages/HotBoardPage/HotBoardPage';
 import ContentPage from '../pages/ContentPage/ContentPage';
-import NeedEmpathyPage from '../pages/NeedEmpathyPage/NeedEmpathyPage'
+import NeedEmpathyPage from '../pages/NeedEmpathyPage/NeedEmpathyPage';
 import NeedSolutionPage from '../pages/NeedSolutionPage/NeedSolutionPage';
-
 
 const Router = () => {
   return (
@@ -18,7 +17,7 @@ const Router = () => {
       <Routes>
         <Route path="/developing" element={<Developing />} />
         <Route path="/" element={<MainPage />} />
-        <Route path="/article" element={<ArticleListPage />} />
+        {/* <Route path="/article" element={<ArticleListPage />} /> */}
         <Route path="/article/:id" element={<ArticleDetailPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/content" element={<ContentPage />} />

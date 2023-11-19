@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const Subheading = styled.h2`
   display: flex;
-  margin-left: 20px;
-  margin-top: 30px;
-  margin-right: 20px;
+  margin: 30px 20px 10px 20px;
   justify-content: space-between;
   font-weight: 900;
   font-size: 20px;
@@ -12,26 +10,32 @@ export const Subheading = styled.h2`
 
 export const EmotionWrapper = styled.div`
   margin: 10px auto 0px; // 위 가로 아래
-  padding: 5px 0px; // 세로 가로
+  padding: 3px 0px; // 세로 가로
   justify-content: center;
+  overflow: hidden; // 전체 화면 가로 넘어가지 않도록
 `;
 
 export const EmotionButtonBox = styled.div`
   display: 'block';
   /* height: 32px; */
+  padding-bottom: 5px;
+  overflow-x: scroll;
+  /* overflow-y: hidden; */
+  /* overflow: hidden; */
 `;
 
 export const EmotionButtonWrapper = styled.div`
-  height: 33px;
+  display: inline-block;
+  line-height: 29px;
+  /* height: 28px; */
+  width: 480px;
   padding: 0px 20px;
   gap: 8px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  overflow: hidden;
 `;
 
 export const EmotionButton = styled.span`
-  display: inline-block;
+  /* display: inline-block; */
+
   padding: 5px 10px;
   text-align: center;
   border-radius: 14px;

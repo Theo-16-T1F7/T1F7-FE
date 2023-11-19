@@ -28,10 +28,25 @@ const ArticleComment = () => {
       time: '2023-09-15 11:45 AM'
     }
   ];
+
+  const commentTagButtons = ['전체', 'T반응', 'F반응'];
   return (
     <>
-      <div>댓글 n개</div>
-      <div>전체, T반응, F반응 버튼들</div>
+      <S.CommentMainTitle>
+        <S.CommentMain>댓글</S.CommentMain>
+        <S.CommentCount>n개</S.CommentCount>
+      </S.CommentMainTitle>
+      <S.CommentTagButtonBox>
+        {commentTagButtons.map((title, idx) => {
+          return (
+            <>
+              <S.CommentTagButton>
+                <S.CommentButtonText>{title}</S.CommentButtonText>
+              </S.CommentTagButton>
+            </>
+          );
+        })}
+      </S.CommentTagButtonBox>
       <DivideTitle />
       {sampleData.map((data, idx) => {
         return (
