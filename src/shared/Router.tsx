@@ -4,7 +4,7 @@ import ArticleListPage from '../pages/ArticleListPage/ArticleListPage';
 import ArticleDetailPage from '../pages/ArticleDetailPage/ArticleDetailPage';
 import PostPage from '../pages/PostPage/PostPage';
 import NoticePage from '../pages/NoticePage/NoticePage';
-import SearchPage from '../pages/SearchPage';
+import SearchPage from '../pages/SearchPage/SearchPage';
 import Developing from './Developing';
 import HotBoardPage from '../pages/HotBoardPage/HotBoardPage';
 import ContentPage from '../pages/ContentPage/ContentPage';
