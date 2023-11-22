@@ -1,6 +1,8 @@
 import React from 'react';
 import * as S from './NeedSolutionPage.styled';
 import Header from '../../components/Header/Header';
+import { useNavigate } from 'react-router-dom';
+
 import { BackButton } from '../../shared/BackButton';
 import { useQuery } from '@tanstack/react-query';
 import { getNeedSolution } from '../../api/mainpagelist';
@@ -8,6 +10,11 @@ import { PostDetail } from '../../types/type';
 import { formatNoticeDate } from '../../shared/dateUtils';
 
 const NeedSolutionPage: React.FC<any> = () => {
+  const navigate = useNavigate();
+  const handleArticleClick = (id: number | string) => {
+    navigate(`/article/${id}`);
+  };
+
   const { data, error, isLoading } = useQuery<any>({
     queryKey: ['mainNeedSolution'],
     queryFn: () => getNeedSolution()
@@ -32,7 +39,7 @@ const NeedSolutionPage: React.FC<any> = () => {
         <ul>
           {getData.map((post: any) => (
             <div key={post.createdAt}>
-              <S.SolutionList>
+              <S.SolutionList onClick={() => handleArticleClick(post.id)}>
                 <S.SolutionListTitle>{post.title}</S.SolutionListTitle>
                 <S.SolutionListCreateAt>{formatNoticeDate(post.createdAt)}</S.SolutionListCreateAt>
               </S.SolutionList>
@@ -40,7 +47,7 @@ const NeedSolutionPage: React.FC<any> = () => {
           ))}
         </ul>
       ) : (
-        <p>No List found</p>
+        <p>등록된 글이 없습니다.</p>
       )}
     </>
   );
