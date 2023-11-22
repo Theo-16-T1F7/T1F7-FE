@@ -25,6 +25,15 @@ export const NoticeListTitle = styled.div`
   margin-top: 10px;
   margin-left: 30px;
 `;
+
+export const NoticeListContent = styled.div`
+  font-size: 10px;
+  font-weight: 700;
+  color: #424242;
+  margin-top: 10px;
+  margin-left: 30px;
+`;
+
 export const NoticeListCreateAt = styled.div`
   font-size: 10px;
   color: #959595;

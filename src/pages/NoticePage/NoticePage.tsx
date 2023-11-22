@@ -38,6 +38,7 @@ const NoticePage: React.FC<any> = () => {
             <div key={notice.id}>
               <S.NoticeList>
                 <S.NoticeListTitle>{notice.title}</S.NoticeListTitle>
+                <S.NoticeListContent>{notice.content}</S.NoticeListContent>
                 <S.NoticeListCreateAt>{formatNoticeDate(notice.createdAt)}</S.NoticeListCreateAt>
               </S.NoticeList>
             </div>
