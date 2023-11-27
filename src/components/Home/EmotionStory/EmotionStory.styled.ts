@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PostCardLine } from '../../../shared/ClampLines';
 
 export const Subheading = styled.h2`
   display: flex;
@@ -82,6 +83,7 @@ export const EmotionContentStyle = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 134.688%;
+  ${PostCardLine}
 `;
 
 export const UserLayout = styled.div`

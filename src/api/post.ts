@@ -1,4 +1,4 @@
-import { PostDetail } from '../types/type';
+import { PostDetail, RequestPost } from '../types/type';
 import api from './api';
 
 export const getPosts = async () => {
@@ -21,7 +21,7 @@ export const getPostDetail = async (id: string | number) => {
   }
 };
 
-export const createPost = async (newPost: PostDetail): Promise<void> => {
+export const createPost = async (newPost: RequestPost): Promise<void> => {
   try {
     const response = await api.post(`/post`, newPost);
     return response.data;
