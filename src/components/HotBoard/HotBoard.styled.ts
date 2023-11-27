@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PostCardLine } from '../../shared/ClampLines';
 
 export const Container = styled.p``;
 export const TextCard = styled.div`
@@ -33,6 +34,7 @@ export const Content = styled.div`
   color: ${(props) => props.theme.blackColor};
   padding-right: 30px;
   line-height: 1.3;
+  ${PostCardLine}
 `;
 
 export const CreatedAt = styled.div`
@@ -45,7 +47,6 @@ export const CreatedAt = styled.div`
 
 export const EmblaContainer = styled.div`
   overflow: hidden;
-
 `;
 
 export const EmblaInnerContainer = styled.div`
@@ -57,4 +58,3 @@ export const EmblaSlide = styled.div`
   min-width: 0;
   width: 70%;
 `;
-
