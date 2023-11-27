@@ -2,18 +2,17 @@ import React from 'react';
 import * as S from './Notice.styled';
 import { getNotice } from '../../api/notice';
 import { useQuery } from '@tanstack/react-query';
+import { formatNoticeDate } from '../../shared/dateUtils';
+
+interface NoticeItem {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+}
 
 const Notice = () => {
-  const formatNoticeDate = (createdAt: string) => {
-    const date = new Date(createdAt);
-    const year = date.getFullYear();
-    const month = (1 + date.getMonth()).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}/${month}/${day} `;
-    return formattedDate;
-  };
-
-  const { data, error, isLoading } = useQuery<any>({
+  const { data, error, isLoading } = useQuery<NoticeItem[]>({
     queryKey: ['getNotice'],
     queryFn: () => getNotice()
   });
@@ -23,7 +22,8 @@ const Notice = () => {
   if (error) {
     return <div>에러!: {error.message}</div>;
   }
-  if (!data || data.length === 0 || !data[0].createdAt) {
+  // data의 값이 'undefined'일때 데이터 오류 
+  if (error || !data || data.length === 0 || !data[0]?.createdAt) {
     return <div>데이터 오류</div>;
   }
   const firstNotice = data[0];
