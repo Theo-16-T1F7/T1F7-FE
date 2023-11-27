@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Header = styled.div<{ headercolor: string }>`
+export const Header = styled.header<{ headercolor: string }>`
   width: 100%;
   height: 11vh;
   display: flex;
