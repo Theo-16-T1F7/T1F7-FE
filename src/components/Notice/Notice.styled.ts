@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NoticeCardLine } from '../../shared/ClampLines';
 
 export const TextCard = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ export const Content = styled.div`
   font-size: 10px;
   color: ${(props) => props.theme.whiteColor};
   padding-right: 30px;
-  line-height: 1.3;
+  ${NoticeCardLine};
 `;
 
 export const CreatedAt = styled.div`
