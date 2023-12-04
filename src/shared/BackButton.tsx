@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { BackArrowButton } from '../styles/icons/BackArrowButton';
-import { SaerchBackButton } from '../styles/icons/SearchBackButton';
+import { BackArrowButton } from '../styles/icons/SvgIcons';
+import { SaerchBackButton } from '../styles/icons/SvgIcons';
 
 export const BackButton = () => {
   const navigate = useNavigate();
