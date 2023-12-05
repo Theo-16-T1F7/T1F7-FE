@@ -33,7 +33,7 @@ export const getNeedSolution = async () => {
         hashList: ''
       }
     });
-    console.info('T', response.data);
+    // console.info('T', response.data);
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);

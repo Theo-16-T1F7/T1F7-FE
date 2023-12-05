@@ -31,17 +31,12 @@ const PostPage = () => {
     }
 
     const newPost = {
-      id: Math.random(),
-      title,
-      category: '카테고리',
-      content: contents,
-      mbti: 'ENFP',
-      memberSeq: 123,
-      nickname: '사용자_닉네임',
-      postImageSeq: 456,
-      isDeleted: false,
-      createdAt: currentDate.toISOString(),
-      updatedAt: currentDate.toISOString()
+      nickname: 'f테스트 닉네임', //게시글 작성자
+      title: title, //게시글 제목
+      content: contents, //게시글 내용
+      mbti: 'T', //게시글 카테고리
+      password: 'test', //게시글 비밀번호(수정, 삭제에 사용)
+      hashList: [3, 4]
     };
 
     mutation.mutate(newPost);
@@ -49,7 +44,7 @@ const PostPage = () => {
     setTitle('');
     setContents('');
     alert('저장되었습니다!');
-    navigate('/article');
+    navigate('/');
   };
 
   return (

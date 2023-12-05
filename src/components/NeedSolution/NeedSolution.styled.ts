@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NoticeListTitleLine } from '../../shared/ClampLines';
 
 export const SolutionWrapper = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ export const TitleStyle = styled.div`
   font-weight: 900;
   line-height: 120%; /* 16.8px */
   letter-spacing: -0.42px;
+  ${NoticeListTitleLine};
 `;
 
 export const DateStyle = styled.div`
