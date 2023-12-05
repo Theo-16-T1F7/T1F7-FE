@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './Footer.styled';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { PostIcon } from '../../styles/icons/PostIcon';
-import { ActivedFeed } from '../../styles/icons/ActivedFeed';
-import { InactivedFeed } from '../../styles/icons/InactivedFeed';
-import { ActivedContent } from '../../styles/icons/ActivedContent';
-import { InactivedContent } from '../../styles/icons/InactivedContent';
+import { PostIcon } from '../../styles/icons/SvgIcons';
+import { ActivedFeed } from '../../styles/icons/SvgIcons';
+import { InactivedFeed } from '../../styles/icons/SvgIcons';
+import { ActivedContent } from '../../styles/icons/SvgIcons';
+import { InactivedContent } from '../../styles/icons/SvgIcons';
 
 const Footer = () => {
   const navigate = useNavigate();

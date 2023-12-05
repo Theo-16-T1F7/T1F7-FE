@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Header.styled';
-import { SearchWhiteIcon } from '../../styles/icons/SearchIcon';
+import { SearchWhiteIcon } from '../../styles/icons/SvgIcons';
 import { SearchRedIcon } from '../../styles/icons/SvgIcons';
+import { HeaderIcon } from '../../styles/icons/SvgIcons';
 
 export interface HeaderProps {
   headercolor?: string;
@@ -16,7 +17,9 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   return (
     <>
       <S.Header headercolor={props.headercolor}>
-        <S.Logo headercolor={props.headercolor}>쁘띠.</S.Logo>
+        <S.Logo headercolor={props.headercolor}>
+          <HeaderIcon />
+        </S.Logo>
         <S.SearchIcon onClick={handleSearchClick}>
           {props.headercolor === 'red' ? <SearchWhiteIcon /> : <SearchRedIcon />}
         </S.SearchIcon>
