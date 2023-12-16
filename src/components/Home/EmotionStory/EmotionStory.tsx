@@ -1,19 +1,55 @@
-import React from 'react';
+import { useState } from 'react';
 import * as S from './EmotionStory.styled';
 
 const EmotionStory = () => {
-  const hashtags = ['기뻐요', '슬퍼요', '화가나', '억울해', '궁금해', '고민돼', '답답해'];
+  // const hashtags = ['기뻐요', '슬퍼요', '화가나', '억울해', '궁금해', '고민돼', '답답해'];
+  const [hashList, setHashList] = useState([]);
+  const hashtags = [
+    {
+      name: '기뻐요',
+      tag: 1
+    },
+    {
+      name: '슬퍼요',
+      tag: 2
+    },
+    {
+      name: '화가나',
+      tag: 3
+    },
+    {
+      name: '억울해',
+      tag: 4
+    },
+    {
+      name: '궁금해',
+      tag: 5
+    },
+    {
+      name: '고민돼',
+      tag: 6
+    },
+    {
+      name: '답답해',
+      tag: 7
+    }
+  ];
+
+  const handleEmotionButtonClick = (e: React.MouseEvent) => {
+    console.info(e);
+  };
   return (
     <>
       <S.EmotionWrapper>
         <S.Subheading>감정별 이야기</S.Subheading>
         <S.EmotionButtonBox>
-          <S.EmotionButtonWrapper>
+          <S.EmotionButtonWrapper onClick={handleEmotionButtonClick}>
             {hashtags.map((item, idx) => {
-              return <S.EmotionButton>{item}</S.EmotionButton>;
+              return <S.EmotionButton>{item.name}</S.EmotionButton>;
             })}
           </S.EmotionButtonWrapper>
         </S.EmotionButtonBox>
+
         <S.EmtoionCardBox>
           <S.EmotionCardLayout>
             <S.EmotionContentStyle>

@@ -49,6 +49,22 @@ export const getNeedEmpathy = async () => {
         hashList: ''
       }
     });
+    // console.info(response.data);
+    return response.data;
+  } catch (err) {
+    throw new Error(`Error: ${err}`);
+  }
+};
+
+export const getEmotionStory = async () => {
+  try {
+    const response = await severapi.get('/api/post', {
+      params: {
+        search: '',
+        mbti: 'F',
+        hashList: ''
+      }
+    });
     console.info(response.data);
     return response.data;
   } catch (err) {
