@@ -56,16 +56,17 @@ export const getNeedEmpathy = async () => {
   }
 };
 
-export const getEmotionStory = async () => {
+export const getEmotionStory = async (newHashList: number[]) => {
+  // console.info('new', newHashList);
   try {
     const response = await severapi.get('/api/post', {
       params: {
         search: '',
-        mbti: 'F',
-        hashList: ''
+        mbti: '',
+        hashList: newHashList.join(',')
       }
     });
-    console.info(response.data);
+
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
