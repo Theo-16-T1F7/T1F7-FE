@@ -4,6 +4,7 @@ import * as S from './EmotionStory.styled';
 const EmotionStory = () => {
   // const hashtags = ['기뻐요', '슬퍼요', '화가나', '억울해', '궁금해', '고민돼', '답답해'];
   const [hashList, setHashList] = useState([]);
+  const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
   const hashtags = [
     {
       name: '기뻐요',
@@ -35,17 +36,34 @@ const EmotionStory = () => {
     }
   ];
 
-  const handleEmotionButtonClick = (e: React.MouseEvent) => {
-    console.info(e);
+  const handleEmotionButtonClick = (tag: number) => {
+    setButtonColors((prevColors) => {
+      // 클릭된 버튼의 태그를 기반으로 해당 버튼의 색상 상태를 변경
+      const newColors = { ...prevColors };
+      if (newColors[tag] !== 'red') {
+        newColors[tag] = 'red';
+      } else {
+        newColors[tag] = '';
+      }
+      return newColors;
+    });
   };
   return (
     <>
       <S.EmotionWrapper>
         <S.Subheading>감정별 이야기</S.Subheading>
         <S.EmotionButtonBox>
-          <S.EmotionButtonWrapper onClick={handleEmotionButtonClick}>
+          <S.EmotionButtonWrapper>
             {hashtags.map((item, idx) => {
-              return <S.EmotionButton>{item.name}</S.EmotionButton>;
+              return (
+                <S.EmotionButton
+                  key={idx}
+                  buttoncolor={buttonColors[item.tag] || ''}
+                  onClick={() => handleEmotionButtonClick(item.tag)}
+                >
+                  {item.name}
+                </S.EmotionButton>
+              );
             })}
           </S.EmotionButtonWrapper>
         </S.EmotionButtonBox>
