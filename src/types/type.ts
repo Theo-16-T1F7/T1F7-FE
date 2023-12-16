@@ -22,3 +22,12 @@ export interface RequestPost {
   password: string;
   hashList: number[];
 }
+
+export interface MainPost {
+  postId: number;
+  title: string;
+  content: string;
+  nickname: string;
+  mbti: string;
+  createdAt: string;
+}

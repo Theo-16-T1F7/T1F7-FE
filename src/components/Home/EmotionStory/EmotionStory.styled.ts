@@ -34,9 +34,9 @@ export const EmotionButtonWrapper = styled.div`
   gap: 8px;
 `;
 
-export const EmotionButton = styled.span`
+export const EmotionButton = styled.span<{ buttoncolor: string }>`
   /* display: inline-block; */
-
+  background-color: ${(props: any) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
   padding: 5px 10px;
   text-align: center;
   border-radius: 14px;
