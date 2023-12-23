@@ -96,7 +96,8 @@ const EmotionStory = () => {
         <S.EmtoionCardBox>
           {getData?.map((item, idx) => {
             const date = new Date(item.createdAt);
-            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
+            const formattedDate = `${date.getFullYear().toString().slice(-2)}/${date.getMonth() + 1}/${date.getDate()}`;
+            // const formattedDate = `${item?.createdAt[0]}/${item?.createdAt[1]}/${item?.createdAt[2]}`;
             return (
               <S.EmotionCardLayout key={item.postId}>
                 <S.EmotionContentStyle>{item.content}</S.EmotionContentStyle>
