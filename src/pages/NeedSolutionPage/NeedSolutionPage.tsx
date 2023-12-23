@@ -39,7 +39,7 @@ const NeedSolutionPage: React.FC<any> = () => {
         <ul>
           {getData.map((post: any) => (
             <div key={post.createdAt}>
-              <S.SolutionList onClick={() => handleArticleClick(post.id)}>
+              <S.SolutionList onClick={() => handleArticleClick(post.postId)}>
                 <S.SolutionListTitle>{post.title}</S.SolutionListTitle>
                 <S.SolutionListCreateAt>{formatNoticeDate(post.createdAt)}</S.SolutionListCreateAt>
               </S.SolutionList>

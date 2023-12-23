@@ -38,7 +38,7 @@ const NeedEmpathyPage: React.FC<any> = () => {
         <ul>
           {getData.map((post: any) => (
             <div key={post.createdAt}>
-              <S.EmpathyList onClick={() => handleArticleClick(post.id)}>
+              <S.EmpathyList onClick={() => handleArticleClick(post.postId)}>
                 <S.EmpathyListTitle>{post.title}</S.EmpathyListTitle>
                 <S.EmpathyListCreateAt>{formatNoticeDate(post.createdAt)}</S.EmpathyListCreateAt>
               </S.EmpathyList>
