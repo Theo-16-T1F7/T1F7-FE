@@ -71,7 +71,7 @@ const HotBoard = () => {
                   <S.CreatedAt>{item.date}</S.CreatedAt>
                 </S.Name>
                 <S.Content>
-                  <p>{item.content}</p>
+                  <div>{item.content}</div>
                 </S.Content>
               </S.HotBoardCard>
             </S.EmblaSlide>
