@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { PostCardLine } from '../../shared/ClampLines';
 
-export const Container = styled.p``;
+export const Container = styled.div``;
 export const TextCard = styled.div`
   display: flex;
   height: 0vh;
