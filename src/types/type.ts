@@ -31,3 +31,8 @@ export interface MainPost {
   mbti: string;
   createdAt: string;
 }
+
+export interface UserDataType {
+  id: string;
+  username: string;
+}
