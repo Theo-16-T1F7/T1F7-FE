@@ -57,10 +57,10 @@ const PostPage = () => {
       </S.PostNavBox>
       <S.CategorySelect>카테고리선택</S.CategorySelect>
       {/* <DropDownIcon /> */}
-      <DivideTitle />
       <div>
         <S.Input value={title} onChange={handleOnChangeTitle} placeholder="제목" />
         <DivideTitle />
+        <S.Writer>작성자: </S.Writer>
         <S.Textarea value={contents} onChange={handleOnChangeContents} placeholder="내용" />
       </div>
     </S.Container>

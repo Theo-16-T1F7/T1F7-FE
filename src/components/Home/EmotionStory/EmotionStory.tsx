@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as S from './EmotionStory.styled';
 import { getEmotionStory } from '../../../api/mainpagelist';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MainPost } from '../../../types/type';
 
@@ -8,6 +9,11 @@ const EmotionStory = () => {
   // const hashtags = ['기뻐요', '슬퍼요', '화가나', '억울해', '궁금해', '고민돼', '답답해'];
   const [hashList, setHashList] = useState<number[]>([]);
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
+
+  const navigate = useNavigate();
+  const handleArticleClick = (id: number | string) => {
+    navigate(`/article/${id}`);
+  };
 
   const { data, error, isLoading } = useQuery<any>({
     queryKey: ['emotionStory', hashList],
@@ -99,7 +105,7 @@ const EmotionStory = () => {
             const formattedDate = `${date.getFullYear().toString().slice(-2)}/${date.getMonth() + 1}/${date.getDate()}`;
             // const formattedDate = `${item?.createdAt[0]}/${item?.createdAt[1]}/${item?.createdAt[2]}`;
             return (
-              <S.EmotionCardLayout key={item.postId}>
+              <S.EmotionCardLayout key={item.postId} onClick={() => handleArticleClick(item.postId)}>
                 <S.EmotionContentStyle>{item.content}</S.EmotionContentStyle>
                 <S.EmotionCardBottomLayout>
                   <div
