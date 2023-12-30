@@ -122,12 +122,12 @@ const PostPage = () => {
       hashList: hashList.sort()
     };
 
-    // mutation.mutate(newPost);
+    mutation.mutate(newPost);
 
     setTitle('');
     setContents('');
-    // alert('저장되었습니다!');
-    // navigate('/');
+    alert('저장되었습니다!');
+    navigate('/');
   };
 
   return (
