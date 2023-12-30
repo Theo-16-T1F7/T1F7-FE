@@ -33,7 +33,7 @@ export const getNeedSolution = async () => {
         hashList: ''
       }
     });
-
+    // console.info('T', response.data);
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
@@ -47,6 +47,23 @@ export const getNeedEmpathy = async () => {
         search: '',
         mbti: 'F',
         hashList: ''
+      }
+    });
+    // console.info(response.data);
+    return response.data;
+  } catch (err) {
+    throw new Error(`Error: ${err}`);
+  }
+};
+
+export const getEmotionStory = async (newHashList: number[]) => {
+  // console.info('new', newHashList);
+  try {
+    const response = await severapi.get('/api/post', {
+      params: {
+        search: '',
+        mbti: '',
+        hashList: newHashList.join(',')
       }
     });
 

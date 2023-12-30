@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Home.styled';
 import { useNavigate } from 'react-router-dom';
-import { SeeMore } from '../../styles/icons/SeeMore';
+import { SeeMore } from '../../styles/icons/SvgIcons';
 import Header from '../Header/Header';
 import Notice from '../Notice/Notice';
 import NeedEmpathy from '../NeedEmpathy/NeedEmpathy';

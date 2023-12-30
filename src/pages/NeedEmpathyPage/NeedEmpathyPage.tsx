@@ -1,32 +1,31 @@
 import React from 'react';
 import * as S from './NeedEmpathyPage.styled';
 import Header from '../../components/Header/Header';
-import { BackArrowButton } from '../../styles/icons/BackArrowButton';
-import { useQuery, QueryFunction } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { getNotice } from '../../api/notice';
-import { formatNoticeDate } from '../../shared/dateUtils';
+import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../../shared/BackButton';
+import { useQuery } from '@tanstack/react-query';
+import { getNeedEmpathy } from '../../api/mainpagelist';
+import { PostDetail } from '../../types/type';
+import { formatNoticeDate } from '../../shared/dateUtils';
 
-interface Notice {
-  id: number;
-  title: string;
-  createdAt: string;
-}
+const NeedEmpathyPage: React.FC<any> = () => {
+  const navigate = useNavigate();
+  const handleArticleClick = (id: number | string) => {
+    navigate(`/article/${id}`);
+  };
 
-const NoticePage: React.FC<any> = () => {
-
-  const { data, error, isLoading } = useQuery<Notice[], AxiosError>({
-    queryKey: ['getNotice'],
-    queryFn: getNotice as QueryFunction<Notice[]>
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['mainNeedEmpathy'],
+    queryFn: () => getNeedEmpathy()
   });
+  const getData: PostDetail[] = data?.data?.content;
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
 
   return (
     <>
@@ -35,21 +34,21 @@ const NoticePage: React.FC<any> = () => {
         <BackButton />
         <S.SubheadingText> 공감이 필요해🥹</S.SubheadingText>
       </S.Subheading>
-      {data && data.length > 0 ? (
+      {getData && getData.length >= 0 ? (
         <ul>
-          {data.map((notice: any) => (
-            <div key={notice.id}>
-              <S.NoticeList>
-                <S.NoticeListTitle>{notice.title}</S.NoticeListTitle>
-                <S.NoticeListCreateAt>{formatNoticeDate(notice.createdAt)}</S.NoticeListCreateAt>
-              </S.NoticeList>
+          {getData.map((post: any) => (
+            <div key={post.createdAt}>
+              <S.EmpathyList onClick={() => handleArticleClick(post.postId)}>
+                <S.EmpathyListTitle>{post.title}</S.EmpathyListTitle>
+                <S.EmpathyListCreateAt>{formatNoticeDate(post.createdAt)}</S.EmpathyListCreateAt>
+              </S.EmpathyList>
             </div>
           ))}
         </ul>
       ) : (
-        <p>No notices found</p>
+        <p>No List found</p>
       )}
     </>
   );
 };
-export default NoticePage;
+export default NeedEmpathyPage;

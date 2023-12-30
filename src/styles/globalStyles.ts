@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 @font-face {
     font-family: 'SF Pro';
-    src: url('path-to-sf-pro.woff2') format('woff2'),
-         url('path-to-sf-pro.woff') format('woff');
+    src: url('path-to-sf-pro.woff2') format('font-woff2'),
+         url('path-to-sf-pro.woff') format('font-woff');
     font-weight: normal;
     font-style: normal;
   }

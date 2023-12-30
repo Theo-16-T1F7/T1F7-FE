@@ -4,13 +4,14 @@ import ArticleListPage from '../pages/ArticleListPage/ArticleListPage';
 import ArticleDetailPage from '../pages/ArticleDetailPage/ArticleDetailPage';
 import PostPage from '../pages/PostPage/PostPage';
 import NoticePage from '../pages/NoticePage/NoticePage';
-import SearchPage from '../pages/SearchPage';
+import SearchPage from '../pages/SearchPage/SearchPage';
 import Developing from './Developing';
 import HotBoardPage from '../pages/HotBoardPage/HotBoardPage';
 import ContentPage from '../pages/ContentPage/ContentPage';
-import NeedEmpathyPage from '../pages/NeedEmpathyPage/NeedEmpathyPage'
+import NeedEmpathyPage from '../pages/NeedEmpathyPage/NeedEmpathyPage';
 import NeedSolutionPage from '../pages/NeedSolutionPage/NeedSolutionPage';
-
+import LoginPage from '../pages/LoginPage/LoginPage';
+import Redirection from '../pages/Redirection/Redirection';
 
 const Router = () => {
   return (
@@ -18,7 +19,7 @@ const Router = () => {
       <Routes>
         <Route path="/developing" element={<Developing />} />
         <Route path="/" element={<MainPage />} />
-        <Route path="/article" element={<ArticleListPage />} />
+        {/* <Route path="/article" element={<ArticleListPage />} /> */}
         <Route path="/article/:id" element={<ArticleDetailPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/content" element={<ContentPage />} />
@@ -27,6 +28,8 @@ const Router = () => {
         <Route path="/hotboard" element={<HotBoardPage />} />
         <Route path="/empathy" element={<NeedEmpathyPage />} />
         <Route path="/solution" element={<NeedSolutionPage />} />
+        <Route path="/kakao/oauth" element={<Redirection />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );

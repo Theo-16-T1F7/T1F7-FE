@@ -13,3 +13,26 @@ export interface PostDetail {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface RequestPost {
+  nickname: string;
+  title: string;
+  content: string;
+  mbti: string;
+  password: string;
+  hashList: number[];
+}
+
+export interface MainPost {
+  postId: number;
+  title: string;
+  content: string;
+  nickname: string;
+  mbti: string;
+  createdAt: string;
+}
+
+export interface UserDataType {
+  id: string;
+  username: string;
+}

@@ -18,7 +18,7 @@ const HotBoard = () => {
           containScroll: 'trimSnaps', // 스크롤이 가장 가까운 스냅 지점에서 끝나도록 설정
           slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수를 설정
           dragFree: true,
-          loop: false,
+          loop: false
         },
         [Autoplay(autoplayOptions)]
       );
@@ -29,7 +29,8 @@ const HotBoard = () => {
     {
       id: '1',
       name: '익명1',
-      content: '첫번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
+      content:
+        '첫번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉dㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',
       date: '2023/10/22'
     },
     {
@@ -70,7 +71,7 @@ const HotBoard = () => {
                   <S.CreatedAt>{item.date}</S.CreatedAt>
                 </S.Name>
                 <S.Content>
-                  <p>{item.content}</p>
+                  <div>{item.content}</div>
                 </S.Content>
               </S.HotBoardCard>
             </S.EmblaSlide>
