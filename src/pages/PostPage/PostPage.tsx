@@ -56,7 +56,7 @@ const PostPage = () => {
         </div>
       </S.PostNavBox>
       <S.CategorySelect>카테고리선택</S.CategorySelect>
-      {/* <DropDownIcon /> */}
+      <DropDownIcon />
       <div>
         <S.Input value={title} onChange={handleOnChangeTitle} placeholder="제목" />
         <DivideTitle />
