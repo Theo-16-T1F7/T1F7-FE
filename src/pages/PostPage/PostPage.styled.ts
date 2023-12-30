@@ -102,3 +102,36 @@ export const Textarea = styled.textarea`
   font-size: 16px;
   margin: 10px;
 `;
+
+export const HashtagButtonBox = styled.div`
+  display: flex;
+  padding-bottom: 5px;
+`;
+
+export const HashtagButtonWrapper = styled.div`
+  line-height: 29px;
+  padding: 0px 20px;
+  gap: 8px;
+`;
+
+export const HashtagButton = styled.div<{ buttoncolor: string }>`
+  display: inline-block;
+  background-color: ${(props: any) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 14px;
+  border: 1px solid #292828;
+  margin: 5px 5px;
+
+  color: #292828;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.12px;
+
+  &:hover {
+    border: 1px solid #bd2024;
+    background-color: ${(props) => props.theme.redNormalColor};
+    color: white;
+  }
+`;
