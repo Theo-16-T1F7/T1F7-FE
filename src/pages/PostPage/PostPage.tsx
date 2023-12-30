@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router';
 import { DivideTitle } from '../../components/ArticleList/ArticleHeader.styled';
 import * as S from './PostPage.styled';
 import { DropDownIcon } from '../../styles/icons/SvgIcons';
+import { useRef, useState } from 'react';
 
 const PostPage = () => {
   const [title, handleOnChangeTitle, setTitle] = useInput();
   const [contents, handleOnChangeContents, setContents] = useInput();
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectValue, setselectValue] = useState('카테고리를 선택하세요');
+  const selectRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
   const currentDate = new Date();
@@ -20,6 +24,26 @@ const PostPage = () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
     }
   });
+
+  const showCategoryButtonClickVisability = () => {
+    setIsVisible(true);
+  };
+
+  const hideSelect = () => {
+    setIsVisible(false);
+  };
+
+  const selectedValue = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement;
+    setselectValue(target.innerText);
+    setIsVisible(false);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (Boolean(selectRef.current) && event.target !== selectRef.current) {
+      hideSelect();
+    }
+  };
 
   const handleSubmitButtonClick = () => {
     // 유효성 검사
@@ -48,15 +72,23 @@ const PostPage = () => {
   };
 
   return (
-    <S.Container>
+    <S.Container onClick={handleClick}>
       <S.PostNavBox>
         <S.CancelButton onClick={() => navigate(-1)}>취소</S.CancelButton>
         <div>
           <S.Button onClick={handleSubmitButtonClick}>게시</S.Button>
         </div>
       </S.PostNavBox>
-      <S.CategorySelect>카테고리선택</S.CategorySelect>
-      <DropDownIcon />
+      <S.CategorySelectBox onClick={showCategoryButtonClickVisability}>
+        <S.CategorySelect>{selectValue}</S.CategorySelect>
+        <DropDownIcon />
+        {isVisible && (
+          <S.CategoryOptionListBox ref={selectRef}>
+            <S.CategoryOptionListDetail onClick={selectedValue}>T/해결이 필요해</S.CategoryOptionListDetail>
+            <S.CategoryOptionListDetail onClick={selectedValue}>F/공감이 필요해</S.CategoryOptionListDetail>
+          </S.CategoryOptionListBox>
+        )}
+      </S.CategorySelectBox>
       <div>
         <S.Input value={title} onChange={handleOnChangeTitle} placeholder="제목" />
         <DivideTitle />
