@@ -103,6 +103,10 @@ export const Textarea = styled.textarea`
   margin: 10px;
 `;
 
+export const HashtagButtonTitle = styled(CategorySelect)`
+  padding: 0px 20px;
+`;
+
 export const HashtagButtonBox = styled.div`
   display: flex;
   padding-bottom: 5px;

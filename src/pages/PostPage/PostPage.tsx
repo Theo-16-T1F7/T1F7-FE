@@ -154,7 +154,7 @@ const PostPage = () => {
         <S.Writer>작성자: </S.Writer>
         <S.Textarea value={contents} onChange={handleOnChangeContents} placeholder="내용" />
       </div>
-
+      <S.HashtagButtonTitle>해시태그 선택</S.HashtagButtonTitle>
       <S.HashtagButtonBox>
         <S.HashtagButtonWrapper>
           {hashtags?.map((item, idx) => {
