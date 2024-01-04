@@ -12,6 +12,7 @@ import NeedEmpathyPage from '../pages/NeedEmpathyPage/NeedEmpathyPage';
 import NeedSolutionPage from '../pages/NeedSolutionPage/NeedSolutionPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import Redirection from '../pages/Redirection/Redirection';
+import MyPage from '../pages/MyPage/MyPage';
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
         <Route path="/solution" element={<NeedSolutionPage />} />
         <Route path="/kakao/oauth" element={<Redirection />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );
