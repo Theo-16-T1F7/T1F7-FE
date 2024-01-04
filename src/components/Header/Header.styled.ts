@@ -15,6 +15,9 @@ export const Logo = styled.div<{ color: string }>`
   margin-top: 30px;
   margin-left: 10px;
   font-weight: 800;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Notification = styled.div`

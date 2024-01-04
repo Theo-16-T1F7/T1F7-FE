@@ -32,7 +32,7 @@ const Footer = () => {
     navigate('/content');
   };
   const handleMyClick = () => {
-    navigate('/login');
+    navigate('/mypage');
   };
 
   return (
