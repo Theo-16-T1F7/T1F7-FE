@@ -24,7 +24,7 @@ export interface RequestPost {
 }
 
 export interface MainPost {
-  postId: number;
+  id: number;
   title: string;
   content: string;
   nickname: string;

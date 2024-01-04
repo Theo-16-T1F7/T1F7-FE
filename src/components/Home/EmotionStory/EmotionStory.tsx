@@ -105,7 +105,7 @@ const EmotionStory = () => {
             const formattedDate = `${date.getFullYear().toString().slice(-2)}/${date.getMonth() + 1}/${date.getDate()}`;
             // const formattedDate = `${item?.createdAt[0]}/${item?.createdAt[1]}/${item?.createdAt[2]}`;
             return (
-              <S.EmotionCardLayout key={item.postId} onClick={() => handleArticleClick(item.postId)}>
+              <S.EmotionCardLayout key={item.id} onClick={() => handleArticleClick(item.id)}>
                 <S.EmotionContentStyle>{item.content}</S.EmotionContentStyle>
                 <S.EmotionCardBottomLayout>
                   <div
