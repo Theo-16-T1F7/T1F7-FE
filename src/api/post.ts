@@ -3,7 +3,7 @@ import serverapi from './serverapi';
 
 export const getPosts = async () => {
   try {
-    const response = await serverapi.get('api/post');
+    const response = await serverapi.get('api/posts');
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -13,7 +13,7 @@ export const getPosts = async () => {
 
 export const getPostDetail = async (id: string | number) => {
   try {
-    const response = await serverapi.get(`api/post/${id}`);
+    const response = await serverapi.get(`api/posts/${id}`);
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -23,7 +23,7 @@ export const getPostDetail = async (id: string | number) => {
 
 export const createPost = async (newPost: RequestPost): Promise<void> => {
   try {
-    const response = await serverapi.post(`api/post`, newPost);
+    const response = await serverapi.post(`api/posts`, newPost);
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
