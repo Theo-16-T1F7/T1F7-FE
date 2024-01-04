@@ -33,33 +33,33 @@ const Home: React.FC<any> = () => {
         <S.Body>
           <S.Subheading>
             Hot한 게시글
-            <div onClick={handleHotboardClick}>
+            <S.SeeMoreWrapper onClick={handleHotboardClick}>
               <SeeMore />
-            </div>
+            </S.SeeMoreWrapper>
           </S.Subheading>
           <HotBoard />
           <S.Subheading>
             공지사항
-            <div onClick={handleNoticeClick}>
+            <S.SeeMoreWrapper onClick={handleNoticeClick}>
               <SeeMore />
-            </div>
+            </S.SeeMoreWrapper>
           </S.Subheading>
           <Notice />
           <S.NeedMoreWrapper>
             <S.Subheading>
               공감이 필요해🥹
-              <div onClick={handleNeedEmpathyClick}>
+              <S.SeeMoreWrapper onClick={handleNeedEmpathyClick}>
                 <SeeMore />
-              </div>
+              </S.SeeMoreWrapper>
             </S.Subheading>
             <NeedEmpathy />
           </S.NeedMoreWrapper>
           <S.NeedMoreWrapper>
             <S.Subheading>
               해결이 필요해👩‍⚖️
-              <div onClick={handleNeedSolutionClick}>
+              <S.SeeMoreWrapper onClick={handleNeedSolutionClick}>
                 <SeeMore />
-              </div>
+              </S.SeeMoreWrapper>
             </S.Subheading>
             <NeedSolution />
           </S.NeedMoreWrapper>

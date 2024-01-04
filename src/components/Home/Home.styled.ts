@@ -44,3 +44,8 @@ export const HotPostCard = styled.div`
     cursor: pointer;
   }
 `;
+export const SeeMoreWrapper = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;
