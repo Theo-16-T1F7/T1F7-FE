@@ -114,11 +114,11 @@ const PostPage = () => {
     }
 
     const newPost = {
-      nickname: 'f테스트 닉네임', //게시글 작성자
+      // nickname: 'f테스트 닉네임', //게시글 작성자
       title: title, //게시글 제목
       content: contents, //게시글 내용
       mbti: category, //게시글 카테고리
-      password: 'test', //게시글 비밀번호(수정, 삭제에 사용)
+      // password: 'test', //게시글 비밀번호(수정, 삭제에 사용)
       hashList: hashList.sort()
     };
 

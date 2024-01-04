@@ -15,11 +15,11 @@ export interface PostDetail {
 }
 
 export interface RequestPost {
-  nickname: string;
+  // nickname: string;
   title: string;
   content: string;
   mbti: string;
-  password: string;
+  // password: string;
   hashList: number[];
 }
 
