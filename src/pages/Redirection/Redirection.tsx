@@ -9,6 +9,7 @@ const Redirection = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [user, setUser] = useRecoilState(userState); // Add this line to get userState setter
 
   // URL 인가코드 저장
   useEffect(() => {
@@ -26,17 +27,18 @@ const Redirection = () => {
       axios
         .post(url, bodycode)
         .then((response) => {
-          console.log('서버 응답:', response);
-          const token = response.data;
+          const token = response.headers['x-bbeudde-token'];
+          console.log('토큰: ', token);
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
+          setUser(true);
           navigate('/');
         })
         .catch((error) => {
           console.error('오류 발생:', error);
         });
     }
-  }, [code, navigate, setAccessToken]);
+  }, [code, navigate, setAccessToken, setUser]);
 
   return <div>로그인 중입니다.</div>;
 };
