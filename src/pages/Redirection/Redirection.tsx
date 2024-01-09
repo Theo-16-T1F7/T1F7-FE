@@ -40,6 +40,6 @@ const Redirection = () => {
     }
   }, [code, navigate, setAccessToken, setUser]);
 
-  return <div>로그인 중입니다.</div>;
+  return <div></div>;
 };
 export default Redirection;
