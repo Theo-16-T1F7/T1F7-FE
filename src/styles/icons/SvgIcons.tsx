@@ -355,8 +355,8 @@ export const InactivedContent = (props: SVGProps<SVGSVGElement>) => (
 export const InactivedMyPage = (props: SVGProps<SVGSVGElement>) => (
   <svg width="60" height="56" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M30 10C24.48 10 20 14.48 20 20C20 25.52 24.48 30 30 30C35.52 30 40 25.52 40 20C40 14.48 35.52 10 30 10ZM36.36 24.83C34.93 23.09 31.46 22.5 30 22.5C28.54 22.5 25.07 23.09 23.64 24.83C22.62 23.49 22 21.82 22 20C22 15.59 25.59 12 30 12C34.41 12 38 15.59 38 20C38 21.82 37.38 23.49 36.36 24.83ZM26.5 17.5C26.5 15.56 28.06 14 30 14C31.94 14 33.5 15.56 33.5 17.5C33.5 19.44 31.94 21 30 21C28.06 21 26.5 19.44 26.5 17.5Z"
       fill="#DFDFDF"
     />
@@ -404,8 +404,8 @@ export const ActivedContent = (props: SVGProps<SVGSVGElement>) => (
 export const ActivedMyPage = (props: SVGProps<SVGSVGElement>) => (
   <svg width="60" height="56" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M30 10C24.48 10 20 14.48 20 20C20 25.52 24.48 30 30 30C35.52 30 40 25.52 40 20C40 14.48 35.52 10 30 10ZM36.36 24.83C34.93 23.09 31.46 22.5 30 22.5C28.54 22.5 25.07 23.09 23.64 24.83C22.62 23.49 22 21.82 22 20C22 15.59 25.59 12 30 12C34.41 12 38 15.59 38 20C38 21.82 37.38 23.49 36.36 24.83ZM26.5 17.5C26.5 15.56 28.06 14 30 14C31.94 14 33.5 15.56 33.5 17.5C33.5 19.44 31.94 21 30 21C28.06 21 26.5 19.44 26.5 17.5Z"
       fill="#EA464A"
     />
