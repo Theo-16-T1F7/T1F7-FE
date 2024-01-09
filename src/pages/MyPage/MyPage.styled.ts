@@ -17,6 +17,16 @@ export const FirstContainer = styled.div`
   padding-left: 6vw;
   padding-top: 8vw;
 `;
+export const SecondContainer = styled.div`
+  display: flex;
+  padding-left: 6vw;
+  padding-top: 6vw;
+`;
+export const ThirdContainer = styled.div`
+  display: flex;
+  padding-left: 6vw;
+  padding-top: 8vw;
+`;
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -25,7 +35,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const LoginButtonWrapper = styled.div`
-  padding-top: 6vw;
+  padding-top: 2.5vw;
   &:hover {
     cursor: pointer;
   }

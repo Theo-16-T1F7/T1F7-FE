@@ -65,7 +65,9 @@ const MyPage = () => {
             ) : (
               <>
                 <LoginText />
-                <LoginButton />
+                <div style={{ marginTop: '10px' }}>
+                  <LoginButton />
+                </div>
               </>
             )}
           </S.LoginButtonWrapper>
