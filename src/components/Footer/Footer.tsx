@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import * as S from './Footer.styled';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PostIcon } from '../../styles/icons/SvgIcons';
-import { ActivedFeed } from '../../styles/icons/SvgIcons';
-import { InactivedFeed } from '../../styles/icons/SvgIcons';
-import { ActivedContent } from '../../styles/icons/SvgIcons';
-import { InactivedContent } from '../../styles/icons/SvgIcons';
-import { SearchWhiteIcon } from '../../styles/icons/SvgIcons';
-import { MyIcon } from '../../styles/icons/SvgIcons';
+import { ActivedFeed, InactivedFeed } from '../../styles/icons/SvgIcons';
+import { ActivedContent, InactivedContent } from '../../styles/icons/SvgIcons';
+import { InactivedSearch } from '../../styles/icons/SvgIcons';
+import { ActivedMyPage, InactivedMyPage } from '../../styles/icons/SvgIcons';
 
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeFeed, setActiveFeed] = useState(true);
+  const [activeContent, setActiveContent] = useState(false);
+  const [activeMyPage, setActiveMyPage] = useState(false);
 
   useEffect(() => {
     setActiveFeed(location.pathname === '/');
+    setActiveContent(location.pathname === '/content');
+    setActiveMyPage(location.pathname === '/mypage');
   }, [location.pathname]);
 
   const handlePostClick = () => {
@@ -24,15 +26,27 @@ const Footer = () => {
 
   const handleFeedClick = () => {
     navigate('/');
+    setActiveFeed(true);
+    setActiveContent(false);
+    setActiveMyPage(false);
   };
+
   const handleSearchClick = () => {
     navigate('/search');
   };
+
   const handleContentClick = () => {
     navigate('/content');
+    setActiveContent(true);
+    setActiveFeed(false);
+    setActiveMyPage(false);
   };
+
   const handleMyClick = () => {
     navigate('/mypage');
+    setActiveMyPage(true);
+    setActiveContent(false);
+    setActiveFeed(false);
   };
 
   return (
@@ -41,22 +55,14 @@ const Footer = () => {
         <S.PostIconPosition onClick={handlePostClick}>
           <PostIcon />
         </S.PostIconPosition>
-        <S.FeedPosition onClick={handleFeedClick}>
-          {activeFeed ? <ActivedFeed /> : <InactivedFeed />}
-          <div style={{ color: activeFeed ? '#EA464A' : '#B7B7B7' }}>피드</div>
-        </S.FeedPosition>
+        <S.FeedPosition onClick={handleFeedClick}>{activeFeed ? <ActivedFeed /> : <InactivedFeed />}</S.FeedPosition>
         <S.SearchPosition onClick={handleSearchClick}>
-          <SearchWhiteIcon></SearchWhiteIcon>
-          <div style={{ color: '#B7B7B7' }}>검색</div>
+          <InactivedSearch />
         </S.SearchPosition>
         <S.ContentPosition onClick={handleContentClick}>
-          {activeFeed ? <InactivedContent /> : <ActivedContent />}
-          <div style={{ color: activeFeed ? '#B7B7B7' : '#EA464A', marginLeft: '-8px' }}>콘텐츠</div>
+          {activeContent ? <ActivedContent /> : <InactivedContent />}
         </S.ContentPosition>
-        <S.MyPosition onClick={handleMyClick}>
-          <MyIcon></MyIcon>
-          <div style={{ color: '#B7B7B7' }}>MY</div>
-        </S.MyPosition>
+        <S.MyPosition onClick={handleMyClick}>{activeMyPage ? <ActivedMyPage /> : <InactivedMyPage />}</S.MyPosition>
       </S.FooterContainer>
     </>
   );
