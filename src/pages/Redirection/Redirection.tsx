@@ -28,7 +28,6 @@ const Redirection = () => {
         .post(url, bodycode)
         .then((response) => {
           const token = response.headers['x-bbeudde-token'];
-          console.log('토큰: ', token);
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
           setUser(true);
