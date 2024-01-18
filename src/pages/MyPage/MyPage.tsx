@@ -4,9 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { LoginButton, LogoutButton, MyImage, LoginText, ProfileEditButton } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
+import Footer from '../../components/Footer/Footer';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { accessTokenState, userState } from '../../atoms/atoms';
-import Footer from '../../components/Footer/Footer';
+
+const dummydata = [
+  {
+    id: '1',
+    nickname: '숩',
+    title: '내가 쓴 글 미리보기1',
+    answer: '내가 쓴 댓글 미리보기1',
+    createdAt: '2023/10/22 08:21'
+  },
+  {
+    id: '2',
+    nickname: '숩',
+    title: '내가 쓴 글 미리보기2',
+    answer: '내가 쓴 댓글 미리보기2',
+    createdAt: '2023/10/23 08:22'
+  },
+  {
+    id: '3',
+    nickname: '숩',
+    title: '내가 쓴 글 미리보기3',
+    answer: '내가 쓴 댓글 미리보기3',
+    createdAt: '2023/10/24 08:23'
+  }
+];
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -105,6 +129,21 @@ const MyPage = () => {
           )}
         </S.PostWrapper>
       </S.SecondContainer>
+      <S.ThirdContainer>
+        {user ? (
+          <>
+            {dummydata?.map((data, idx) => (
+              <S.MyListContainer key={idx}>
+                <S.MyListTitle>{data.title}</S.MyListTitle>
+                <S.MyListName>{data.nickname}</S.MyListName>
+                <S.MyListCreateAt>{data.createdAt}</S.MyListCreateAt>
+              </S.MyListContainer>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+      </S.ThirdContainer>
     </>
   );
 };
