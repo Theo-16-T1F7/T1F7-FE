@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react';
-// import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getUserId } from '../../api/profile';
+import { useQuery } from '@tanstack/react-query';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { accessTokenState, userState } from '../../atoms/atoms';
+import SplashScreen from '../../components/SplashScreen/SplashScreen';
 
 const Redirection = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [user, setUser] = useRecoilState(userState); // Add this line to get userState setter
+  const [user, setUser] = useRecoilState(userState);
+  const [userId, setUserId] = useState(null);
+
+  const { data, error, isLoading } = useQuery<any>({
+    queryKey: ['getUserId'],
+    queryFn: () => getUserId()
+  });
 
   // URL 인가코드 저장
   useEffect(() => {
@@ -39,6 +47,17 @@ const Redirection = () => {
     }
   }, [code, navigate, setAccessToken, setUser]);
 
-  return <div></div>;
+  useEffect(() => {
+    if (data) {
+      setUserId(data);
+    }
+  }, [data]);
+  console.log(userId);
+
+  return (
+    <>
+      <SplashScreen />
+    </>
+  );
 };
 export default Redirection;
