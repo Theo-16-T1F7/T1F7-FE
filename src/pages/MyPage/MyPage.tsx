@@ -6,7 +6,7 @@ import { LoginButton, LogoutButton, MyImage, LoginText, ProfileEditButton } from
 import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { accessTokenState, userState } from '../../atoms/atoms';
+import { accessTokenState, userState, userNicknameState } from '../../atoms/atoms';
 
 const dummydata = [
   {
@@ -37,6 +37,7 @@ const MyPage = () => {
   const accessToken = useRecoilValue(accessTokenState);
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
+  const userNickname = useRecoilValue(userNicknameState);
   const [isPostClicked, setIsPostClicked] = useState(false);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
 
@@ -65,6 +66,7 @@ const MyPage = () => {
       );
       // 세션 스토리지의 토큰 제거
       sessionStorage.removeItem('accessToken');
+      sessionStorage.removeItem('userNickname');
       setUser(false);
       navigate('/');
     } catch (error) {
@@ -94,7 +96,7 @@ const MyPage = () => {
           <S.LoginButtonWrapper onClick={handleButtonClick}>
             {user ? (
               <>
-                {/* < 로그인 시 회원 닉네임/> */}
+                <S.UserNickname>{userNickname}</S.UserNickname>
                 <ProfileEditButton />
                 <LogoutButton />
               </>
@@ -114,10 +116,14 @@ const MyPage = () => {
         <S.PostWrapper>
           {user ? (
             <>
-              <S.PostContainer isloggedin={user} onClick={handlePostClick} clicked={isPostClicked}>
+              <S.PostContainer $isloggedin={user ? true : false} onClick={handlePostClick} $Clicked={isPostClicked}>
                 내가 쓴 글
               </S.PostContainer>
-              <S.AnswerContainer isloggedin={user} onClick={handleAnswerClick} clicked={isAnswerClicked}>
+              <S.AnswerContainer
+                $isloggedin={user ? true : false}
+                onClick={handleAnswerClick}
+                $Clicked={isAnswerClicked}
+              >
                 내가 쓴 댓글
               </S.AnswerContainer>
             </>
