@@ -27,7 +27,6 @@ const NeedEmpathy: React.FC<any> = () => {
     {
       id: '2',
       title: '여자친구랑 싸웠는데 제 잘못인가요?2',
-
       content: '안녕하세요2 쁘디입니다.',
       date: '2023/10/23 08:24'
     },

@@ -1,15 +1,33 @@
 import { useEffect, useState } from 'react';
-// import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { accessTokenState, userState } from '../../atoms/atoms';
+import { getUserId } from '../../api/profile';
+import { getUserInfo } from '../../api/profile';
+import { useQueries, useQuery } from '@tanstack/react-query';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { accessTokenState, userState, userNicknameState, userIdState } from '../../atoms/atoms';
+import SplashScreen from '../../components/SplashScreen/SplashScreen';
 
 const Redirection = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [user, setUser] = useRecoilState(userState); // Add this line to get userState setter
+  const [user, setUser] = useRecoilState(userState);
+  // const [userId, setUserId] = useState(null);
+  const setUserNickname = useSetRecoilState(userNicknameState);
+  const setUserId = useSetRecoilState(userIdState);
+
+  // userId 불러오는 API
+  const { data: userIdData } = useQuery<any>({
+    queryKey: ['getUserId'],
+    queryFn: () => getUserId()
+  });
+
+  // userNickname 불러오는 API
+  const { data: userInfoData } = useQuery<any>({
+    queryKey: ['getUserInfo'],
+    queryFn: () => getUserInfo()
+  });
 
   // URL 인가코드 저장
   useEffect(() => {
@@ -20,6 +38,7 @@ const Redirection = () => {
     }
   }, []);
 
+  // 로그인
   useEffect(() => {
     if (code) {
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
@@ -28,18 +47,35 @@ const Redirection = () => {
         .post(url, bodycode)
         .then((response) => {
           const token = response.headers['x-bbeudde-token'];
-          console.log('토큰: ', token);
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
           setUser(true);
-          navigate('/');
         })
         .catch((error) => {
           console.error('오류 발생:', error);
         });
     }
-  }, [code, navigate, setAccessToken, setUser]);
+  }, [code, setAccessToken, setUser]);
 
-  return <div>로그인 중입니다.</div>;
+  // userId
+  useEffect(() => {
+    if (userIdData) {
+      setUserId(userIdData);
+    }
+  }, [userIdData]);
+
+  // userNickname
+  useEffect(() => {
+    if (userInfoData) {
+      setUserNickname(userInfoData);
+      navigate('/mypage');
+    }
+  }, [userInfoData, setUserNickname, navigate]);
+
+  return (
+    <>
+      <SplashScreen />
+    </>
+  );
 };
 export default Redirection;

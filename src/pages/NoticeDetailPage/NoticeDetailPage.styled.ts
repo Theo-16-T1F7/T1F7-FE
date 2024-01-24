@@ -8,7 +8,6 @@ export const NoticeDetailTitle = styled.h2`
 export const NoticeWriter = styled.div`
   color: #a7a7a7;
   font-size: 14px;
-
   font-weight: 274;
   line-height: 28px; /* 200% */
   letter-spacing: -0.42px;
