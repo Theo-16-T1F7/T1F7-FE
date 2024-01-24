@@ -34,6 +34,13 @@ export const LoginButtonWrapper = styled.div`
   }
 `;
 
+export const UserNickname = styled.div`
+  size: 7vw;
+  font-weight: 700;
+  color: #424242;
+  padding-bottom: 4vw;
+`;
+
 // 내가 쓴 글, 댓글 버튼 레이아웃
 export const SecondContainer = styled.div`
   display: flex;
@@ -52,29 +59,29 @@ export const PostWrapper = styled.div`
   margin-top: 20px;
 `;
 
-export const PostContainer = styled.div<{ isloggedin?: boolean; clicked?: boolean }>`
+export const PostContainer = styled.div<{ $isloggedin?: boolean; $Clicked?: boolean }>`
   display: flex;
   width: 50%;
   justify-content: center;
   align-items: center;
-  color: ${({ isloggedin }) => (isloggedin ? '#000000' : '#00000066')};
+  color: ${({ $isloggedin }) => ($isloggedin ? '#000000' : '#00000066')};
   cursor: pointer;
   transition: color 0.3s, border 0.3s;
-  border-bottom: ${({ clicked }) => (clicked ? '2px solid #ea464a' : 'none')};
+  border-bottom: ${({ $Clicked }) => ($Clicked ? '2px solid #ea464a' : 'none')};
   &:hover {
     color: #ea464a;
   }
 `;
 
-export const AnswerContainer = styled.div<{ isloggedin?: boolean; clicked?: boolean }>`
+export const AnswerContainer = styled.div<{ $isloggedin?: boolean; $Clicked?: boolean }>`
   display: flex;
   width: 50%;
   justify-content: center;
   align-items: center;
-  color: ${({ isloggedin }) => (isloggedin ? '#000000' : '#00000066')};
+  color: ${({ $isloggedin }) => ($isloggedin ? '#000000' : '#00000066')};
   cursor: pointer;
   transition: color 0.3s, border 0.3s;
-  border-bottom: ${({ clicked }) => (clicked ? '2px solid #ea464a' : 'none')};
+  border-bottom: ${({ $Clicked }) => ($Clicked ? '2px solid #ea464a' : 'none')};
   &:hover {
     color: #ea464a;
   }
@@ -86,7 +93,6 @@ export const ThirdContainer = styled.div`
   flex-direction: column;
   margin-left: 5vw;
   margin-top: 3vw;
-
 `;
 
 export const MyListContainer = styled.div`
