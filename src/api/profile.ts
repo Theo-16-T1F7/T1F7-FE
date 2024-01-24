@@ -14,22 +14,25 @@ export const getUserId = async () => {
     });
     const userId = response.data.data.id;
     sessionStorage.setItem('userId', userId);
+    return userId;
   } catch (err) {
     console.error('Error: ', err);
     throw new Error(`Error: ${err}`);
   }
 };
 
-export const getUserInfo = async (id: string | number) => {
+export const getUserInfo = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
   const userId = sessionStorage.getItem('userId');
   try {
-    const response = await serverapi.get(`/api/users/${id}`, {
+    const response = await serverapi.get(`/api/users/${userId}`, {
       headers: {
         'X-BBEUDDE-TOKEN': accessToken
       }
     });
-
+    const userNickname = response.data.data.nickname;
+    sessionStorage.setItem('userNickname', userNickname);
+    return userNickname;
   } catch (err) {
     console.error('Error: ', err);
     throw new Error(`Error: ${err}`);
