@@ -7,5 +7,15 @@ export const accessTokenState = atom({
 
 export const userState = atom({
   key: 'userState',
-  default: null
+  default: false
+});
+
+export const userIdState = atom({
+  key: 'userIdState',
+  default: sessionStorage.getItem('userNickname') || null
+});
+
+export const userNicknameState = atom({
+  key: 'userNicknameState',
+  default: sessionStorage.getItem('userNickname') || null
 });

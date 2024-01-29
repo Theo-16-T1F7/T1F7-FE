@@ -26,7 +26,7 @@ const requestBodyJSON = JSON.stringify(requestBody);
 // };
 export const getNeedSolution = async () => {
   try {
-    const response = await severapi.get('/api/post', {
+    const response = await severapi.get('/api/posts', {
       params: {
         search: '',
         mbti: 'T',
@@ -42,7 +42,7 @@ export const getNeedSolution = async () => {
 
 export const getNeedEmpathy = async () => {
   try {
-    const response = await severapi.get('/api/post', {
+    const response = await severapi.get('/api/posts', {
       params: {
         search: '',
         mbti: 'F',
@@ -59,7 +59,7 @@ export const getNeedEmpathy = async () => {
 export const getEmotionStory = async (newHashList: number[]) => {
   // console.info('new', newHashList);
   try {
-    const response = await severapi.get('/api/post', {
+    const response = await severapi.get('/api/posts', {
       params: {
         search: '',
         mbti: '',

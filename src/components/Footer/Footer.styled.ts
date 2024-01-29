@@ -16,26 +16,41 @@ export const PostIconPosition = styled.div`
   position: absolute;
   top: -30px;
   z-index: 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const FeedPosition = styled.div`
   position: absolute;
-  left: 40px;
+  left: 10vw;
   z-index: 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const SearchPosition = styled.div`
   position: absolute;
-  left: 120px;
+  left: 30vw;
   z-index: 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const ContentPosition = styled.div`
   position: absolute;
-  right: 120px;
+  right: 30vw;
   z-index: 1;
   line-height: 1.3;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const MyPosition = styled.div`
   position: absolute;
-  right: 50px;
+  right: 10vw;
   z-index: 1;
   line-height: 1.3;
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -10,7 +10,6 @@ const NoticeDetailPage = () => {
     queryKey: ['notice', `${id}`],
     queryFn: () => getNoticeDetail(id!)
   });
-
   if (isLoading) {
     return <h1>로딩중</h1>;
   }
