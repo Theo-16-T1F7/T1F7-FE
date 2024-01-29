@@ -28,7 +28,10 @@ export const createPost = async (newPost: RequestPost, token: string | null): Pr
     // 토큰이 존재하면 헤더에 추가
     if (token) {
       headers['X-BBEUDDE-TOKEN'] = token;
+    } else {
+      throw new Error('Access token is null.');
     }
+
     // console.info(token, headers, newPost);
     const response = await serverapi.post(`api/posts`, newPost, { headers });
     return response.data;
