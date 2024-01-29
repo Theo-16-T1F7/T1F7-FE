@@ -74,11 +74,15 @@ const MyPage = () => {
     }
   };
 
-  const handleButtonClick = () => {
+  const onClickLogoutButton = () => {
     if (user) {
       // 로그아웃
       handleLogout();
-    } else {
+    }
+  };
+
+  const onClickLoginButton = () => {
+    if (!user) {
       // 로그인 페이지로 이동
       navigate('/login');
     }
@@ -93,17 +97,19 @@ const MyPage = () => {
       <S.FirstContainer>
         <MyImage />
         <S.LoginContainer>
-          <S.LoginButtonWrapper onClick={handleButtonClick}>
+          <S.LoginButtonWrapper>
             {user ? (
               <>
                 <S.UserNickname>{userNickname}</S.UserNickname>
                 <ProfileEditButton />
-                <LogoutButton />
+                <span onClick={onClickLogoutButton}>
+                  <LogoutButton />
+                </span>
               </>
             ) : (
               <>
                 <LoginText />
-                <div style={{ marginTop: '10px' }}>
+                <div style={{ marginTop: '10px' }} onClick={onClickLoginButton}>
                   <LoginButton />
                 </div>
               </>

@@ -6,6 +6,9 @@ import { DivideTitle } from '../../components/ArticleList/ArticleHeader.styled';
 import * as S from './PostPage.styled';
 import { DropDownIcon } from '../../styles/icons/SvgIcons';
 import { useRef, useState } from 'react';
+import { atom, useRecoilValue } from 'recoil';
+import { accessTokenState } from '../../atoms/atoms';
+import { RequestPost } from '../../types/type';
 
 const PostPage = () => {
   const [title, handleOnChangeTitle, setTitle] = useInput();
@@ -50,10 +53,11 @@ const PostPage = () => {
       tag: 7
     }
   ];
+  const token = useRecoilValue(accessTokenState);
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: createPost,
+    mutationFn: (newPost: RequestPost) => createPost(newPost, token),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
     }
@@ -99,6 +103,9 @@ const PostPage = () => {
   };
 
   const handleSubmitButtonClick = () => {
+    if (!token) {
+      return alert('로그인 해주세요!');
+    }
     // 유효성 검사
     // 제목, 내용 모두 입력되어야 한다.
     if (!title.trim()) {
