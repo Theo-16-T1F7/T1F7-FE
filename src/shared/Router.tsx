@@ -13,6 +13,7 @@ import NeedSolutionPage from '../pages/NeedSolutionPage/NeedSolutionPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import Redirection from '../pages/Redirection/Redirection';
 import MyPage from '../pages/MyPage/MyPage';
+import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
         <Route path="/kakao/oauth" element={<Redirection />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/profileedit" element={<ProfileEditPage />} />
       </Routes>
     </BrowserRouter>
   );
