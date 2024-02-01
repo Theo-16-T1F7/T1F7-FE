@@ -10,7 +10,7 @@ const Developing = () => {
         <CautionIcon />
         <Message>
           <Message1>앗! 아직 개발 중인 기능이에요</Message1>
-          <div>빠르게 만들어서 선보이도록 할게요. 조금만 더 기다려주세요💦</div>
+          <Message2>빠르게 만들어서 선보이도록 할게요. 조금만 더 기다려주세요💦</Message2>
         </Message>
       </Wrap>
     </>
@@ -38,4 +38,6 @@ const Message = styled.div`
 `;
 const Message1 = styled.h2`
   padding-bottom: 10px;
+`;
+const Message2 = styled.div`
 `;
