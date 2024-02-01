@@ -168,7 +168,7 @@ const PostPage = () => {
             return (
               <S.HashtagButton
                 key={idx}
-                buttoncolor={buttonColors[item.tag] || ''}
+                $buttonColor={buttonColors[item.tag] || ''}
                 onClick={() => handleHashtagButtonClick(item.tag)}
               >
                 {item.name}
