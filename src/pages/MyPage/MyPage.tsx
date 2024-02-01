@@ -1,44 +1,34 @@
 import * as S from './MyPage.styled';
 import axios from 'axios';
+import { useQuery, QueryFunction } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { LoginButton, LogoutButton, MyImage, LoginText, ProfileEditButton } from '../../styles/icons/SvgIcons';
+import { LoginButton, LogoutButton, LoginText, ProfileEditButton, ProfileImage } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
+import { getMyPost } from '../../api/profile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { accessTokenState, userState, userNicknameState } from '../../atoms/atoms';
 
-const dummydata = [
-  {
-    id: '1',
-    nickname: '숩',
-    title: '내가 쓴 글 미리보기1',
-    answer: '내가 쓴 댓글 미리보기1',
-    createdAt: '2023/10/22 08:21'
-  },
-  {
-    id: '2',
-    nickname: '숩',
-    title: '내가 쓴 글 미리보기2',
-    answer: '내가 쓴 댓글 미리보기2',
-    createdAt: '2023/10/23 08:22'
-  },
-  {
-    id: '3',
-    nickname: '숩',
-    title: '내가 쓴 글 미리보기3',
-    answer: '내가 쓴 댓글 미리보기3',
-    createdAt: '2023/10/24 08:23'
-  }
-];
+interface PostItem {
+  id: number;
+  title: string;
+  nickname: string;
+  createdAt: string;
+}
 
 const MyPage = () => {
+  const { data } = useQuery<PostItem[]>({
+    queryKey: ['getMyPost'],
+    queryFn: getMyPost as QueryFunction<PostItem[]>
+  });
+  const myPostData = data;
   const navigate = useNavigate();
   const accessToken = useRecoilValue(accessTokenState);
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
   const userNickname = useRecoilValue(userNicknameState);
-  const [isPostClicked, setIsPostClicked] = useState(false);
+  const [isPostClicked, setIsPostClicked] = useState(true);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
 
   const handlePostClick = () => {
@@ -64,9 +54,10 @@ const MyPage = () => {
           }
         }
       );
-      // 세션 스토리지의 토큰 제거
+      // 세션 스토리지의 토큰, 닉네임 제거
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('userNickname');
+      sessionStorage.removeItem('userId');
       setUser(false);
       navigate('/');
     } catch (error) {
@@ -88,6 +79,10 @@ const MyPage = () => {
     }
   };
 
+  const onClickProfileEditButton = () => {
+    navigate('/profileedit');
+  };
+
   return (
     <>
       <S.Subheading>
@@ -95,13 +90,15 @@ const MyPage = () => {
         <S.SubheadingText>My Page</S.SubheadingText>
       </S.Subheading>
       <S.FirstContainer>
-        <MyImage />
+        <ProfileImage />
         <S.LoginContainer>
           <S.LoginButtonWrapper>
             {user ? (
               <>
                 <S.UserNickname>{userNickname}</S.UserNickname>
-                <ProfileEditButton />
+                <span onClick={onClickProfileEditButton}>
+                  <ProfileEditButton />
+                </span>
                 <span onClick={onClickLogoutButton}>
                   <LogoutButton />
                 </span>
@@ -135,25 +132,35 @@ const MyPage = () => {
             </>
           ) : (
             <>
-              <S.PostContainer>내가 쓴 글</S.PostContainer>
-              <S.AnswerContainer>내가 쓴 댓글</S.AnswerContainer>
+              <S.DisabledContainer>
+                <S.PostContainer>내가 쓴 글</S.PostContainer>
+              </S.DisabledContainer>
+              <S.DisabledContainer>
+                <S.AnswerContainer>내가 쓴 댓글</S.AnswerContainer>
+              </S.DisabledContainer>
             </>
           )}
         </S.PostWrapper>
       </S.SecondContainer>
       <S.ThirdContainer>
-        {user ? (
-          <>
-            {dummydata?.map((data, idx) => (
-              <S.MyListContainer key={idx}>
-                <S.MyListTitle>{data.title}</S.MyListTitle>
-                <S.MyListName>{data.nickname}</S.MyListName>
-                <S.MyListCreateAt>{data.createdAt}</S.MyListCreateAt>
-              </S.MyListContainer>
-            ))}
-          </>
+        {user && isAnswerClicked ? (
+          <div>내가 쓴 댓글</div>
         ) : (
-          <></>
+          <>
+            {user && myPostData && myPostData.length > 0 ? (
+              <>
+                {myPostData.map((myPost: PostItem) => (
+                  <S.MyListContainer key={myPost?.id}>
+                    <S.MyListTitle>{myPost?.title}</S.MyListTitle>
+                    <S.MyListName>{myPost?.nickname}</S.MyListName>
+                    <S.MyListCreateAt>{myPost?.createdAt}</S.MyListCreateAt>
+                  </S.MyListContainer>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </>
         )}
       </S.ThirdContainer>
     </>
