@@ -38,3 +38,43 @@ export const getUserInfo = async () => {
     throw new Error(`Error: ${err}`);
   }
 };
+
+export const updateUserNickname = async (newNickname: string) => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  const userId = sessionStorage.getItem('userId');
+  try {
+    const response = await serverapi.patch(
+      `/api/users/${userId}`,
+      {
+        nickname: newNickname
+      },
+      {
+        headers: {
+          'X-BBEUDDE-TOKEN': accessToken
+        }
+      }
+    );
+    // const updatedNickname = response.data.data.nickname;
+    // sessionStorage.setItem('userNickname', updatedNickname);
+    // return updatedNickname;
+    return response.data;
+  } catch (err) {
+    console.error('Error: ', err);
+    throw new Error(`Error: ${err}`);
+  }
+};
+
+export const getMyPost = async () => {
+  const userId = sessionStorage.getItem('userId');
+  try {
+    const response = await serverapi.get('/api/posts', {
+      params: {
+        userId: userId
+      }
+    });
+      return response.data.data.content;
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
+  };
+
