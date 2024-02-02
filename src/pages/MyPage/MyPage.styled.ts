@@ -24,7 +24,6 @@ export const FirstContainer = styled.div`
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 6vw;
 `;
 
 export const LoginButtonWrapper = styled.div`
@@ -64,7 +63,7 @@ export const PostContainer = styled.div<{ $isloggedin?: boolean; $Clicked?: bool
   width: 50%;
   justify-content: center;
   align-items: center;
-  color: ${({ $isloggedin }) => ($isloggedin ? '#000000' : '#00000066')};
+  color: ${({ $isloggedin, $Clicked }) => ($isloggedin && $Clicked ? '#ea464a' : '#000000')};
   cursor: pointer;
   transition: color 0.3s, border 0.3s;
   border-bottom: ${({ $Clicked }) => ($Clicked ? '2px solid #ea464a' : 'none')};
@@ -78,13 +77,21 @@ export const AnswerContainer = styled.div<{ $isloggedin?: boolean; $Clicked?: bo
   width: 50%;
   justify-content: center;
   align-items: center;
-  color: ${({ $isloggedin }) => ($isloggedin ? '#000000' : '#00000066')};
+  color: ${({ $isloggedin }) => ($isloggedin ? '#000000' : '#000000')};
   cursor: pointer;
   transition: color 0.3s, border 0.3s;
   border-bottom: ${({ $Clicked }) => ($Clicked ? '2px solid #ea464a' : 'none')};
   &:hover {
     color: #ea464a;
   }
+`;
+export const DisabledContainer = styled.div`
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.6; /* optional: to visually indicate the disabled state */
 `;
 
 // 내가 쓴 글, 댓글 리스트 레이아웃
