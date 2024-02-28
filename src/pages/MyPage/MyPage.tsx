@@ -8,7 +8,7 @@ import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
 import { getMyPost } from '../../api/profile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { accessTokenState, userState, userNicknameState } from '../../atoms/atoms';
+import { userState, userNicknameState } from '../../atoms/atoms';
 
 interface PostItem {
   id: number;
@@ -24,7 +24,7 @@ const MyPage = () => {
   });
   const myPostData = data;
   const navigate = useNavigate();
-  const accessToken = useRecoilValue(accessTokenState);
+  const accessToken = sessionStorage.getItem('accessToken');
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
   const userNickname = useRecoilValue(userNicknameState);
