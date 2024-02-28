@@ -11,7 +11,7 @@ export const getNeedEmpathys = async () => {
         hashList: ''
       }
     });
-    // console.info(response.data);
+    // consologinStatee.info(response.data);
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);

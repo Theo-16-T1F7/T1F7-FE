@@ -65,16 +65,31 @@ export const updateUserNickname = async (newNickname: string) => {
 };
 
 export const getMyPost = async () => {
+  const accessToken = sessionStorage.getItem('accessToken');
   const userId = sessionStorage.getItem('userId');
   try {
-    const response = await serverapi.get('/api/posts', {
-      params: {
-        userId: userId
+    const response = await serverapi.get(`/api/users/${userId}/posts`, {
+      headers: {
+        'X-BBEUDDE-TOKEN': accessToken
       }
     });
-      return response.data.data.content;
-    } catch (err) {
-      throw new Error(`Error: ${err}`);
-    }
-  };
+    return response.data.data.content;
+  } catch (err) {
+    throw new Error(`Error: ${err}`);
+  }
+};
 
+export const getMyAnswer = async () => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  const userId = sessionStorage.getItem('userId');
+  try {
+    const response = await serverapi.get(`/api/users/${userId}/comments`, {
+      headers: {
+        'X-BBEUDDE-TOKEN': accessToken
+      }
+    });
+    return response.data.data.content;
+  } catch (err) {
+    throw new Error(`Error: ${err}`);
+  }
+};
