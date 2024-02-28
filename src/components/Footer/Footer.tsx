@@ -6,6 +6,8 @@ import { ActivedFeed, InactivedFeed } from '../../styles/icons/SvgIcons';
 import { ActivedContent, InactivedContent } from '../../styles/icons/SvgIcons';
 import { InactivedSearch } from '../../styles/icons/SvgIcons';
 import { ActivedMyPage, InactivedMyPage } from '../../styles/icons/SvgIcons';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../atoms/atoms';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Footer = () => {
   const [activeFeed, setActiveFeed] = useState(true);
   const [activeContent, setActiveContent] = useState(false);
   const [activeMyPage, setActiveMyPage] = useState(false);
+  const user = useRecoilValue(userState);
 
   useEffect(() => {
     setActiveFeed(location.pathname === '/');
@@ -21,7 +24,11 @@ const Footer = () => {
   }, [location.pathname]);
 
   const handlePostClick = () => {
-    navigate('/post');
+    if (!user) {
+      alert('로그인 후 이용해주세요.');
+    } else {
+      navigate('/post');
+    }
   };
 
   const handleFeedClick = () => {
