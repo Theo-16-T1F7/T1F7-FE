@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { accessTokenState } from '../../atoms/atoms';
+// import { accessTokenState } from '../../atoms/atoms';
 
 export interface HeaderProps {
   headercolor?: string;

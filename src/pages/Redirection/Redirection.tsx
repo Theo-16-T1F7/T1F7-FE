@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../../api/profile';
 import { getUserInfo } from '../../api/profile';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { accessTokenState, userState, userNicknameState, userIdState } from '../../atoms/atoms';
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
 

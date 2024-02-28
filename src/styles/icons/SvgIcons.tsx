@@ -510,6 +510,7 @@ export const ProfileImage = (props: SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
+
 export const ProfileImage2 = (props: SVGProps<SVGSVGElement>) => (
   <svg width="100" height="100" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clipPath="url(#clip0_537_1515)">

@@ -6,25 +6,30 @@ import { useState } from 'react';
 import { LoginButton, LogoutButton, LoginText, ProfileEditButton, ProfileImage } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
-import { getMyPost } from '../../api/profile';
+import { getMyPost, getMyAnswer } from '../../api/profile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { accessTokenState, userState, userNicknameState } from '../../atoms/atoms';
+import { userState, userNicknameState } from '../../atoms/atoms';
 
 interface PostItem {
   id: number;
   title: string;
   nickname: string;
   createdAt: string;
+  content: string;
 }
 
 const MyPage = () => {
-  const { data } = useQuery<PostItem[]>({
+  const { data: myPostData } = useQuery<PostItem[]>({
     queryKey: ['getMyPost'],
     queryFn: getMyPost as QueryFunction<PostItem[]>
   });
-  const myPostData = data;
+  const { data: myAnswerData } = useQuery<PostItem[]>({
+    queryKey: ['getMyAnswer'],
+    queryFn: getMyAnswer as QueryFunction<PostItem[]>
+  });
+  // const myPostData = data;
   const navigate = useNavigate();
-  const accessToken = useRecoilValue(accessTokenState);
+  const accessToken = sessionStorage.getItem('accessToken');
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
   const userNickname = useRecoilValue(userNicknameState);
@@ -144,7 +149,21 @@ const MyPage = () => {
       </S.SecondContainer>
       <S.ThirdContainer>
         {user && isAnswerClicked ? (
-          <div>내가 쓴 댓글</div>
+          <>
+            {user && myAnswerData && myAnswerData.length > 0 ? (
+              <>
+                {myAnswerData.map((myAnswer: PostItem) => (
+                  <S.MyListContainer key={myAnswer?.id}>
+                    <S.MyListTitle>{myAnswer?.content}</S.MyListTitle>
+                    <S.MyListName>{myAnswer?.nickname}</S.MyListName>
+                    <S.MyListCreateAt>{myAnswer?.createdAt}</S.MyListCreateAt>
+                  </S.MyListContainer>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </>
         ) : (
           <>
             {user && myPostData && myPostData.length > 0 ? (
