@@ -66,11 +66,17 @@ const Redirection = () => {
 
   // userNickname
   useEffect(() => {
-    if (userInfoData) {
-      setUserNickname(userInfoData);
-      navigate('/mypage');
+    if (userIdData) {
+      getUserInfo()
+        .then((userInfoData) => {
+          setUserNickname(userInfoData);
+          navigate(`/mypage/${userIdData}`);
+        })
+        .catch((error) => {
+          console.error('유저 정보를 불러오는 중 오류 발생:', error);
+        });
     }
-  }, [userInfoData, setUserNickname, navigate]);
+  }, [userIdData, setUserNickname, navigate]);
 
   return (
     <>

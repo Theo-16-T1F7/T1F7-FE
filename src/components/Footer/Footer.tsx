@@ -7,7 +7,8 @@ import { ActivedContent, InactivedContent } from '../../styles/icons/SvgIcons';
 import { InactivedSearch } from '../../styles/icons/SvgIcons';
 import { ActivedMyPage, InactivedMyPage } from '../../styles/icons/SvgIcons';
 import { useRecoilValue } from 'recoil';
-import { userState } from '../../atoms/atoms';
+import { userState, userIdState } from '../../atoms/atoms';
+import { useParams } from 'react-router-dom';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ const Footer = () => {
   const [activeContent, setActiveContent] = useState(false);
   const [activeMyPage, setActiveMyPage] = useState(false);
   const user = useRecoilValue(userState);
+  const userId = useRecoilValue(userIdState);
+
+  // const { userId } = useParams();
 
   useEffect(() => {
     setActiveFeed(location.pathname === '/');
@@ -50,7 +54,7 @@ const Footer = () => {
   };
 
   const handleMyClick = () => {
-    navigate('/mypage');
+    navigate(`/mypage/${userId}`);
     setActiveMyPage(true);
     setActiveContent(false);
     setActiveFeed(false);

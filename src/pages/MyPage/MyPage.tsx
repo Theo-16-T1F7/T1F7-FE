@@ -1,7 +1,7 @@
 import * as S from './MyPage.styled';
 import axios from 'axios';
 import { useQuery, QueryFunction } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { LoginButton, LogoutButton, LoginText, ProfileEditButton, ProfileImage } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
