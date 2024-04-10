@@ -10,3 +10,31 @@ export const formatNoticeDate = (createdAt: string) => {
   const formattedDate = `${year}/${month}/${day} ${hours}:${minutes}`;
   return formattedDate;
 };
+
+export const getElapsedTime = (createdAt: string) => {
+  const createdTime = new Date(createdAt).getTime();
+  const currentTime = new Date().getTime();
+  const elapsedTimeInMs = currentTime - createdTime;
+
+  // 분 단위
+  const minutes = Math.floor(elapsedTimeInMs / (1000 * 60));
+  if (minutes < 60) {
+    return `${minutes}분 전`;
+  }
+
+  // 시간 단위
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) {
+    return `${hours}시간 전`;
+  }
+
+  // 일 단위
+  const days = Math.floor(hours / 24);
+  if (days < 30) {
+    return `${days}일 전`;
+  }
+
+  // 달 단위
+  const months = Math.floor(days / 30);
+  return `${months}달 전`;
+};
