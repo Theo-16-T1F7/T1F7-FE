@@ -21,7 +21,7 @@ export const getPostDetail = async (id: string | number) => {
   }
 };
 
-export const createPost = async (newPost: RequestPost, token: string | null): Promise<void> => {
+export const createPost = async (newComment: RequestPost, token: string | null): Promise<void> => {
   try {
     const headers: Record<string, string> = {};
 
@@ -31,9 +31,8 @@ export const createPost = async (newPost: RequestPost, token: string | null): Pr
     } else {
       throw new Error('Access token is null.');
     }
-
     // console.info(token, headers, newPost);
-    const response = await serverapi.post(`api/posts`, newPost, { headers });
+    const response = await serverapi.post(`api/posts`, newComment, { headers });
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
