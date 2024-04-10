@@ -15,9 +15,10 @@ export interface PostDetail {
 }
 
 export interface RequestPost {
-  // nickname: string;
+  // id: number;
   title: string;
   content: string;
+  // nickname: string;
   mbti: string;
   // password: string;
   hashList: number[];
@@ -35,4 +36,24 @@ export interface MainPost {
 export interface UserDataType {
   id: string;
   username: string;
+}
+
+export interface CommentPost {
+  // id: number;
+  postId: number;
+  parentId: number;
+  content: string;
+  // nickname: string | null;
+  mbti: string;
+  // createdAt: string;
+}
+
+export interface CommentGet {
+  id: number;
+  // postId: number;
+  // parentId: number;
+  content: string;
+  nickName: string | null;
+  mbti: string;
+  createdAt: string;
 }
