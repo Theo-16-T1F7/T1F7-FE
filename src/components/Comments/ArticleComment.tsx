@@ -1,65 +1,111 @@
+import { useQuery, useMutation, useQueryClient, QueryFunction } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
 import { DivideTitle } from '../ArticleList/ArticleHeader.styled';
 import * as S from './ArticleComment.styled';
+import { CommentPost, CommentGet } from '../../types/type';
+import { getComment, createComment } from '../../api/commentpost';
+import { useRecoilValue } from 'recoil';
+import { userNicknameState } from '../../atoms/atoms';
+import { getElapsedTime } from '../../shared/dateUtils';
 
 const ArticleComment = () => {
-  // id 기반으로 데이터 가져올 예정
+  const token = sessionStorage.getItem('accessToken');
+  const [contents, handleOnChangeContents, setContents] = useInput();
+  // postId 기반으로 데이터 가져올 예정
   const { id } = useParams();
-  const sampleData = [
-    {
-      id: '1',
-      author: '메나',
-      reaction: 'T',
-      comment: '회사 다니신지는 얼마나 되셨나요?',
-      time: '2023-09-15 10:30 AM'
-    },
-    {
-      id: '2',
-      author: '밤비',
-      reaction: 'F',
-      comment: '워라벨 없으면 진짜 힘들죠 ㅠㅠ',
-      time: '2023-09-15 11:15 AM'
-    },
-    {
-      id: '3',
-      author: '에린',
-      reaction: 'F',
-      comment: '동료분들은 어떤가요?',
-      time: '2023-09-15 11:45 AM'
-    }
-  ];
+  let postId = parseInt(id!);
+  if (isNaN(postId)) {
+    // postId가 NaN인 경우 처리
+    postId = -1; // 유효하지 않은 postId 값으로 처리할 수 있습니다. 이는 실제 로직에 따라 조정해야 합니다.
+  }
+  const queryClient = useQueryClient();
+
+  const {
+    data: commentData,
+    isLoading,
+    isError
+  } = useQuery<CommentGet[]>({
+    queryKey: ['getComment', `${postId}`],
+    queryFn: getComment as QueryFunction<CommentGet[]>
+    // queryFn: getComment as QueryFunction<RequestPost[]>
+  });
 
   const commentTagButtons = ['전체', 'T반응', 'F반응'];
+  const mbtiTest = 'T';
+  const mutation = useMutation({
+    mutationFn: (newComment: CommentPost) => createComment(newComment, token, postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['getComment'] });
+    }
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>; // 데이터 로딩 중일 때
+  }
+
+  if (isError) {
+    return <div>데이터가 안불러와져</div>; // 데이터를 가져오는 동안 오류가 발생한 경우
+  }
+
+
+  const handleSubmitButtonClick = () => {
+    if (!token) {
+      return alert('로그인 해주세요!');
+    }
+    // 유효성 검사
+    // 내용 모두 입력되어야 한다.
+    if (!contents.trim()) {
+      return alert('제목이 입력되지 않았습니다!');
+    }
+
+    mutation.mutate(newComment);
+    setContents('');
+    alert('저장되었습니다!');
+  };
+
+  const newComment: CommentPost = {
+    postId: postId,
+    parentId: postId-1,
+    content: contents,
+    // nickname: userNickname || null,
+    mbti: mbtiTest,
+    // createdAt: nowTime.toISOString() // 현재 시간을 ISO 형식의 문자열로 변환하여 사용합니다.
+  };
+
   return (
     <>
       <S.CommentMainTitle>
         <S.CommentMain>댓글</S.CommentMain>
-        <S.CommentCount>n개</S.CommentCount>
+        <S.CommentCount>{commentData?.length}</S.CommentCount>
       </S.CommentMainTitle>
       <S.CommentTagButtonBox>
-        {commentTagButtons.map((title, idx) => {
-          return (
-            <>
-              <S.CommentTagButton>
-                <S.CommentButtonText>{title}</S.CommentButtonText>
-              </S.CommentTagButton>
-            </>
-          );
-        })}
+        {commentTagButtons.map((title, idx) => (
+          <S.CommentTagButton key={idx}>
+            <S.CommentButtonText>{title}</S.CommentButtonText>
+          </S.CommentTagButton>
+        ))}
       </S.CommentTagButtonBox>
-      <DivideTitle />
-      {sampleData.map((data, idx) => {
-        return (
-          <>
+      {commentData &&
+        commentData.map((comment, idx) => (
+          <div key={idx}>
+            <DivideTitle />
             <S.CommentHeader>
-              <S.CommentWriter>{data.author}</S.CommentWriter>
-              <S.CommentTime>{data.time}</S.CommentTime>
+              <S.CommentMbti mbti={comment.mbti}>
+                <S.CommentButtonText>{comment.mbti}반응</S.CommentButtonText>
+              </S.CommentMbti>
+              <S.CommentWriter>{comment.nickName}</S.CommentWriter>
+              <S.CommentTime>{getElapsedTime(comment.createdAt)}</S.CommentTime>
             </S.CommentHeader>
-            <S.CommentContent>{data.comment}</S.CommentContent>
-            {idx < sampleData.length - 1 && <S.CommentDivider />}
-          </>
-        );
-      })}
+            <S.CommentContent>{comment.content}</S.CommentContent>
+            {/* {idx < commentData.length - 1 && <S.CommentDivider />} */}
+          </div>
+        ))}
+      <DivideTitle />
+      <S.CommentPostWrapper>
+        <S.CommentPostInput value={contents} onChange={handleOnChangeContents} placeholder="내용"></S.CommentPostInput>
+        <S.CommentPostButton onClick={handleSubmitButtonClick}>입력</S.CommentPostButton>
+      </S.CommentPostWrapper>
     </>
   );
 };
