@@ -12,10 +12,20 @@ export const userState = atom({
 
 export const userIdState = atom({
   key: 'userIdState',
-  default: sessionStorage.getItem('userNickname') || null
+  default: sessionStorage.getItem('userId') || null
 });
 
 export const userNicknameState = atom({
   key: 'userNicknameState',
   default: sessionStorage.getItem('userNickname') || null
+});
+
+export const nicknameState = atom({
+  key: 'nicknameState',
+  default: ''
+});
+
+export const userMbtiState = atom({
+  key: 'userMbtiState',
+  default: sessionStorage.getItem('userMbti') || ''
 });
