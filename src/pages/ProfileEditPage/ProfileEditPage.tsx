@@ -7,23 +7,32 @@ import Footer from '../../components/Footer/Footer';
 import { BackButton } from '../../shared/BackButton';
 import { ProfileImage2 } from '../../styles/icons/SvgIcons';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userNicknameState } from '../../atoms/atoms';
+import { userNicknameState, userIdState, userMbtiState } from '../../atoms/atoms';
 
 const ProfileEditPage = () => {
   const navigate = useNavigate();
   const setNickname = useSetRecoilState(userNicknameState); // useSetRecoilState 훅 사용
+  const setMbti = useSetRecoilState(userMbtiState); // useSetRecoilState 훅 사용
   const userNickname = useRecoilValue(userNicknameState);
+  const userId = useRecoilValue(userIdState);
   const [newNickname, setNewNickname] = useState(''); // 변경된 닉네임을 저장하는 상태
+  const [selectedMbti, setSelectedMbti] = useState(''); // 선택된 MBTI 값을 저장하는 상태
+
   const handleNicknameInputChange = (event: any) => {
     setNewNickname(event.target.value);
   };
 
+  const handleMbtiChange = (mbtiValue: string) => {
+    setSelectedMbti(mbtiValue);
+  };
+
   const handleNicknameChange = async () => {
     try {
-      await updateUserNickname(newNickname);
+      await updateUserNickname(newNickname, selectedMbti);
       setNickname(newNickname);
+      setMbti(selectedMbti);
       alert('닉네임이 성공적으로 변경되었습니다!');
-      navigate('/mypage');
+      navigate(`/mypage/${userId}`);
     } catch (error) {
       console.error('닉네임 변경 실패: ', error);
       alert('닉네임 변경에 실패했습니다.');
@@ -47,6 +56,18 @@ const ProfileEditPage = () => {
               onChange={handleNicknameInputChange}
             />
           </S.EditNicknameInputContainer>
+          <S.EditMbtiContainer>
+            <S.RadioButtonLabel>
+              <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')}>
+                뇌가 먼저 반응하는 T
+              </S.MbtiTButton>
+            </S.RadioButtonLabel>
+            <S.RadioButtonLabel>
+              <S.MbtiFButton buttoncolor="white" onClick={() => handleMbtiChange('F')}>
+                심장이 먼저 반응하는 F
+              </S.MbtiFButton>
+            </S.RadioButtonLabel>
+          </S.EditMbtiContainer>
         </S.FirstContainer>
         <S.SecondContainer>
           <S.SubmitNicknameEdit onClick={handleNicknameChange}>변경하기</S.SubmitNicknameEdit>
