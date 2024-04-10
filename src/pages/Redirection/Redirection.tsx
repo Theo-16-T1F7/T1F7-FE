@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getUserId } from '../../api/profile';
-import { getUserInfo } from '../../api/profile';
+import { getUserId, getUserInfo, getUserMbti } from '../../api/profile';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { accessTokenState, userState, userNicknameState, userIdState } from '../../atoms/atoms';
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
+import { nicknameState, userMbtiState } from '../../atoms/atoms';
 
 const Redirection = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [user, setUser] = useRecoilState(userState);
-  // const [userId, setUserId] = useState(null);
   const setUserNickname = useSetRecoilState(userNicknameState);
   const setUserId = useSetRecoilState(userIdState);
 
@@ -22,12 +21,13 @@ const Redirection = () => {
     queryKey: ['getUserId'],
     queryFn: () => getUserId()
   });
-
-  // userNickname 불러오는 API
-  const { data: userInfoData } = useQuery<any>({
-    queryKey: ['getUserInfo'],
-    queryFn: () => getUserInfo()
+  const { data: mbtiData } = useQuery<any>({
+    queryKey: ['getUserMbti'],
+    queryFn: () => getUserMbti()
   });
+
+  console.log(mbtiData);
+  console.log(userIdData);
 
   // URL 인가코드 저장
   useEffect(() => {
@@ -57,12 +57,12 @@ const Redirection = () => {
     }
   }, [code, setAccessToken, setUser]);
 
-  // userId
+  // userId가 로그인 후에 받아졌을 때만 실행
   useEffect(() => {
     if (userIdData) {
       setUserId(userIdData);
     }
-  }, [userIdData]);
+  }, [userIdData, setUserId]);
 
   // userNickname
   useEffect(() => {
@@ -78,10 +78,17 @@ const Redirection = () => {
     }
   }, [userIdData, setUserNickname, navigate]);
 
+  // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
+  if (!userIdData) {
+    return <SplashScreen />;
+  }
+
   return (
     <>
-      <SplashScreen />
+      {/* 로그인이 완료된 경우에만 마이페이지로 이동 */}
+      {user && <SplashScreen />}
     </>
   );
 };
+
 export default Redirection;
