@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+
+interface RadioButtonProps {
+  buttoncolor: string;
+}
 export const Subheading = styled.h2`
   display: flex;
   align-items: center;
@@ -26,8 +30,7 @@ export const FirstContainer = styled.div`
   background-color: #ffffff;
   height: 100%;
 `;
-export const SecondContainer = styled.div`
-`;
+export const SecondContainer = styled.div``;
 
 export const UserNickname = styled.div`
   size: 7vw;
@@ -59,4 +62,57 @@ export const SubmitNicknameEdit = styled.button`
   border: none;
   cursor: pointer;
   margin-left: 8vw;
+`;
+
+export const EditMbtiContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 50px;
+  padding-top: 20px;
+  // padding: 0px 20px;
+
+`;
+export const RadioButtonLabel = styled.label`
+
+`;
+
+export const MbtiTButton = styled.span<RadioButtonProps>`
+  background-color: ${(props) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #292828;
+  margin: 5px 5px;
+  color: #292828;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.12px;
+
+  &:hover {
+    border: 1px solid #bd2024;
+    background-color: ${(props) => props.theme.redNormalColor};
+    color: white;
+  }
+`;
+
+export const MbtiFButton = styled.span<RadioButtonProps>`
+  background-color: ${(props) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #292828;
+  margin: 5px 5px;
+  color: #292828;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.12px;
+
+  &:hover {
+    border: 1px solid #bd2024;
+    background-color: ${(props) => props.theme.redNormalColor};
+    color: white;
+  }
 `;
