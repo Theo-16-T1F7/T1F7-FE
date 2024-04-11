@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { getUserId, getUserInfo, getUserMbti } from '../../api/profile';
 import { useQuery } from '@tanstack/react-query';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import { accessTokenState, userState, userNicknameState, userIdState } from '../../atoms/atoms';
+import { accessTokenState, userState, userNicknameState, userIdState, userMbtiState } from '../../atoms/atoms';
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
-import { nicknameState, userMbtiState } from '../../atoms/atoms';
 
 const Redirection = () => {
   const navigate = useNavigate();
@@ -15,6 +14,7 @@ const Redirection = () => {
   const [user, setUser] = useRecoilState(userState);
   const setUserNickname = useSetRecoilState(userNicknameState);
   const setUserId = useSetRecoilState(userIdState);
+  const setUserMbti = useSetRecoilState(userMbtiState);
 
   // userId 불러오는 API
   const { data: userIdData } = useQuery<any>({
@@ -25,9 +25,6 @@ const Redirection = () => {
     queryKey: ['getUserMbti'],
     queryFn: () => getUserMbti()
   });
-
-  console.log(mbtiData);
-  console.log(userIdData);
 
   // URL 인가코드 저장
   useEffect(() => {
@@ -78,6 +75,11 @@ const Redirection = () => {
     }
   }, [userIdData, setUserNickname, navigate]);
 
+  useEffect(() => {
+    if (mbtiData) {
+      setUserMbti(mbtiData);
+    }
+  }, [mbtiData, setUserMbti]);
   // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
   if (!userIdData) {
     return <SplashScreen />;
