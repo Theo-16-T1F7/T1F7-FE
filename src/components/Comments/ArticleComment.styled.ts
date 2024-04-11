@@ -52,19 +52,18 @@ export const CommentMbti = styled.div<{ mbti: string }>`
   padding: 0px 8px;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 14px;
   opacity: 0.7;
   background: var(--Grey, #dfdfdf);
   // background-color: #ff5c00;
   background-color: ${({ mbti }) => (mbti === 'F' ? '#ff5c00' : '#0C5CD3')};
 `;
-
 export const CommentButtonText = styled.div`
   color: var(--Black, #070707);
   font-family: SF Pro;
   font-size: 12px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 100%; /* 12px */
   letter-spacing: 0.12px;
 `;
