@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getUserId } from '../../api/profile';
-import { getUserInfo } from '../../api/profile';
+import { getUserId, getUserInfo, getUserMbti } from '../../api/profile';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { accessTokenState, userState, userNicknameState, userIdState } from '../../atoms/atoms';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { accessTokenState, userState, userNicknameState, userIdState, userMbtiState } from '../../atoms/atoms';
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
 
 const Redirection = () => {
@@ -13,20 +12,18 @@ const Redirection = () => {
   const [code, setCode] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [user, setUser] = useRecoilState(userState);
-  // const [userId, setUserId] = useState(null);
   const setUserNickname = useSetRecoilState(userNicknameState);
   const setUserId = useSetRecoilState(userIdState);
+  const setUserMbti = useSetRecoilState(userMbtiState);
 
   // userId 불러오는 API
   const { data: userIdData } = useQuery<any>({
     queryKey: ['getUserId'],
     queryFn: () => getUserId()
   });
-
-  // userNickname 불러오는 API
-  const { data: userInfoData } = useQuery<any>({
-    queryKey: ['getUserInfo'],
-    queryFn: () => getUserInfo()
+  const { data: mbtiData } = useQuery<any>({
+    queryKey: ['getUserMbti'],
+    queryFn: () => getUserMbti()
   });
 
   // URL 인가코드 저장
@@ -57,25 +54,43 @@ const Redirection = () => {
     }
   }, [code, setAccessToken, setUser]);
 
-  // userId
+  // userId가 로그인 후에 받아졌을 때만 실행
   useEffect(() => {
     if (userIdData) {
       setUserId(userIdData);
     }
-  }, [userIdData]);
+  }, [userIdData, setUserId]);
 
   // userNickname
   useEffect(() => {
-    if (userInfoData) {
-      setUserNickname(userInfoData);
-      navigate('/mypage');
+    if (userIdData) {
+      getUserInfo()
+        .then((userInfoData) => {
+          setUserNickname(userInfoData);
+          navigate(`/mypage/${userIdData}`);
+        })
+        .catch((error) => {
+          console.error('유저 정보를 불러오는 중 오류 발생:', error);
+        });
     }
-  }, [userInfoData, setUserNickname, navigate]);
+  }, [userIdData, setUserNickname, navigate]);
+
+  useEffect(() => {
+    if (mbtiData) {
+      setUserMbti(mbtiData);
+    }
+  }, [mbtiData, setUserMbti]);
+  // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
+  if (!userIdData) {
+    return <SplashScreen />;
+  }
 
   return (
     <>
-      <SplashScreen />
+      {/* 로그인이 완료된 경우에만 마이페이지로 이동 */}
+      {user && <SplashScreen />}
     </>
   );
 };
+
 export default Redirection;

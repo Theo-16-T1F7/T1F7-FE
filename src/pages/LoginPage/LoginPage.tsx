@@ -3,7 +3,7 @@ import { LoginScreenIcon, KakaoLogin } from '../../styles/icons/SvgIcons';
 
 const LoginPage = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
-  const REDIRECT_URI = 'http://localhost:3000/kakao/oauth';
+  const REDIRECT_URI = 'https://bbeudde.vercel.app/oauth2/kakao/callback';
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const loginHandler = () => {

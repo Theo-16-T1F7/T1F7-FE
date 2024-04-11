@@ -38,15 +38,33 @@ export const getUserInfo = async () => {
     throw new Error(`Error: ${err}`);
   }
 };
+export const getUserMbti = async () => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  const userId = sessionStorage.getItem('userId');
+  try {
+    const response = await serverapi.get(`/api/users/${userId}`, {
+      headers: {
+        'X-BBEUDDE-TOKEN': accessToken
+      }
+    });
+    const userMbti = response.data.data.mbti;
+    sessionStorage.setItem('userMbti', userMbti);
+    return userMbti;
+  } catch (err) {
+    console.error('Error: ', err);
+    throw new Error(`Error: ${err}`);
+  }
+};
 
-export const updateUserNickname = async (newNickname: string) => {
+export const updateUserNickname = async (newNickname: string, newMbti: string) => {
   const accessToken = sessionStorage.getItem('accessToken');
   const userId = sessionStorage.getItem('userId');
   try {
     const response = await serverapi.patch(
       `/api/users/${userId}`,
       {
-        nickname: newNickname
+        nickname: newNickname,
+        mbti: newMbti
       },
       {
         headers: {

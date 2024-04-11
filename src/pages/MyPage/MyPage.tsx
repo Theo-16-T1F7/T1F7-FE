@@ -8,7 +8,8 @@ import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
 import { getMyPost, getMyAnswer } from '../../api/profile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userState, userNicknameState } from '../../atoms/atoms';
+import { userState, userNicknameState, userMbtiState } from '../../atoms/atoms';
+import { formatNoticeDate } from '../../shared/dateUtils';
 
 interface PostItem {
   id: number;
@@ -27,12 +28,13 @@ const MyPage = () => {
     queryKey: ['getMyAnswer'],
     queryFn: getMyAnswer as QueryFunction<PostItem[]>
   });
-  // const myPostData = data;
+
   const navigate = useNavigate();
   const accessToken = sessionStorage.getItem('accessToken');
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
   const userNickname = useRecoilValue(userNicknameState);
+  const myMbti = useRecoilValue(userMbtiState);
   const [isPostClicked, setIsPostClicked] = useState(true);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
 
@@ -63,6 +65,7 @@ const MyPage = () => {
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('userNickname');
       sessionStorage.removeItem('userId');
+      sessionStorage.removeItem('userMbti');
       setUser(false);
       navigate('/');
     } catch (error) {
@@ -100,7 +103,8 @@ const MyPage = () => {
           <S.LoginButtonWrapper>
             {user ? (
               <>
-                <S.UserNickname>{userNickname}</S.UserNickname>
+                <S.UserNickname> {userNickname}</S.UserNickname>
+                <S.UserMbti $mbti={myMbti}>{myMbti}성향</S.UserMbti>
                 <span onClick={onClickProfileEditButton}>
                   <ProfileEditButton />
                 </span>
@@ -156,7 +160,7 @@ const MyPage = () => {
                   <S.MyListContainer key={myAnswer?.id}>
                     <S.MyListTitle>{myAnswer?.content}</S.MyListTitle>
                     <S.MyListName>{myAnswer?.nickname}</S.MyListName>
-                    <S.MyListCreateAt>{myAnswer?.createdAt}</S.MyListCreateAt>
+                    <S.MyListCreateAt>{formatNoticeDate(myAnswer?.createdAt)}</S.MyListCreateAt>
                   </S.MyListContainer>
                 ))}
               </>
@@ -172,7 +176,7 @@ const MyPage = () => {
                   <S.MyListContainer key={myPost?.id}>
                     <S.MyListTitle>{myPost?.title}</S.MyListTitle>
                     <S.MyListName>{myPost?.nickname}</S.MyListName>
-                    <S.MyListCreateAt>{myPost?.createdAt}</S.MyListCreateAt>
+                    <S.MyListCreateAt>{formatNoticeDate(myPost?.createdAt)}</S.MyListCreateAt>
                   </S.MyListContainer>
                 ))}
               </>

@@ -71,11 +71,8 @@ export const EditMbtiContainer = styled.div`
   line-height: 50px;
   padding-top: 20px;
   // padding: 0px 20px;
-
 `;
-export const RadioButtonLabel = styled.label`
-
-`;
+export const RadioButtonLabel = styled.label``;
 
 export const MbtiTButton = styled.span<RadioButtonProps>`
   background-color: ${(props) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};

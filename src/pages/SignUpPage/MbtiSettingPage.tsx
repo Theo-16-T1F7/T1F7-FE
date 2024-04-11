@@ -1,26 +1,25 @@
-import * as S from './ProfileEditPage.styled';
-import { useState } from 'react';
+import * as S from './MbtiSettingPage.styled';
 import { useQuery } from '@tanstack/react-query';
+import { getUserMbti } from '../../api/profile';
 import { useNavigate } from 'react-router-dom';
 import { updateUserNickname } from '../../api/profile';
 import Footer from '../../components/Footer/Footer';
 import { BackButton } from '../../shared/BackButton';
 import { ProfileImage2 } from '../../styles/icons/SvgIcons';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userNicknameState, userIdState, userMbtiState } from '../../atoms/atoms';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { userNicknameState } from '../../atoms/atoms';
+import { nicknameState, userMbtiState } from '../../atoms/atoms';
 
-const ProfileEditPage = () => {
+const MbtiSettingPage = () => {
   const navigate = useNavigate();
   const setNickname = useSetRecoilState(userNicknameState); // useSetRecoilState 훅 사용
-  const setMbti = useSetRecoilState(userMbtiState); // useSetRecoilState 훅 사용
-  const userNickname = useRecoilValue(userNicknameState);
-  const userId = useRecoilValue(userIdState);
-  const [newNickname, setNewNickname] = useState(''); // 변경된 닉네임을 저장하는 상태
-  const [selectedMbti, setSelectedMbti] = useState(''); // 선택된 MBTI 값을 저장하는 상태
-
-  const handleNicknameInputChange = (event: any) => {
-    setNewNickname(event.target.value);
-  };
+  const newNickname = useRecoilValue(nicknameState);
+  const [selectedMbti, setSelectedMbti] = useRecoilState(userMbtiState); // 선택된 MBTI 값을 저장하는 상태
+  
+  const { data: myMbti } = useQuery<string>({
+    queryKey: ['getUserMbti'],
+    queryFn: getUserMbti
+  });
 
   const handleMbtiChange = (mbtiValue: string) => {
     setSelectedMbti(mbtiValue);
@@ -29,10 +28,7 @@ const ProfileEditPage = () => {
   const handleNicknameChange = async () => {
     try {
       await updateUserNickname(newNickname, selectedMbti);
-      setNickname(newNickname);
-      setMbti(selectedMbti);
-      alert('닉네임이 성공적으로 변경되었습니다!');
-      navigate(`/mypage/${userId}`);
+      navigate('/');
     } catch (error) {
       console.error('닉네임 변경 실패: ', error);
       alert('닉네임 변경에 실패했습니다.');
@@ -43,19 +39,11 @@ const ProfileEditPage = () => {
     <>
       <S.Subheading>
         <BackButton />
-        <S.SubheadingText>내 정보 수정</S.SubheadingText>
+        <S.SubheadingText>내 MBTI</S.SubheadingText>
       </S.Subheading>
       <S.MainContainer>
         <S.FirstContainer>
           <ProfileImage2 />
-          <S.UserNickname>{userNickname}</S.UserNickname>
-          <S.EditNicknameInputContainer>
-            <S.EditNicknameInput
-              placeholder="수정할 닉네임을 입력해주세요"
-              value={newNickname}
-              onChange={handleNicknameInputChange}
-            />
-          </S.EditNicknameInputContainer>
           <S.EditMbtiContainer>
             <S.RadioButtonLabel>
               <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')}>
@@ -70,11 +58,11 @@ const ProfileEditPage = () => {
           </S.EditMbtiContainer>
         </S.FirstContainer>
         <S.SecondContainer>
-          <S.SubmitNicknameEdit onClick={handleNicknameChange}>변경하기</S.SubmitNicknameEdit>
+          <S.SubmitNicknameEdit onClick={handleNicknameChange}>다음</S.SubmitNicknameEdit>
         </S.SecondContainer>
       </S.MainContainer>
       <Footer />
     </>
   );
 };
-export default ProfileEditPage;
+export default MbtiSettingPage;
