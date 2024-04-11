@@ -92,7 +92,7 @@ const ArticleComment = () => {
             <DivideTitle />
             <S.CommentHeader>
               <S.CommentMbti mbti={comment.mbti}>
-                <S.CommentButtonText>{comment.mbti}반응</S.CommentButtonText>
+                <S.CommentButtonText>{comment.mbti}</S.CommentButtonText>
               </S.CommentMbti>
               <S.CommentWriter>{comment.nickName}</S.CommentWriter>
               <S.CommentTime>{getElapsedTime(comment.createdAt)}</S.CommentTime>
