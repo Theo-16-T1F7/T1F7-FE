@@ -40,21 +40,24 @@ export const UserNickname = styled.div`
   padding-bottom: 1vw;
 `;
 
-export const UserMbti = styled.div<{ mbti: any }>`
+export const UserMbti = styled.div<{ $mbti: any }>`
   size: 1vw;
   font-weight: 600;
   padding-bottom: 2vw;
-  ${({ mbti }) =>
-    mbti === 'T'
+  ${({ $mbti }) =>
+    $mbti === 'T'
       ? css`
           color: blue;
         `
-      : mbti === 'F'
+      : $mbti === 'F'
       ? css`
           color: red;
         `
       : ''};
 `;
+UserMbti.defaultProps = {
+  $mbti: '' // Set a default value with $ prefix
+};
 // 내가 쓴 글, 댓글 버튼 레이아웃
 export const SecondContainer = styled.div`
   display: flex;
