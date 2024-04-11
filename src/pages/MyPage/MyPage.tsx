@@ -1,16 +1,9 @@
 import * as S from './MyPage.styled';
 import axios from 'axios';
 import { useQuery, QueryFunction } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import {
-  LoginButton,
-  LogoutButton,
-  LoginText,
-  ProfileEditButton,
-  ProfileImage,
-  MbtiT
-} from '../../styles/icons/SvgIcons';
+import { LoginButton, LogoutButton, LoginText, ProfileEditButton, ProfileImage } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
 import { getMyPost, getMyAnswer } from '../../api/profile';
@@ -35,7 +28,7 @@ const MyPage = () => {
     queryKey: ['getMyAnswer'],
     queryFn: getMyAnswer as QueryFunction<PostItem[]>
   });
-  // const myPostData = data;
+
   const navigate = useNavigate();
   const accessToken = sessionStorage.getItem('accessToken');
   const user = useRecoilValue(userState);
@@ -111,7 +104,7 @@ const MyPage = () => {
             {user ? (
               <>
                 <S.UserNickname> {userNickname}</S.UserNickname>
-                <S.UserMbti mbti={myMbti}>{myMbti}성향</S.UserMbti>
+                <S.UserMbti $mbti={myMbti}>{myMbti}성향</S.UserMbti>
                 <span onClick={onClickProfileEditButton}>
                   <ProfileEditButton />
                 </span>
