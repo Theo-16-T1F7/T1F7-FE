@@ -4,6 +4,8 @@ import serverapi from './serverapi';
 export const getPosts = async () => {
   try {
     const response = await serverapi.get('api/posts');
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -14,6 +16,7 @@ export const getPosts = async () => {
 export const getPostDetail = async (id: string | number) => {
   try {
     const response = await serverapi.get(`api/posts/${id}`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -24,7 +27,6 @@ export const getPostDetail = async (id: string | number) => {
 export const createPost = async (newComment: RequestPost, token: string | null): Promise<void> => {
   try {
     const headers: Record<string, string> = {};
-
     // 토큰이 존재하면 헤더에 추가
     if (token) {
       headers['X-BBEUDDE-TOKEN'] = token;

@@ -30,7 +30,6 @@ export const getUserInfo = async () => {
         'X-BBEUDDE-TOKEN': accessToken
       }
     });
-    console.log(response);
     const userNickname = response.data.data.nickname;
     sessionStorage.setItem('userNickname', userNickname);
     return userNickname;
