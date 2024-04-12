@@ -7,7 +7,6 @@ import * as S from './PostPage.styled';
 import { DropDownIcon } from '../../styles/icons/SvgIcons';
 import { useRef, useState } from 'react';
 import { atom, useRecoilValue } from 'recoil';
-import { accessTokenState } from '../../atoms/atoms';
 import { RequestPost } from '../../types/type';
 
 const PostPage = () => {
@@ -15,7 +14,6 @@ const PostPage = () => {
   const [contents, handleOnChangeContents, setContents] = useInput();
   const [isVisible, setIsVisible] = useState(false);
   const [selectValue, setselectValue] = useState('카테고리를 선택하세요');
-
   const [hashList, setHashList] = useState<number[]>([]);
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
 
@@ -53,7 +51,8 @@ const PostPage = () => {
       tag: 7
     }
   ];
-  const token = useRecoilValue(accessTokenState);
+  // const token = useRecoilValue(accessTokenState);
+  const token = sessionStorage.getItem('accessToken');
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -130,7 +129,6 @@ const PostPage = () => {
     };
 
     mutation.mutate(newPost);
-
     setTitle('');
     setContents('');
     alert('저장되었습니다!');
@@ -168,7 +166,7 @@ const PostPage = () => {
             return (
               <S.HashtagButton
                 key={idx}
-                buttoncolor={buttonColors[item.tag] || ''}
+                $buttonColor={buttonColors[item.tag] || ''}
                 onClick={() => handleHashtagButtonClick(item.tag)}
               >
                 {item.name}

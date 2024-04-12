@@ -13,6 +13,10 @@ import NeedSolutionPage from '../pages/NeedSolutionPage/NeedSolutionPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import Redirection from '../pages/Redirection/Redirection';
 import MyPage from '../pages/MyPage/MyPage';
+import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
+import NicknameSettingPage from '../pages/SignUpPage/NicknameSettingPage';
+import MbtiSettingPage from '../pages/SignUpPage/MbtiSettingPage';
+
 
 const Router = () => {
   return (
@@ -31,7 +35,11 @@ const Router = () => {
         <Route path="/solution" element={<NeedSolutionPage />} />
         <Route path="/kakao/oauth" element={<Redirection />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/mypage" element={<MyPage />} />
+        {/* <Route path="/mypage/" element={<MyPage />} /> */}
+        <Route path="/mypage/:userId" element={<MyPage />} />
+        <Route path="/profileedit" element={<ProfileEditPage />} />
+        <Route path="/nickname" element={<NicknameSettingPage />} />
+        <Route path="/mbti" element={<MbtiSettingPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -118,9 +118,9 @@ export const HashtagButtonWrapper = styled.div`
   gap: 8px;
 `;
 
-export const HashtagButton = styled.div<{ buttoncolor: string }>`
+export const HashtagButton = styled.div<{ $buttonColor: string }>`
   display: inline-block;
-  background-color: ${(props: any) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
+  background-color: ${(props: any) => (props.$buttonColor === 'red' ? props.theme.redNormalColor : '')};
   padding: 5px 10px;
   text-align: center;
   border-radius: 14px;

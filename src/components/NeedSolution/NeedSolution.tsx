@@ -10,7 +10,6 @@ const NeedSolution: React.FC<any> = () => {
     queryFn: () => getNeedSolution()
   });
   const getData: PostDetail[] = data?.data?.content?.slice(0, 3) || [];
-  // console.log('res', getData);
   if (isLoading) {
     return <div>Loading...</div>;
   }
