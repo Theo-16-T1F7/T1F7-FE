@@ -10,7 +10,6 @@ const ArticleListPage = () => {
     queryFn: () => getPosts()
   });
 
-  // console.log(data);
 
   if (isLoading) {
     return <h1>로딩중입니다~~~~</h1>;
