@@ -9,7 +9,6 @@ const LoginPage = () => {
   const loginHandler = () => {
     window.location.href = KAKAO_AUTH_URI;
   };
-
   return (
     <>
       <S.StyledBody>
