@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getUserId, getUserInfo, getUserMbti } from '../../api/profile';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { accessTokenState, userState, userNicknameState, userIdState, userMbtiState } from '../../atoms/atoms';
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
 
@@ -63,7 +63,8 @@ const Redirection = () => {
 
   // userNickname
   useEffect(() => {
-    if (userIdData) {
+    if (userIdData && user) {
+      // 사용자가 로그인되어 있고, userIdData가 존재할 때만 실행
       getUserInfo()
         .then((userInfoData) => {
           setUserNickname(userInfoData);
@@ -73,7 +74,7 @@ const Redirection = () => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, setUserNickname, navigate]);
+  }, [userIdData, setUserNickname, navigate, user]);
 
   useEffect(() => {
     if (mbtiData) {
