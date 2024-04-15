@@ -20,15 +20,6 @@ interface PostItem {
 }
 
 const MyPage = () => {
-  const { data: myPostData } = useQuery<PostItem[]>({
-    queryKey: ['getMyPost'],
-    queryFn: getMyPost as QueryFunction<PostItem[]>
-  });
-  const { data: myAnswerData } = useQuery<PostItem[]>({
-    queryKey: ['getMyAnswer'],
-    queryFn: getMyAnswer as QueryFunction<PostItem[]>
-  });
-
   const navigate = useNavigate();
   const accessToken = sessionStorage.getItem('accessToken');
   const user = useRecoilValue(userState);
@@ -37,6 +28,17 @@ const MyPage = () => {
   const myMbti = useRecoilValue(userMbtiState);
   const [isPostClicked, setIsPostClicked] = useState(true);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
+
+  const { data: myPostData } = useQuery<PostItem[]>({
+    queryKey: ['getMyPost'],
+    queryFn: getMyPost as QueryFunction<PostItem[]>,
+    enabled: user // 로그인되어 있을 때만 API 호출하도록 설정
+  });
+  const { data: myAnswerData } = useQuery<PostItem[]>({
+    queryKey: ['getMyAnswer'],
+    queryFn: getMyAnswer as QueryFunction<PostItem[]>,
+    enabled: user // 로그인되어 있을 때만 API 호출하도록 설정
+  });
 
   const handlePostClick = () => {
     setIsPostClicked(true);
