@@ -17,7 +17,6 @@ import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
 import NicknameSettingPage from '../pages/SignUpPage/NicknameSettingPage';
 import MbtiSettingPage from '../pages/SignUpPage/MbtiSettingPage';
 
-
 const Router = () => {
   return (
     <BrowserRouter>
@@ -33,7 +32,7 @@ const Router = () => {
         <Route path="/hotboard" element={<HotBoardPage />} />
         <Route path="/empathy" element={<NeedEmpathyPage />} />
         <Route path="/solution" element={<NeedSolutionPage />} />
-        <Route path="/kakao/oauth" element={<Redirection />} />
+        <Route path="/oauth2/kakao/callback" element={<Redirection />} />
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/mypage/" element={<MyPage />} /> */}
         <Route path="/mypage/:userId" element={<MyPage />} />
