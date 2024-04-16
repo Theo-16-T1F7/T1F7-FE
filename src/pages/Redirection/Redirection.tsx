@@ -81,6 +81,7 @@ const Redirection = () => {
       setUserMbti(mbtiData);
     }
   }, [mbtiData, setUserMbti]);
+
   // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
   if (!userIdData) {
     return <SplashScreen />;
