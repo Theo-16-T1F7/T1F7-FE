@@ -1,16 +1,25 @@
 import React, { useEffect, useRef } from 'react';
+import { useQuery, QueryFunction } from '@tanstack/react-query';
 import EmblaCarousel from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import * as S from './HotBoard.styled';
+import { getHotboard } from '../../api/hotboard';
+import { HotBoardGet } from '../../types/type';
+import { formatNoticeDate } from '../../shared/dateUtils';
 
 const HotBoard = () => {
+  const { data: HotBoardData } = useQuery<HotBoardGet[]>({
+    queryKey: ['getHotboard'],
+    queryFn: getHotboard as QueryFunction<HotBoardGet[]>
+  });
+
   const carouselRef = useRef(null);
   const autoplayOptions = {
     delay: 3000,
     rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement
   };
   useEffect(() => {
-    if (carouselRef.current) {
+    if (carouselRef.current && HotBoardData && HotBoardData.length > 0) {
       const embla = EmblaCarousel(
         carouselRef.current,
         {
@@ -23,59 +32,29 @@ const HotBoard = () => {
         [Autoplay(autoplayOptions)]
       );
     }
-  });
-
-  const dummydata = [
-    {
-      id: '1',
-      name: '익명1',
-      content:
-        '첫번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉dㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',
-      date: '2023/10/22'
-    },
-    {
-      id: '2',
-      name: '익명2',
-      content: '두번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
-      date: '2023/10/23'
-    },
-    {
-      id: '3',
-      name: '익명3',
-      content: '세번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
-      date: '2023/10/24'
-    },
-    {
-      id: '4',
-      name: '익명4',
-      content: '네번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
-      date: '2023/10/24'
-    },
-    {
-      id: '5',
-      name: '익명5',
-      content: '다섯번째 mbti별 궁합 알려드립니다!!! 이게 최고 잘맞아요 따붕따봉',
-      date: '2023/10/24'
-    }
-  ];
+  }, [HotBoardData]);
 
   return (
     <S.Container>
       <S.EmblaContainer ref={carouselRef}>
         <S.EmblaInnerContainer>
-          {dummydata.map((item, index) => (
-            <S.EmblaSlide key={index}>
-              <S.HotBoardCard>
-                <S.Name>
-                  {item.name}
-                  <S.CreatedAt>{item.date}</S.CreatedAt>
-                </S.Name>
-                <S.Content>
-                  <div>{item.content}</div>
-                </S.Content>
-              </S.HotBoardCard>
-            </S.EmblaSlide>
-          ))}
+          {HotBoardData && HotBoardData.length > 0 ? (
+            HotBoardData.map((item: HotBoardGet, index: number) => (
+              <S.EmblaSlide key={item.postId}>
+                <S.HotBoardCard>
+                  <S.Name>
+                    {item.title}
+                    <S.CreatedAt>{formatNoticeDate(item.createdAt)}</S.CreatedAt>
+                  </S.Name>
+                  <S.Content>
+                    <div>{item.content}</div>
+                  </S.Content>
+                </S.HotBoardCard>
+              </S.EmblaSlide>
+            ))
+          ) : (
+            <p>업데이트 중입니다!</p>
+          )}
         </S.EmblaInnerContainer>
       </S.EmblaContainer>
     </S.Container>
