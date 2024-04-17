@@ -57,3 +57,12 @@ export interface CommentGet {
   mbti: string;
   createdAt: string;
 }
+
+export interface HotBoardGet {
+  postId: number;
+  title: string;
+  content: string;
+  nickname: string;
+  createdAt: string;
+  updatedAt: string;
+}
