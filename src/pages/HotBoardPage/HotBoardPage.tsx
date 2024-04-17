@@ -4,8 +4,6 @@ import Header from '../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../../shared/BackButton';
 import { useQuery, QueryFunction } from '@tanstack/react-query';
-import { getNeedSolution } from '../../api/mainpagelist';
-import { PostDetail } from '../../types/type';
 import { formatNoticeDate } from '../../shared/dateUtils';
 import { HotBoardGet } from '../../types/type';
 import { getHotboard } from '../../api/hotboard';
