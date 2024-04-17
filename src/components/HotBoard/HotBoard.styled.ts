@@ -9,7 +9,7 @@ export const TextCard = styled.div`
   align-items: center; /* 수직 중앙 정렬 */
 `;
 export const HotBoardCard = styled.div`
-  width: 60vw;
+  width: 63vw;
   height: 20vw;
   background-color: #ffffff;
   margin-top: 5px;
@@ -56,5 +56,5 @@ export const EmblaInnerContainer = styled.div`
 export const EmblaSlide = styled.div`
   flex: 0 0 auto;
   min-width: 0;
-  width: 70%;
+  width: 69%;
 `;
