@@ -41,7 +41,7 @@ export interface UserDataType {
 export interface CommentPost {
   // id: number;
   postId: number;
-  parentId: number;
+  parentId: null;
   content: string;
   // nickname: string | null;
   mbti: string;
