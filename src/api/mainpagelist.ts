@@ -24,29 +24,32 @@ const requestBodyJSON = JSON.stringify(requestBody);
 //       console.error('Error:', error);
 //     });
 // };
-export const getNeedSolution = async () => {
+export const getNeedSolution = async (page = 0, pageSize = 20) => {
   try {
     const response = await severapi.get('/api/posts', {
       params: {
         search: '',
         mbti: 'T',
-        hashList: ''
+        hashList: '',
+        page: page,
+        pageSize: pageSize
       }
     });
-    // console.info('T', response.data);
     return response.data;
   } catch (err) {
     throw new Error(`Error: ${err}`);
   }
 };
 
-export const getNeedEmpathy = async () => {
+export const getNeedEmpathy = async (page = 0, pageSize = 20) => {
   try {
     const response = await severapi.get('/api/posts', {
       params: {
         search: '',
         mbti: 'F',
-        hashList: ''
+        hashList: '',
+        page: page,
+        pageSize: pageSize
       }
     });
     // console.info(response.data);

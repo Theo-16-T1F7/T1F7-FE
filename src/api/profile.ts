@@ -38,9 +38,11 @@ export const getUserInfo = async () => {
     throw new Error(`Error: ${err}`);
   }
 };
+
 export const getUserMbti = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
   const userId = sessionStorage.getItem('userId');
+  
   try {
     const response = await serverapi.get(`/api/users/${userId}`, {
       headers: {

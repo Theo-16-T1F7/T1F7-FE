@@ -17,7 +17,7 @@ const ArticleComment = () => {
   let postId = parseInt(id!);
   if (isNaN(postId)) {
     // postId가 NaN인 경우 처리
-    postId = -1; // 유효하지 않은 postId 값으로 처리할 수 있습니다. 이는 실제 로직에 따라 조정해야 합니다.
+    postId = -1;
   }
   const queryClient = useQueryClient();
 
@@ -66,11 +66,11 @@ const ArticleComment = () => {
 
   const newComment: CommentPost = {
     postId: postId,
-    parentId: postId-1,
+    parentId: null,
     content: contents,
     // nickname: userNickname || null,
     mbti: mbtiTest,
-    // createdAt: nowTime.toISOString() // 현재 시간을 ISO 형식의 문자열로 변환하여 사용합니다.
+    // createdAt: nowTime.toISOString()
   };
 
   return (
