@@ -32,3 +32,37 @@ export const SolutionListCreateAt = styled.div`
   margin-left: 30px;
   margin-bottom: 10px;
 `;
+
+export const PaginationBox = styled.div`
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+  ul.pagination li a {
+    text-decoration: none;
+    color: #070707;
+    font-size: 1.2rem;
+  }
+  ul.pagination li.active a {
+    color: #070707;
+  }
+
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: #ea464a;
+  }
+`;
