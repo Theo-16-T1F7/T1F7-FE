@@ -32,13 +32,16 @@ const Router = () => {
         <Route path="/hotboard" element={<HotBoardPage />} />
         <Route path="/empathy" element={<NeedEmpathyPage />} />
         <Route path="/solution" element={<NeedSolutionPage />} />
-        <Route path="/oauth2/kakao/callback" element={<Redirection />} />
+        {/* <Route path="/oauth2/kakao/callback" element={<Redirection />} />
+         */}
+        <Route path="/kakao/oauth" element={<Redirection />} />
+
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/mypage/" element={<MyPage />} /> */}
         <Route path="/mypage/:userId" element={<MyPage />} />
         <Route path="/profileedit" element={<ProfileEditPage />} />
-        <Route path="/nickname" element={<NicknameSettingPage />} />
-        <Route path="/mbti" element={<MbtiSettingPage />} />
+        <Route path="/nicknameset" element={<NicknameSettingPage />} />
+        <Route path="/mbtiset" element={<MbtiSettingPage />} />
       </Routes>
     </BrowserRouter>
   );
