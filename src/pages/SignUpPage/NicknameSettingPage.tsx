@@ -8,19 +8,20 @@ import { BackButton } from '../../shared/BackButton';
 import { ProfileImage2 } from '../../styles/icons/SvgIcons';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import { userNicknameState } from '../../atoms/atoms';
-import { nicknameState, userMbtiState } from '../../atoms/atoms';
+import { nicknameState, userMbtiState, userState } from '../../atoms/atoms';
 
 export const NicknameSettingPage = () => {
   const navigate = useNavigate();
   // const setNickname = useSetRecoilState(userNicknameState); // useSetRecoilState 훅 사용
   // const userNickname = useRecoilValue(userNicknameState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
+  const user = useRecoilValue(userState);
 
   const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
   };
   const nextPage = () => {
-    navigate('/mbti');
+    navigate('/mbtiset');
   };
 
   return (
