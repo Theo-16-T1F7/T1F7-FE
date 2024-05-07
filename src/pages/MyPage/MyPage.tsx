@@ -1,18 +1,19 @@
+import { useState, useEffect } from 'react';
 import * as S from './MyPage.styled';
 import axios from 'axios';
 import { useQuery, QueryFunction } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { LoginButton, LogoutButton, LoginText, ProfileEditButton, ProfileImage } from '../../styles/icons/SvgIcons';
 import { BackButton } from '../../shared/BackButton';
 import Footer from '../../components/Footer/Footer';
-import { getMyPost, getMyAnswer } from '../../api/profile';
+import { getMyPost, getMyAnswer, getUserMbti } from '../../api/profile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState, userNicknameState, userMbtiState } from '../../atoms/atoms';
 import { formatNoticeDate } from '../../shared/dateUtils';
 
 interface PostItem {
   id: number;
+  postId: number;
   title: string;
   nickname: string;
   createdAt: string;
@@ -25,9 +26,10 @@ const MyPage = () => {
   const user = useRecoilValue(userState);
   const setUser = useSetRecoilState(userState);
   const userNickname = useRecoilValue(userNicknameState);
-  const myMbti = useRecoilValue(userMbtiState);
+  // const myMbti = useRecoilValue(userMbtiState);
   const [isPostClicked, setIsPostClicked] = useState(true);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
+  const setUserMbti = useSetRecoilState(userMbtiState);
 
   const { data: myPostData } = useQuery<PostItem[]>({
     queryKey: ['getMyPost'],
@@ -39,6 +41,23 @@ const MyPage = () => {
     queryFn: getMyAnswer as QueryFunction<PostItem[]>,
     enabled: user // 로그인되어 있을 때만 API 호출하도록 설정
   });
+
+  const { data: mbtiData } = useQuery<any>({
+    queryKey: ['getUserMbti'],
+    queryFn: getUserMbti as QueryFunction<any>,
+    enabled: user // 로그인되어 있을 때만 API 호출하도록 설정
+  });
+
+  // useEffect(() => {
+  //   if (mbtiData) {
+  //     // mbti 데이터가 존재하는 경우
+  //     setUserMbti(mbtiData); // mbti 정보를 상태에 업데이트
+  //   } else {
+  //     // mbti 데이터가 없는 경우
+  //     // 닉네임 설정 페이지로 이동
+  //     navigate('/nicknameset');
+  //   }
+  // }, [mbtiData, setUserMbti, navigate]);
 
   const handlePostClick = () => {
     setIsPostClicked(true);
@@ -106,7 +125,9 @@ const MyPage = () => {
             {user ? (
               <>
                 <S.UserNickname> {userNickname}</S.UserNickname>
-                <S.UserMbti $mbti={myMbti}>{myMbti}성향</S.UserMbti>
+                <S.UserMbti $mbti={mbtiData}>
+                  {mbtiData === 'T' ? '뇌가 먼저 반응하는 T' : '심장이 먼저 반응하는 F'}
+                </S.UserMbti>
                 <span onClick={onClickProfileEditButton}>
                   <ProfileEditButton />
                 </span>
@@ -159,7 +180,7 @@ const MyPage = () => {
             {user && myAnswerData && myAnswerData.length > 0 ? (
               <>
                 {myAnswerData.map((myAnswer: PostItem) => (
-                  <S.MyListContainer key={myAnswer?.id}>
+                  <S.MyListContainer key={myAnswer?.id} onClick={() => navigate(`/article/${myAnswer?.postId}`)}>
                     <S.MyListTitle>{myAnswer?.content}</S.MyListTitle>
                     <S.MyListName>{myAnswer?.nickname}</S.MyListName>
                     <S.MyListCreateAt>{formatNoticeDate(myAnswer?.createdAt)}</S.MyListCreateAt>
@@ -175,7 +196,7 @@ const MyPage = () => {
             {user && myPostData && myPostData.length > 0 ? (
               <>
                 {myPostData.map((myPost: PostItem) => (
-                  <S.MyListContainer key={myPost?.id}>
+                  <S.MyListContainer key={myPost?.id} onClick={() => navigate(`/article/${myPost?.id}`)}>
                     <S.MyListTitle>{myPost?.title}</S.MyListTitle>
                     <S.MyListName>{myPost?.nickname}</S.MyListName>
                     <S.MyListCreateAt>{formatNoticeDate(myPost?.createdAt)}</S.MyListCreateAt>
