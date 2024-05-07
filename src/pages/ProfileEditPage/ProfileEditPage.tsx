@@ -17,6 +17,8 @@ const ProfileEditPage = () => {
   const userId = useRecoilValue(userIdState);
   const [newNickname, setNewNickname] = useState(''); // 변경된 닉네임을 저장하는 상태
   const [selectedMbti, setSelectedMbti] = useState(''); // 선택된 MBTI 값을 저장하는 상태
+  const [isTClicked, setIsTClicked] = useState(false); // T 버튼 클릭 상태
+  const [isFClicked, setIsFClicked] = useState(false); // F 버튼 클릭 상태
 
   const handleNicknameInputChange = (event: any) => {
     setNewNickname(event.target.value);
@@ -24,6 +26,14 @@ const ProfileEditPage = () => {
 
   const handleMbtiChange = (mbtiValue: string) => {
     setSelectedMbti(mbtiValue);
+    // 클릭된 버튼에 따라 상태 업데이트
+    if (mbtiValue === 'T') {
+      setIsTClicked(true);
+      setIsFClicked(false);
+    } else {
+      setIsTClicked(false);
+      setIsFClicked(true);
+    }
   };
 
   const handleNicknameChange = async () => {
@@ -58,12 +68,12 @@ const ProfileEditPage = () => {
           </S.EditNicknameInputContainer>
           <S.EditMbtiContainer>
             <S.RadioButtonLabel>
-              <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')}>
+              <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')} $clicked={isTClicked}>
                 뇌가 먼저 반응하는 T
               </S.MbtiTButton>
             </S.RadioButtonLabel>
             <S.RadioButtonLabel>
-              <S.MbtiFButton buttoncolor="white" onClick={() => handleMbtiChange('F')}>
+              <S.MbtiFButton buttoncolor="white" onClick={() => handleMbtiChange('F')} $clicked={isFClicked}>
                 심장이 먼저 반응하는 F
               </S.MbtiFButton>
             </S.RadioButtonLabel>
