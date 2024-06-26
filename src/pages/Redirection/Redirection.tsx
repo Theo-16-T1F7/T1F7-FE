@@ -38,11 +38,13 @@ const Redirection = () => {
   // 로그인
   useEffect(() => {
     if (code) {
+      console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
       const bodycode = { code: code };
       axios
         .post(url, bodycode)
         .then((response) => {
+          console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
           const token = response.headers['x-bbeudde-token'];
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
