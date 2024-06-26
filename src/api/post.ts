@@ -4,7 +4,6 @@ import serverapi from './serverapi';
 export const getPosts = async () => {
   try {
     const response = await serverapi.get('api/posts');
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -15,7 +14,6 @@ export const getPosts = async () => {
 export const getPostDetail = async (id: string | number) => {
   try {
     const response = await serverapi.get(`api/posts/${id}`);
-    console.log(response.data);
     return response.data.data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -32,7 +30,6 @@ export const createPost = async (newComment: RequestPost, token: string | null):
     } else {
       throw new Error('Access token is null.');
     }
-    // console.info(token, headers, newPost);
     const response = await serverapi.post(`api/posts`, newComment, { headers });
     return response.data;
   } catch (error) {

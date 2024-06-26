@@ -2,7 +2,6 @@ import serverapi from './serverapi';
 
 export const getUserId = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
-
   if (!accessToken) {
     throw new Error('토큰이 없어요!');
   }
@@ -74,9 +73,6 @@ export const updateUserNickname = async (newNickname: string, newMbti: string) =
         }
       }
     );
-    // const updatedNickname = response.data.data.nickname;
-    // sessionStorage.setItem('userNickname', updatedNickname);
-    // return updatedNickname;
     return response.data;
   } catch (err) {
     console.error('Error: ', err);

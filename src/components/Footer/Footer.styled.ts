@@ -11,6 +11,7 @@ export const FooterContainer = styled.div`
   background-color: #ffffff;
   border-radius: 30px 30px 0px 0px;
   height: 40px;
+  
 `;
 export const PostIconPosition = styled.div`
   position: absolute;
