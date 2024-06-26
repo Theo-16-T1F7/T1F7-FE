@@ -66,3 +66,36 @@ export interface HotBoardGet {
   createdAt: string;
   updatedAt: string;
 }
+export interface Choice {
+  choiceContent: string;
+  choicePercent: number;
+  isChoice: boolean;
+  choiceImageUrl: string | null;
+}
+export interface BalanceGameGet {
+  questionId: number;
+  title: string;
+  startDate: string;
+  endDate: string;
+  mbti: string;
+  totalVote: number;
+  choiceA: Choice;
+  choiceB: Choice;
+}
+
+export interface BalanceGameResGet {
+  questionId: number | null;
+  title: string;
+  choiceAContent: string;
+  choiceBContent: string;
+  mbti: string;
+  totalVote: number;
+  choiceAPercent: number | null;
+  choiceBPercent: number;
+}
+
+export interface BalanceGameVotePost {
+  questionId: number | null;
+  isChoiceA: boolean;
+  isChoiceB: boolean;
+}
