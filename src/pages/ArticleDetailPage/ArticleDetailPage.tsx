@@ -6,6 +6,7 @@ import ArticleComment from '../../components/Comments/ArticleComment';
 import { useQuery } from '@tanstack/react-query';
 import { getPostDetail } from '../../api/post';
 import { PostDetail } from '../../types/type';
+import { formatDetailDate } from '../../shared/dateUtils';
 
 const ArticleDetailPage = () => {
   const { id } = useParams();
@@ -23,12 +24,13 @@ const ArticleDetailPage = () => {
   }
   return (
     <>
+      {/* <Header /> */}
       <ArticleHeader />
       <ArticleDetailTitle>{data?.title}</ArticleDetailTitle>
       <ArticleDivider />
       <div>
         <ArticleWriter>
-          {data?.nickname} • {data?.updatedAt}
+          {data?.nickname || '익명'} • {data?.updatedAt ? formatDetailDate(data.updatedAt) : '날짜 없음'}
         </ArticleWriter>
         <ArticleDetailContent>{data?.content}</ArticleDetailContent>
         <ArticleDivider style={{ height: '6px' }} />
