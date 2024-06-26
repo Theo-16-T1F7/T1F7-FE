@@ -6,7 +6,6 @@ const LoginPage = () => {
   const REDIRECT_URI = 'https://www.bbeudde.site/oauth2/kakao/callback';
   // const REDIRECT_URI = 'http://localhost:3000/kakao/oauth';
   const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
   const loginHandler = () => {
     window.location.href = KAKAO_AUTH_URI;
   };
