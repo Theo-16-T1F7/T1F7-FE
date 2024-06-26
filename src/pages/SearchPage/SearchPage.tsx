@@ -17,6 +17,7 @@ import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import * as S from './SearchPage';
 import Developing from '../../shared/Developing';
+import Header from '../../components/Header/Header';
 const SearchPage: React.FC<any> = () => {
   return (
     <>
