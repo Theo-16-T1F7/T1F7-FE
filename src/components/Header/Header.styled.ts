@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Header = styled.header<{ color: string }>`
   width: 100%;
-  height: 11vh;
+  height: 9vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +12,7 @@ export const Header = styled.header<{ color: string }>`
 export const Logo = styled.div<{ color: string }>`
   color: ${(props: any) => (props.color === 'red' ? props.theme.whiteColor : props.theme.redNormalColor)};
   font-size: 23px;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-left: 10px;
   font-weight: 800;
   &:hover {
@@ -23,7 +23,7 @@ export const Logo = styled.div<{ color: string }>`
 export const Notification = styled.div`
   color: ${(props) => props.theme.whiteColor};
   font-size: 18px;
-  margin-top: 35px;
+  margin-top: 15px;
   margin-right: 10px;
   &:hover {
     cursor: pointer;

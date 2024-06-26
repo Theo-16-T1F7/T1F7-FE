@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import * as S from './MbtiSettingPage.styled';
 import { useQuery } from '@tanstack/react-query';
 import { getUserMbti } from '../../api/profile';
@@ -15,14 +16,24 @@ const MbtiSettingPage = () => {
   const setNickname = useSetRecoilState(userNicknameState); // useSetRecoilState 훅 사용
   const newNickname = useRecoilValue(nicknameState);
   const [selectedMbti, setSelectedMbti] = useRecoilState(userMbtiState); // 선택된 MBTI 값을 저장하는 상태
-  
-  const { data: myMbti } = useQuery<string>({
-    queryKey: ['getUserMbti'],
-    queryFn: getUserMbti
-  });
+  const [isTClicked, setIsTClicked] = useState(false); // T 버튼 클릭 상태
+  const [isFClicked, setIsFClicked] = useState(false); // F 버튼 클릭 상태
+
+  // const { data: myMbti } = useQuery<string>({
+  //   queryKey: ['getUserMbti'],
+  //   queryFn: getUserMbti
+  // });
 
   const handleMbtiChange = (mbtiValue: string) => {
     setSelectedMbti(mbtiValue);
+    // 클릭된 버튼에 따라 상태 업데이트
+    if (mbtiValue === 'T') {
+      setIsTClicked(true);
+      setIsFClicked(false);
+    } else {
+      setIsTClicked(false);
+      setIsFClicked(true);
+    }
   };
 
   const handleNicknameChange = async () => {
@@ -46,12 +57,12 @@ const MbtiSettingPage = () => {
           <ProfileImage2 />
           <S.EditMbtiContainer>
             <S.RadioButtonLabel>
-              <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')}>
+              <S.MbtiTButton buttoncolor="white" onClick={() => handleMbtiChange('T')} $clicked={isTClicked}>
                 뇌가 먼저 반응하는 T
               </S.MbtiTButton>
             </S.RadioButtonLabel>
             <S.RadioButtonLabel>
-              <S.MbtiFButton buttoncolor="white" onClick={() => handleMbtiChange('F')}>
+              <S.MbtiFButton buttoncolor="white" onClick={() => handleMbtiChange('F')} $clicked={isFClicked}>
                 심장이 먼저 반응하는 F
               </S.MbtiFButton>
             </S.RadioButtonLabel>

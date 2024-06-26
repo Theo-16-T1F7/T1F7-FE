@@ -74,6 +74,10 @@ export const EditMbtiContainer = styled.div`
 `;
 export const RadioButtonLabel = styled.label``;
 
+interface RadioButtonProps {
+  buttoncolor: string;
+  $clicked?: boolean; // 선택적 속성으로 변경
+}
 export const MbtiTButton = styled.span<RadioButtonProps>`
   background-color: ${(props) => (props.buttoncolor === 'red' ? props.theme.redNormalColor : '')};
   padding: 5px 10px;
@@ -92,6 +96,8 @@ export const MbtiTButton = styled.span<RadioButtonProps>`
     background-color: ${(props) => props.theme.redNormalColor};
     color: white;
   }
+  background-color: ${(props) => (props.$clicked ? props.theme.redNormalColor : '')};
+  color: ${(props) => (props.$clicked ? 'white' : '#292828')};
 `;
 
 export const MbtiFButton = styled.span<RadioButtonProps>`
@@ -112,4 +118,7 @@ export const MbtiFButton = styled.span<RadioButtonProps>`
     background-color: ${(props) => props.theme.redNormalColor};
     color: white;
   }
+
+  background-color: ${(props) => (props.$clicked ? props.theme.redNormalColor : '')};
+  color: ${(props) => (props.$clicked ? 'white' : '#292828')};
 `;

@@ -61,26 +61,42 @@ const Redirection = () => {
     }
   }, [userIdData, setUserId]);
 
-  // userNickname
   useEffect(() => {
     if (userIdData && user) {
-      // 사용자가 로그인되어 있고, userIdData가 존재할 때만 실행
       getUserInfo()
         .then((userInfoData) => {
           setUserNickname(userInfoData);
-          navigate(`/mypage/${userIdData}`);
+          getUserMbti()
+            .then((mbtiData) => {
+              setUserMbti(mbtiData);
+              if (mbtiData === 'T' || mbtiData === 'F') {
+                setTimeout(() => {
+                  navigate(`/mypage/${userIdData}`);
+                }, 1000);
+              } else {
+                setTimeout(() => {
+                  navigate('/nicknameset');
+                }, 1000);
+              }
+            })
+            .catch((error) => {
+              console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
+            });
         })
         .catch((error) => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, setUserNickname, navigate, user]);
+  }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
 
   useEffect(() => {
-    if (mbtiData) {
+    if (userIdData && mbtiData) {
       setUserMbti(mbtiData);
+      if (!user && !mbtiData) {
+        navigate('/nicknameset');
+      }
     }
-  }, [mbtiData, setUserMbti]);
+  }, [userIdData, mbtiData, setUserMbti, navigate, user]);
 
   // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
   if (!userIdData) {

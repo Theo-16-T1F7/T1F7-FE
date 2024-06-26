@@ -2,7 +2,6 @@ import serverapi from './serverapi';
 
 export const getUserId = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
-
   if (!accessToken) {
     throw new Error('토큰이 없어요!');
   }
@@ -38,9 +37,11 @@ export const getUserInfo = async () => {
     throw new Error(`Error: ${err}`);
   }
 };
+
 export const getUserMbti = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
   const userId = sessionStorage.getItem('userId');
+  
   try {
     const response = await serverapi.get(`/api/users/${userId}`, {
       headers: {
@@ -72,9 +73,6 @@ export const updateUserNickname = async (newNickname: string, newMbti: string) =
         }
       }
     );
-    // const updatedNickname = response.data.data.nickname;
-    // sessionStorage.setItem('userNickname', updatedNickname);
-    // return updatedNickname;
     return response.data;
   } catch (err) {
     console.error('Error: ', err);

@@ -2,10 +2,6 @@ import * as S from './Header.styled';
 import { WhiteHeaderIcon } from '../../styles/icons/SvgIcons';
 import { RedHeaderIcon, Notification } from '../../styles/icons/SvgIcons';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-// import { accessTokenState } from '../../atoms/atoms';
 
 export interface HeaderProps {
   headercolor?: string;

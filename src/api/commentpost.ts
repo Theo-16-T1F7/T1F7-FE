@@ -7,7 +7,6 @@ export const getComment = async ({ queryKey }: QueryFunctionContext) => {
   const postId = queryKey[1];
   try {
     const response = await serverapi.get(`api/posts/${postId}/comments`);
-    console.log(response.data.data.comments);
     return response.data.data.comments; // response의 구조에 따라 접근 경로를 확인해주세요.
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생: ', error);
@@ -24,7 +23,6 @@ export const createComment = async (newComment: CommentPost, token: string | nul
     } else {
       throw new Error('Access token is null.');
     }
-    // console.info(token, headers, newPost);
     const response = await serverapi.post(`api/posts/${postId}/comments`, newComment, { headers });
     console.log(response.data);
     return response.data;

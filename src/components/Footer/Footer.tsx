@@ -4,27 +4,26 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { PostIcon } from '../../styles/icons/SvgIcons';
 import { ActivedFeed, InactivedFeed } from '../../styles/icons/SvgIcons';
 import { ActivedContent, InactivedContent } from '../../styles/icons/SvgIcons';
-import { InactivedSearch } from '../../styles/icons/SvgIcons';
+import { ActivedSearch, InactivedSearch } from '../../styles/icons/SvgIcons';
 import { ActivedMyPage, InactivedMyPage } from '../../styles/icons/SvgIcons';
 import { useRecoilValue } from 'recoil';
 import { userState, userIdState } from '../../atoms/atoms';
-import { useParams } from 'react-router-dom';
 
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeFeed, setActiveFeed] = useState(true);
   const [activeContent, setActiveContent] = useState(false);
+  const [activeSearch, setActiveSearch] = useState(false);
   const [activeMyPage, setActiveMyPage] = useState(false);
   const user = useRecoilValue(userState);
   const userId = useRecoilValue(userIdState);
 
-  // const { userId } = useParams();
-
   useEffect(() => {
     setActiveFeed(location.pathname === '/');
     setActiveContent(location.pathname === '/content');
-    setActiveMyPage(location.pathname === '/mypage');
+    setActiveMyPage(location.pathname === `/mypage/${userId}`);
+    setActiveSearch(location.pathname === '/search');
   }, [location.pathname]);
 
   const handlePostClick = () => {
@@ -44,6 +43,9 @@ const Footer = () => {
 
   const handleSearchClick = () => {
     navigate('/search');
+    setActiveSearch(true);
+    setActiveContent(false);
+    setActiveMyPage(false);
   };
 
   const handleContentClick = () => {
@@ -54,10 +56,12 @@ const Footer = () => {
   };
 
   const handleMyClick = () => {
-    navigate(`/mypage/${userId}`);
-    setActiveMyPage(true);
-    setActiveContent(false);
-    setActiveFeed(false);
+    if (!activeMyPage) {
+      navigate(`/mypage/${userId}`);
+      setActiveMyPage(true);
+      setActiveContent(false);
+      setActiveFeed(false);
+    }
   };
 
   return (
@@ -68,7 +72,7 @@ const Footer = () => {
         </S.PostIconPosition>
         <S.FeedPosition onClick={handleFeedClick}>{activeFeed ? <ActivedFeed /> : <InactivedFeed />}</S.FeedPosition>
         <S.SearchPosition onClick={handleSearchClick}>
-          <InactivedSearch />
+          {activeSearch ? <ActivedSearch /> : <InactivedSearch />}
         </S.SearchPosition>
         <S.ContentPosition onClick={handleContentClick}>
           {activeContent ? <ActivedContent /> : <InactivedContent />}

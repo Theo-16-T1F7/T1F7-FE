@@ -5,8 +5,8 @@ export const Subheading = styled.h2`
   display: flex;
   align-items: center;
   margin-left: 15px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   margin-right: 100px;
   font-weight: 600;
   font-size: 20px;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { DivideTitle } from '../ArticleList/ArticleHeader.styled';
 
-
 export const CommentMainTitle = styled.div`
   display: flex;
   padding: 10px;
@@ -55,9 +54,9 @@ export const CommentMbti = styled.div<{ mbti: string }>`
   border-radius: 14px;
   opacity: 0.7;
   background: var(--Grey, #dfdfdf);
-  // background-color: #ff5c00;
   background-color: ${({ mbti }) => (mbti === 'F' ? '#ff5c00' : '#0C5CD3')};
 `;
+
 export const CommentButtonText = styled.div`
   color: var(--Black, #070707);
   font-family: SF Pro;
@@ -147,4 +146,35 @@ export const CommentPostButton = styled.button`
     background-color: #fdeded; /* 클릭 시 배경색 변경 */
     color: #ea464a;
   }
+`;
+
+export const BlurredContent = styled.div`
+  filter: blur(5px);
+  pointer-events: none;
+`;
+
+export const CenteredTextWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 150px;
+  margin-right: 150px;
+  font-weight: 600;
+  font-size: 30px;
+  border: none;
+  background-color: #ea464a;
+  border-radius: 10px;
+  border: 1px solid #ea464a;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 80px;
+`;
+
+export const CenteredText = styled.div`
+  font-size: 16px;
+  color: white;
+  padding: 10px;
 `;

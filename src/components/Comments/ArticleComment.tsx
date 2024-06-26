@@ -1,3 +1,5 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient, QueryFunction } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
@@ -6,18 +8,22 @@ import * as S from './ArticleComment.styled';
 import { CommentPost, CommentGet } from '../../types/type';
 import { getComment, createComment } from '../../api/commentpost';
 import { useRecoilValue } from 'recoil';
-import { userNicknameState } from '../../atoms/atoms';
+import { userState } from '../../atoms/atoms';
 import { getElapsedTime } from '../../shared/dateUtils';
 
 const ArticleComment = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userState);
   const token = sessionStorage.getItem('accessToken');
   const [contents, handleOnChangeContents, setContents] = useInput();
+  const isUserLoggedIn = useRecoilValue(userState);
+
   // postId 기반으로 데이터 가져올 예정
   const { id } = useParams();
   let postId = parseInt(id!);
   if (isNaN(postId)) {
     // postId가 NaN인 경우 처리
-    postId = -1; // 유효하지 않은 postId 값으로 처리할 수 있습니다. 이는 실제 로직에 따라 조정해야 합니다.
+    postId = -1;
   }
   const queryClient = useQueryClient();
 
@@ -48,7 +54,6 @@ const ArticleComment = () => {
     return <div>데이터가 안불러와져</div>; // 데이터를 가져오는 동안 오류가 발생한 경우
   }
 
-
   const handleSubmitButtonClick = () => {
     if (!token) {
       return alert('로그인 해주세요!');
@@ -66,13 +71,15 @@ const ArticleComment = () => {
 
   const newComment: CommentPost = {
     postId: postId,
-    parentId: postId-1,
+    parentId: null,
     content: contents,
     // nickname: userNickname || null,
-    mbti: mbtiTest,
-    // createdAt: nowTime.toISOString() // 현재 시간을 ISO 형식의 문자열로 변환하여 사용합니다.
+    mbti: mbtiTest
+    // createdAt: nowTime.toISOString()
   };
-
+  const handleClick = () => {
+    navigate('/login');
+  };
   return (
     <>
       <S.CommentMainTitle>
@@ -86,21 +93,44 @@ const ArticleComment = () => {
           </S.CommentTagButton>
         ))}
       </S.CommentTagButtonBox>
-      {commentData &&
-        commentData.map((comment, idx) => (
-          <div key={idx}>
-            <DivideTitle />
-            <S.CommentHeader>
-              <S.CommentMbti mbti={comment.mbti}>
-                <S.CommentButtonText>{comment.mbti}</S.CommentButtonText>
-              </S.CommentMbti>
-              <S.CommentWriter>{comment.nickName}</S.CommentWriter>
-              <S.CommentTime>{getElapsedTime(comment.createdAt)}</S.CommentTime>
-            </S.CommentHeader>
-            <S.CommentContent>{comment.content}</S.CommentContent>
-            {/* {idx < commentData.length - 1 && <S.CommentDivider />} */}
-          </div>
-        ))}
+      <div>
+        {commentData &&
+          commentData.map((comment, idx) => (
+            <div key={idx}>
+              <DivideTitle />
+              {isUserLoggedIn ? (
+                <div>
+                  <S.CommentHeader>
+                    <S.CommentMbti mbti={comment.mbti}>
+                      <S.CommentButtonText>{comment.mbti}</S.CommentButtonText>
+                    </S.CommentMbti>
+                    <S.CommentWriter>{comment.nickName}</S.CommentWriter>
+                    <S.CommentTime>{getElapsedTime(comment.createdAt)}</S.CommentTime>
+                  </S.CommentHeader>
+                  <S.CommentContent>{comment.content}</S.CommentContent>
+                </div>
+              ) : (
+                <S.BlurredContent>
+                  <S.CommentHeader>
+                    <S.CommentMbti mbti={comment.mbti}>
+                      <S.CommentButtonText>{comment.mbti}</S.CommentButtonText>
+                    </S.CommentMbti>
+                    <S.CommentWriter>{comment.nickName}</S.CommentWriter>
+                    <S.CommentTime>{getElapsedTime(comment.createdAt)}</S.CommentTime>
+                  </S.CommentHeader>
+                  <S.CommentContent>{comment.content}</S.CommentContent>
+                </S.BlurredContent>
+              )}
+              {!isUserLoggedIn && (
+                <S.CenteredTextWrapper>
+                  <div onClick={handleClick}>
+                    <S.CenteredText>로그인 후 전체보기</S.CenteredText>
+                  </div>
+                </S.CenteredTextWrapper>
+              )}
+            </div>
+          ))}
+      </div>
       <DivideTitle />
       <S.CommentPostWrapper>
         <S.CommentPostInput value={contents} onChange={handleOnChangeContents} placeholder="내용"></S.CommentPostInput>
