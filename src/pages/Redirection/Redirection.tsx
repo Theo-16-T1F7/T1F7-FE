@@ -53,7 +53,7 @@ const Redirection = () => {
         });
     }
   }, [code, setAccessToken, setUser]);
-
+  console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
   // userId가 로그인 후에 받아졌을 때만 실행
   useEffect(() => {
     if (userIdData) {
