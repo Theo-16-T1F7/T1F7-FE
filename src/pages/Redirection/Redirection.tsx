@@ -71,7 +71,7 @@ const Redirection = () => {
               setUserMbti(mbtiData);
               if (mbtiData === 'T' || mbtiData === 'F') {
                 setTimeout(() => {
-                  navigate(`/mypage/${userIdData}`);
+                  navigate(`/`);
                 }, 1000);
               } else {
                 setTimeout(() => {
