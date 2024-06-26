@@ -61,34 +61,45 @@ const Redirection = () => {
     }
   }, [userIdData, setUserId]);
 
+  // useEffect(() => {
+  //   if (userIdData && user) {
+  //     getUserInfo()
+  //       .then((userInfoData) => {
+  //         setUserNickname(userInfoData);
+  //         getUserMbti()
+  //           .then((mbtiData) => {
+  //             setUserMbti(mbtiData);
+  //             if (mbtiData === 'T' || mbtiData === 'F') {
+  //               setTimeout(() => {
+  //                 navigate('/');
+  //               }, 1000);
+  //             } else {
+  //               setTimeout(() => {
+  //                 navigate('/nicknameset');
+  //               }, 1000);
+  //             }
+  //           })
+  //           .catch((error) => {
+  //             console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
+  //           });
+  //       })
+  //       .catch((error) => {
+  //         console.error('유저 정보를 불러오는 중 오류 발생:', error);
+  //       });
+  //   }
+  // }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
   useEffect(() => {
-    if (userIdData && user) {
+    if (userIdData) {
       getUserInfo()
         .then((userInfoData) => {
           setUserNickname(userInfoData);
-          getUserMbti()
-            .then((mbtiData) => {
-              setUserMbti(mbtiData);
-              if (mbtiData === 'T' || mbtiData === 'F') {
-                setTimeout(() => {
-                  navigate('/');
-                }, 1000);
-              } else {
-                setTimeout(() => {
-                  navigate('/nicknameset');
-                }, 1000);
-              }
-            })
-            .catch((error) => {
-              console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
-            });
+          navigate(`/mypage/${userIdData}`);
         })
         .catch((error) => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
-
+  }, [userIdData, setUserNickname, navigate]);
   useEffect(() => {
     if (userIdData && mbtiData) {
       setUserMbti(mbtiData);
