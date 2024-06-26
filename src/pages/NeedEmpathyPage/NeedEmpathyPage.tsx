@@ -6,7 +6,7 @@ import { BackButton } from '../../shared/BackButton';
 import { useQuery } from '@tanstack/react-query';
 import { getNeedEmpathy } from '../../api/mainpagelist';
 import { PostDetail } from '../../types/type';
-import { formatNoticeDate } from '../../shared/dateUtils';
+import { formatVoteDate } from '../../shared/dateUtils';
 
 const NeedEmpathyPage: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const NeedEmpathyPage: React.FC<any> = () => {
               <li key={`${post.id}-${index}`}>
                 <S.EmpathyList onClick={() => handleArticleClick(post.id)}>
                   <S.EmpathyListTitle>{post.title}</S.EmpathyListTitle>
-                  <S.EmpathyListCreateAt>{formatNoticeDate(post.createdAt)}</S.EmpathyListCreateAt>
+                  <S.EmpathyListCreateAt>{formatVoteDate(post.createdAt)}</S.EmpathyListCreateAt>
                 </S.EmpathyList>
               </li>
             ))}

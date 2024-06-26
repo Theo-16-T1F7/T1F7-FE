@@ -5,7 +5,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import * as S from './HotBoard.styled';
 import { getHotboard } from '../../api/hotboard';
 import { HotBoardGet } from '../../types/type';
-import { formatNoticeDate } from '../../shared/dateUtils';
+import { formatVoteDate } from '../../shared/dateUtils';
 
 const HotBoard = () => {
   const { data: HotBoardData } = useQuery<HotBoardGet[]>({
@@ -44,7 +44,7 @@ const HotBoard = () => {
                 <S.HotBoardCard>
                   <S.Name>
                     {item.title}
-                    <S.CreatedAt>{formatNoticeDate(item.createdAt)}</S.CreatedAt>
+                    <S.CreatedAt>{formatVoteDate(item.createdAt)}</S.CreatedAt>
                   </S.Name>
                   <S.Content>
                     <div>{item.content}</div>

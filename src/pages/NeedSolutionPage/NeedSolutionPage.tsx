@@ -6,7 +6,7 @@ import { BackButton } from '../../shared/BackButton';
 import { useQuery } from '@tanstack/react-query';
 import { getNeedSolution } from '../../api/mainpagelist';
 import { PostDetail } from '../../types/type';
-import { formatNoticeDate } from '../../shared/dateUtils';
+import { formatVoteDate } from '../../shared/dateUtils';
 
 const NeedSolutionPage: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const NeedSolutionPage: React.FC<any> = () => {
               <li key={`${post.id}-${index}`}>
                 <S.SolutionList onClick={() => handleArticleClick(post.id)}>
                   <S.SolutionListTitle>{post.title}</S.SolutionListTitle>
-                  <S.SolutionListCreateAt>{formatNoticeDate(post.createdAt)}</S.SolutionListCreateAt>
+                  <S.SolutionListCreateAt>{formatVoteDate(post.createdAt)}</S.SolutionListCreateAt>
                 </S.SolutionList>
               </li>
             ))}
