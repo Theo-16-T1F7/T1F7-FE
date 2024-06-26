@@ -42,6 +42,7 @@ const Redirection = () => {
       alert(`${process.env.REACT_APP_SERVER_BASE_URL}`);
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
       const bodycode = { code: code };
+
       // axios
       //   .post(url, bodycode)
       //   .then((response) => {
