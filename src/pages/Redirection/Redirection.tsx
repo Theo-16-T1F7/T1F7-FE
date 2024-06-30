@@ -38,26 +38,23 @@ const Redirection = () => {
   // 로그인
   useEffect(() => {
     if (code) {
-      console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
       alert(`${process.env.REACT_APP_SERVER_BASE_URL}`);
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
       const bodycode = { code: code };
-
-      // axios
-      //   .post(url, bodycode)
-      //   .then((response) => {
-      //     console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
-      //     const token = response.headers['x-bbeudde-token'];
-      //     sessionStorage.setItem('accessToken', token);
-      //     setAccessToken(token);
-      //     setUser(true);
-      //   })
-      //   .catch((error) => {
-      //     console.error('오류 발생:', error);
-      //   });
+      axios
+        .post(url, bodycode)
+        .then((response) => {
+          const token = response.headers['x-bbeudde-token'];
+          sessionStorage.setItem('accessToken', token);
+          setAccessToken(token);
+          setUser(true);
+        })
+        .catch((error) => {
+          console.error('오류 발생:', error);
+        });
     }
   }, [code, setAccessToken, setUser]);
-  console.log(`${process.env.REACT_APP_SERVER_BASE_URL}`);
+  
   // userId가 로그인 후에 받아졌을 때만 실행
   useEffect(() => {
     if (userIdData) {
