@@ -40,26 +40,29 @@ const Redirection = () => {
     if (code) {
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
       const bodycode = { code: code };
+
+      console.log('Login attempt:', url); // 추가된 로그
       axios
         .post(url, bodycode)
         .then((response) => {
+          console.log('Login response:', response); // 추가된 로그
           const token = response.headers['x-bbeudde-token'];
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
           setUser(true);
         })
         .catch((error) => {
-          console.error('오류 발생:', error);
+          console.error('오류 발생:', error); // 에러 로그 추가
         });
     }
   }, [code, setAccessToken, setUser]);
 
   // userId가 로그인 후에 받아졌을 때만 실행
-  // useEffect(() => {
-  //   if (userIdData) {
-  //     setUserId(userIdData);
-  //   }
-  // }, [userIdData, setUserId]);
+  useEffect(() => {
+    if (userIdData) {
+      setUserId(userIdData);
+    }
+  }, [userIdData, setUserId]);
 
   useEffect(() => {
     if (userIdData && user) {
@@ -88,18 +91,7 @@ const Redirection = () => {
         });
     }
   }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
-  useEffect(() => {
-    if (userIdData) {
-      getUserInfo()
-        .then((userInfoData) => {
-          setUserNickname(userInfoData);
-          navigate(`/mypage/${userIdData}`);
-        })
-        .catch((error) => {
-          console.error('유저 정보를 불러오는 중 오류 발생:', error);
-        });
-    }
-  }, [userIdData, setUserNickname, navigate]);
+
   useEffect(() => {
     if (userIdData && mbtiData) {
       setUserMbti(mbtiData);
