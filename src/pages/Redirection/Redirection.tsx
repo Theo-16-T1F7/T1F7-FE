@@ -38,7 +38,6 @@ const Redirection = () => {
   // 로그인
   useEffect(() => {
     if (code) {
-      alert(`${process.env.REACT_APP_SERVER_BASE_URL}`);
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
       const bodycode = { code: code };
       axios
@@ -54,41 +53,41 @@ const Redirection = () => {
         });
     }
   }, [code, setAccessToken, setUser]);
-  
-  // userId가 로그인 후에 받아졌을 때만 실행
-  useEffect(() => {
-    if (userIdData) {
-      setUserId(userIdData);
-    }
-  }, [userIdData, setUserId]);
 
+  // userId가 로그인 후에 받아졌을 때만 실행
   // useEffect(() => {
-  //   if (userIdData && user) {
-  //     getUserInfo()
-  //       .then((userInfoData) => {
-  //         setUserNickname(userInfoData);
-  //         getUserMbti()
-  //           .then((mbtiData) => {
-  //             setUserMbti(mbtiData);
-  //             if (mbtiData === 'T' || mbtiData === 'F') {
-  //               setTimeout(() => {
-  //                 navigate('/');
-  //               }, 1000);
-  //             } else {
-  //               setTimeout(() => {
-  //                 navigate('/nicknameset');
-  //               }, 1000);
-  //             }
-  //           })
-  //           .catch((error) => {
-  //             console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
-  //           });
-  //       })
-  //       .catch((error) => {
-  //         console.error('유저 정보를 불러오는 중 오류 발생:', error);
-  //       });
+  //   if (userIdData) {
+  //     setUserId(userIdData);
   //   }
-  // }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
+  // }, [userIdData, setUserId]);
+
+  useEffect(() => {
+    if (userIdData && user) {
+      getUserInfo()
+        .then((userInfoData) => {
+          setUserNickname(userInfoData);
+          getUserMbti()
+            .then((mbtiData) => {
+              setUserMbti(mbtiData);
+              if (mbtiData === 'T' || mbtiData === 'F') {
+                setTimeout(() => {
+                  navigate('/');
+                }, 1000);
+              } else {
+                setTimeout(() => {
+                  navigate('/nicknameset');
+                }, 1000);
+              }
+            })
+            .catch((error) => {
+              console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
+            });
+        })
+        .catch((error) => {
+          console.error('유저 정보를 불러오는 중 오류 발생:', error);
+        });
+    }
+  }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
   useEffect(() => {
     if (userIdData) {
       getUserInfo()
