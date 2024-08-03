@@ -58,7 +58,7 @@ const Redirection = () => {
       setUserId(userIdData);
     }
   }, [userIdData, setUserId]);
-
+  
   useEffect(() => {
     if (userIdData) {
       getUserInfo()
