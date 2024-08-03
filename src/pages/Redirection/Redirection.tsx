@@ -16,17 +16,18 @@ const Redirection = () => {
   const setUserId = useSetRecoilState(userIdState);
   const setUserMbti = useSetRecoilState(userMbtiState);
 
-  // userId 불러오는 API
-  const { data: userIdData } = useQuery<any>({
+  const { data: userIdData, isLoading: isUserIdLoading } = useQuery({
     queryKey: ['getUserId'],
-    queryFn: () => getUserId()
-  });
-  const { data: mbtiData } = useQuery<any>({
-    queryKey: ['getUserMbti'],
-    queryFn: () => getUserMbti()
+    queryFn: getUserId,
+    enabled: !!accessToken // accessToken이 있을 때만 실행
   });
 
-  // URL 인가코드 저장
+  const { data: mbtiData } = useQuery({
+    queryKey: ['getUserMbti'],
+    queryFn: getUserMbti,
+    enabled: !!userIdData // userIdData가 있을 때만 실행
+  });
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeFromURL = urlParams.get('code');
@@ -35,29 +36,23 @@ const Redirection = () => {
     }
   }, []);
 
-  // 로그인
   useEffect(() => {
     if (code) {
       const url = `${process.env.REACT_APP_SERVER_BASE_URL}/oauth2/kakao/callback?code=${code}`;
-      const bodycode = { code: code };
-
-      console.log('Login attempt:', url); // 추가된 로그
       axios
-        .post(url, bodycode)
+        .post(url, { code })
         .then((response) => {
-          console.log('Login response:', response); // 추가된 로그
           const token = response.headers['x-bbeudde-token'];
           sessionStorage.setItem('accessToken', token);
           setAccessToken(token);
           setUser(true);
         })
         .catch((error) => {
-          console.error('오류 발생:', error); // 에러 로그 추가
+          console.error('오류 발생:', error);
         });
     }
   }, [code, setAccessToken, setUser]);
 
-  // userId가 로그인 후에 받아졌을 때만 실행
   useEffect(() => {
     if (userIdData) {
       setUserId(userIdData);
@@ -68,7 +63,7 @@ const Redirection = () => {
     if (userIdData && user) {
       getUserInfo()
         .then((userInfoData) => {
-          setUserNickname(userInfoData);
+          setUserNickname(userInfoData.nickname);
           getUserMbti()
             .then((mbtiData) => {
               setUserMbti(mbtiData);
@@ -90,7 +85,7 @@ const Redirection = () => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, setUserNickname, setUserMbti, navigate, user]);
+  }, [userIdData, user, setUserNickname, setUserMbti, navigate]);
 
   useEffect(() => {
     if (userIdData && mbtiData) {
@@ -101,17 +96,11 @@ const Redirection = () => {
     }
   }, [userIdData, mbtiData, setUserMbti, navigate, user]);
 
-  // userIdData가 존재하지 않으면 로그인이 아직 완료되지 않았으므로 Splash 화면만 표시
-  if (!userIdData) {
+  if (isUserIdLoading) {
     return <SplashScreen />;
   }
 
-  return (
-    <>
-      {/* 로그인이 완료된 경우에만 마이페이지로 이동 */}
-      {user && <SplashScreen />}
-    </>
-  );
+  return <>{user && <SplashScreen />}</>;
 };
 
 export default Redirection;
