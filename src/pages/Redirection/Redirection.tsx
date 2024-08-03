@@ -22,12 +22,6 @@ const Redirection = () => {
     enabled: !!accessToken // accessToken이 있을 때만 실행
   });
 
-  const { data: mbtiData } = useQuery({
-    queryKey: ['getUserMbti'],
-    queryFn: getUserMbti,
-    enabled: !!userIdData // userIdData가 있을 때만 실행
-  });
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeFromURL = urlParams.get('code');
@@ -56,45 +50,28 @@ const Redirection = () => {
   useEffect(() => {
     if (userIdData) {
       setUserId(userIdData);
-    }
-  }, [userIdData, setUserId]);
-  
-  useEffect(() => {
-    if (userIdData) {
       getUserInfo()
         .then((userInfoData) => {
           setUserNickname(userInfoData.nickname);
-          getUserMbti()
-            .then((mbtiData) => {
-              setUserMbti(mbtiData);
-              if (mbtiData === 'T' || mbtiData === 'F') {
-                setTimeout(() => {
-                  navigate('/');
-                }, 1000);
-              } else {
-                setTimeout(() => {
-                  navigate('/nicknameset');
-                }, 1000);
-              }
-            })
-            .catch((error) => {
-              console.error('MBTI 정보를 불러오는 중 오류 발생:', error);
-            });
+          return getUserMbti();
+        })
+        .then((mbtiData) => {
+          setUserMbti(mbtiData);
+          if (mbtiData === 'T' || mbtiData === 'F') {
+            setTimeout(() => {
+              navigate('/');
+            }, 1000);
+          } else {
+            setTimeout(() => {
+              navigate('/nicknameset');
+            }, 1000);
+          }
         })
         .catch((error) => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, setUserNickname, setUserMbti, navigate]);
-
-  useEffect(() => {
-    if (userIdData && mbtiData) {
-      setUserMbti(mbtiData);
-      if (!user && !mbtiData) {
-        navigate('/nicknameset');
-      }
-    }
-  }, [userIdData, mbtiData, setUserMbti, navigate, user]);
+  }, [userIdData, setUserNickname, setUserMbti, navigate, setUserId]);
 
   if (isUserIdLoading) {
     return <SplashScreen />;
