@@ -58,9 +58,9 @@ const Redirection = () => {
       setUserId(userIdData);
     }
   }, [userIdData, setUserId]);
-
+  
   useEffect(() => {
-    if (userIdData && user) {
+    if (userIdData) {
       getUserInfo()
         .then((userInfoData) => {
           setUserNickname(userInfoData.nickname);
@@ -85,7 +85,7 @@ const Redirection = () => {
           console.error('유저 정보를 불러오는 중 오류 발생:', error);
         });
     }
-  }, [userIdData, user, setUserNickname, setUserMbti, navigate]);
+  }, [userIdData, setUserNickname, setUserMbti, navigate]);
 
   useEffect(() => {
     if (userIdData && mbtiData) {
